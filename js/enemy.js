@@ -39,7 +39,6 @@ function enemyClass() {
     this.init = function(whichGraphic, whichName) {
         this.myBitmap = whichGraphic;
         this.myName = whichName;
-        console.log(this.myBitmap)
         this.reset();
     }
 
@@ -156,16 +155,20 @@ function enemyClass() {
 
         if (this.move_North) {
             nextY -= ENEMY_MOVE_SPEED;
+            this.sy = this.sheight;
         }
         if (this.move_East) {
             nextX += ENEMY_MOVE_SPEED;
+            this.sy = this.sheight*2;
         }
         if (this.move_South) {
             nextY += ENEMY_MOVE_SPEED;
+            this.sy = 0;
 			this.shootProjectile();
         }
         if (this.move_West) {
             nextX -= ENEMY_MOVE_SPEED;
+            this.sy = this.sheight*3;
         }
 
         var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
