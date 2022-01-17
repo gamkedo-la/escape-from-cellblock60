@@ -159,6 +159,7 @@ function warriorClass() {
             case TILE_DOOR_YELLOW_FRONT_BOTTOM_OPEN:
             case TILE_PRISON_GATE_TOP_OPEN:
             case TILE_PRISON_GATE_BOTTOM_OPEN:
+            case TILE_DOOR_YELLOW_SIDE_OPEN:
                 this.x = nextX;
                 this.y = nextY;
                 break;
@@ -190,6 +191,14 @@ function warriorClass() {
                     roomGrid[walkIntoTileIndex] = TILE_PRISON_GATE_TOP_OPEN; //change to top part of door open
                     let tileBelow = findTileBelowCurrent(walkIntoTileIndex);
                     roomGrid[tileBelow] = TILE_PRISON_GATE_BOTTOM_OPEN; // change to bottom part of door open
+                    SetupPathfindingGridData(p1);
+                }
+                break;
+            case TILE_DOOR_YELLOW_SIDE_CLOSED:
+                if (this.keysHeld > 0) {
+                    this.keysHeld--; // one less key
+                    roomGrid[walkIntoTileIndex] = TILE_DOOR_YELLOW_SIDE_OPEN; //change to top part of door open
+                    let tileBelow = findTileBelowCurrent(walkIntoTileIndex);
                     SetupPathfindingGridData(p1);
                 }
                 break;
