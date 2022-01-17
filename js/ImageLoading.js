@@ -1,5 +1,4 @@
 var playerPic = document.createElement("img");
-var goblinPic = document.createElement("img");
 var ghostPic = document.createElement("img");
 var tilePics = [];
 
@@ -33,7 +32,6 @@ function loadImages() {
 
   var imageList = [
     {varName:playerPic, theFile:"warrior.png"},
-  	{varName:goblinPic, theFile:"goblin.png"},
     {varName:ghostPic, theFile:"ghost.png"},
     {tileType:TILE_GROUND, imgX: 0, imgY: 0, theFile:"world_ground.png"},
     //ROW 1
@@ -83,13 +81,11 @@ function loadImages() {
     {tileType:TILE_PRISON_GATE_BOTTOM, imgX: 0, imgY: 0, theFile:"prisonGate_Botom.png"},
     {tileType:TILE_PRISON_GATE_TOP_OPEN, imgX: 0, imgY: 0, theFile:"prisonGate_Top_Open.png"},
     {tileType:TILE_PRISON_GATE_BOTTOM_OPEN, imgX: 0, imgY: 0, theFile:"prisonGate_Botom_Open.png"},
-    {tileType:TILE_GOAL, imgX: 0, imgY: 0, theFile:"world_goal.png"},
     {tileType:TILE_KEY, imgX: 0, imgY: 0, theFile:"world_key.png"},
     {tileType:TILE_DOOR_YELLOW_FRONT_TOP, imgX: 0, imgY: 0, theFile:"yellowDoor_Front_Top.png"},	
     {tileType:TILE_DOOR_YELLOW_FRONT_BOTTOM, imgX: 0, imgY: 0, theFile:"yellowDoor_Front_Bottom.png"},
     {tileType:TILE_DOOR_YELLOW_FRONT_TOP_OPEN, imgX: 0, imgY: 0, theFile:"yellowDoor_Front_Top_Open.png"},	
     {tileType:TILE_DOOR_YELLOW_FRONT_BOTTOM_OPEN, imgX: 0, imgY: 0, theFile:"yellowDoor_Front_Bottom_Open.png"},
-    {tileType:TILE_DOOR, imgX: 0, imgY: 0, theFile:"world_door.png"}
     ];
 
   picsToLoad = imageList.length;
