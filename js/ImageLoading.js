@@ -1,5 +1,7 @@
 var playerPic = document.createElement("img");
 var ghostPic = document.createElement("img");
+var spookyEye = document.createElement("img");
+
 var tilePics = [];
 
 var picsToLoad = 0;
@@ -33,6 +35,7 @@ function loadImages() {
   var imageList = [
     {varName:playerPic, theFile:"warrior.png"},
     {varName:ghostPic, theFile:"ghost.png"},
+    {varName:spookyEye, theFile:"spookyEye.png"},
     {tileType:TILE_GROUND, imgX: 0, imgY: 0, theFile:"world_ground.png"},
     //ROW 1
     {tileType:TILE_WALL_1, imgX: 0, imgY: 0, theFile:"dungeonWalls.png"},
