@@ -7,6 +7,8 @@ const KEY_LETTER_W = 87;
 const KEY_LETTER_A = 65;
 const KEY_LETTER_S = 83;
 const KEY_LETTER_D = 68;
+const KEY_LETTER_P = 80;
+const KEY_LETTER_R = 82;
 const KEY_NUMBER_1 = 49;
 
 var mouseX = 0;
@@ -45,6 +47,12 @@ function keyPressed(evt) {
   //console.log(evt.keyCode);
   if(evt.keyCode == KEY_NUMBER_1){
 	  pathFindingDisplay = !pathFindingDisplay;
+  }
+  if(evt.keyCode == KEY_LETTER_P){
+	  gameState = STATE_PAUSE;
+  }
+  if(evt.keyCode == KEY_LETTER_R){
+	  gameState = STATE_PLAY;
   }
   evt.preventDefault(); // without this, arrow keys scroll the browser!
 }
