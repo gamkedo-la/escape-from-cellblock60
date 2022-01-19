@@ -96,6 +96,8 @@ function loadImages() {
     {tileType:TILE_DUNGEON_ART_2_BOTTOM, imgX: 50, imgY: 50, theFile:"dungeonArt.png"},
     {tileType:TILE_DUNGEON_ART_3_TOP, imgX: 100, imgY: 0, theFile:"dungeonArt.png"},
     {tileType:TILE_DUNGEON_ART_3_BOTTOM, imgX: 100, imgY: 50, theFile:"dungeonArt.png"},
+    {tileType:TILE_DUNGEON_ART_4_TOP, imgX: 150, imgY: 0, theFile:"dungeonArt.png"},
+    {tileType:TILE_DUNGEON_ART_4_BOTTOM, imgX: 150, imgY: 50, theFile:"dungeonArt.png"},
 
     ];
 
