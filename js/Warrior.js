@@ -66,6 +66,8 @@ function warriorClass() {
     this.move = function() {
         var nextX = this.x;
         var nextY = this.y;
+        var movingCollisionModifierX = nextX;
+        var movingCollisionModifierY = nextY;
 
         var playerCol = Math.floor(this.x / TILE_W);
         var playerRow = Math.floor(this.y / TILE_H);
@@ -74,7 +76,7 @@ function warriorClass() {
 
         if (this.tilePath.length > 0) {
             var targetIndex = this.tilePath[0];
-            //console.log(targetIndex);
+
             var targetC = targetIndex % ROOM_COLS;
             var targetR = Math.floor(targetIndex / ROOM_COLS);
             var targetX = targetC * TILE_W + (TILE_W * 0.5);
@@ -83,7 +85,6 @@ function warriorClass() {
             var deltaY = Math.abs(targetY - this.y);
 
             this.keyHeld_East = this.keyHeld_West = this.keyHeld_North = this.keyHeld_South = false;
-            //console.log("DeltaX:" + deltaX + " DeltaY:" + deltaY + " Speed:" + PLAYER_MOVE_SPEED);
 
             if (deltaX <= PLAYER_MOVE_SPEED) {
                 this.x = targetX;
@@ -116,6 +117,7 @@ function warriorClass() {
                     this.keyHeld_West = true;
                 } else {
                     this.keyHeld_East = true;
+                    nextX = nextX + (this.width/2)
                 }
             }
         }
@@ -130,22 +132,33 @@ function warriorClass() {
             nextY -= PLAYER_MOVE_SPEED;
             this.sy = this.sheight;
             this.moving = true;
+            movingCollisionModifierY - (this.height/2)
         } else if (this.keyHeld_East) {
             nextX += PLAYER_MOVE_SPEED; 
             this.sy = this.sheight*2;
             this.moving = true;
+            movingCollisionModifierX + (this.width/2)
         } else if (this.keyHeld_South) {
             nextY += PLAYER_MOVE_SPEED;
             this.sy = 0;
             this.moving = true;
+            movingCollisionModifierY + (this.height/2)
         } else if (this.keyHeld_West) {
             nextX -= PLAYER_MOVE_SPEED;
             this.sy = this.sheight*3;
             this.moving = true;
+            movingCollisionModifierX - (this.width/2)
         } else {
          //   this.moving = false;
         }
 
+        var movingCollisionsX =  nextX + movingCollisionModifierX;
+        var movingCollisionsY = nextY + movingCollisionModifierY;
+
+        //var walkIntoTileIndex = getTileIndexAtPixelCoord(movingCollisionsX, movingCollisionsY);
+        /*  WIP for improving the players collision. 
+        */
+        
         var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
         var walkIntoTileType = TILE_WALL_7;
 
@@ -249,7 +262,7 @@ function warriorClass() {
 
       this.sx = this.spriteIndex * this.width; //this advances the frame for animation
 
-      canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x - 25, this.y -25, 50, 50);
+      canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x, this.y, 50, 50);
     }
 
 } 
