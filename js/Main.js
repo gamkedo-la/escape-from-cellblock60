@@ -50,13 +50,16 @@ function moveEverything() {
 
 function drawEverything() {
 	shiftForCameraPan();
-    drawRoom();
+  drawRoom();
 	if(pathFindingDisplay){
 		drawPathingFindingTiles();
-    }
+  }
 	p1.draw();
 	for(var i = 0; i < enemyList.length; i++){
 		enemyList[i].draw();
 	}
 	finishedCameraPan();
+  if(gameState == STATE_PAUSE) {
+    drawText('Paused', 600, 60, 32, 'yellow')
+  }
 }
