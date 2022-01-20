@@ -21,7 +21,10 @@ function warriorClass() {
     this.frameCount = 0; //counting the Game FPS for this character
     this.advanceFrameAmount = 5; //advance frame (this example: 12 times a second)
     this.spriteNumberOfFrames = 5; // this represents 4 frames of walking
-    this.frameIndex = 0; //Animation frame for this character
+    this.frameIndex = 0; //Animation frame for this character 
+    // collisions
+    this.movingCollisionsX = this.x;
+    this.movingCollisionsY = this.y;
 
     // keyboard hold state variables, to use keys more like buttons
     this.keyHeld_North = false;
@@ -132,33 +135,31 @@ function warriorClass() {
             nextY -= PLAYER_MOVE_SPEED;
             this.sy = this.sheight;
             this.moving = true;
-            movingCollisionModifierY - (this.height/2)
+
+            this.movingCollisionsY = nextY - (this.height/2)
         } else if (this.keyHeld_East) {
             nextX += PLAYER_MOVE_SPEED; 
             this.sy = this.sheight*2;
             this.moving = true;
-            movingCollisionModifierX + (this.width/2)
+            this.movingCollisionsX = nextX - (this.width/2)
         } else if (this.keyHeld_South) {
             nextY += PLAYER_MOVE_SPEED;
             this.sy = 0;
             this.moving = true;
-            movingCollisionModifierY + (this.height/2)
+            this.movingCollisionsY = nextY - (this.height/2)
         } else if (this.keyHeld_West) {
             nextX -= PLAYER_MOVE_SPEED;
             this.sy = this.sheight*3;
             this.moving = true;
-            movingCollisionModifierX - (this.width/2)
+            this.movingCollisionsX = nextX - (this.width/2)
         } else {
          //   this.moving = false;
         }
 
-        var movingCollisionsX =  nextX + movingCollisionModifierX;
-        var movingCollisionsY = nextY + movingCollisionModifierY;
+        var movingCollisionsX = this.movingCollisionsX;
+        var movingCollisionsY = this.movingCollisionsY;
 
         //var walkIntoTileIndex = getTileIndexAtPixelCoord(movingCollisionsX, movingCollisionsY);
-        /*  WIP for improving the players collision. 
-        */
-        
         var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
         var walkIntoTileType = TILE_WALL_7;
 
@@ -262,7 +263,7 @@ function warriorClass() {
 
       this.sx = this.spriteIndex * this.width; //this advances the frame for animation
 
-      canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x, this.y, 50, 50);
+      canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x - this.width/2, this.y - this.height/2, 50, 50);
+      outlineRect(this.movingCollisionsX, this.movingCollisionsY, this.width, this.height, 'red');
     }
-
 } 
