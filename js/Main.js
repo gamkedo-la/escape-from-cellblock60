@@ -3,6 +3,7 @@ var canvas, canvasContext;
 
 var p1 = new warriorClass();
 var pathFindingDisplay = false;
+var frameIndex = 0;
 
 const STATE_PLAY = 1;
 const STATE_PAUSE = 2;
@@ -62,4 +63,5 @@ function drawEverything() {
   if(gameState == STATE_PAUSE) {
     drawText('Paused', 600, 60, 32, 'yellow')
   }
+  frameIndex++;
 }

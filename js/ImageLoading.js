@@ -103,6 +103,11 @@ function loadImages() {
     {tileType:TILE_DUNGEON_ART_4_BOTTOM, imgX: 150, imgY: 50, theFile:"dungeonArt.png"},
     {tileType:TILE_DUNGEON_ART_5_TOP, imgX: 200, imgY: 0, theFile:"dungeonArt.png"},
     {tileType:TILE_DUNGEON_ART_5_BOTTOM, imgX: 200, imgY: 50, theFile:"dungeonArt.png"},
+    {tileType:TILE_TORCH_1, imgX: 300, imgY: 0, theFile:"dungeonArt.png"},
+    {tileType:TILE_TORCH_2, imgX: 350, imgY: 0, theFile:"dungeonArt.png"},
+    {tileType:TILE_TORCH_3, imgX: 400, imgY: 0, theFile:"dungeonArt.png"},
+    {tileType:TILE_TORCH_4, imgX: 450, imgY: 0, theFile:"dungeonArt.png"},
+    {tileType:TILE_TORCH_1_BOTTOM, imgX: 300, imgY: 50, theFile:"dungeonArt.png"},
 
     ];
 
