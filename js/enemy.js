@@ -44,13 +44,13 @@ function enemyClass() {
 
     this.reset = function() {
         if (this.homeX == undefined) {
-            for (var i = 0; i < roomGrid.length; i++) {
-                if (roomGrid[i] == TILE_ENEMY) {
+            for (var i = 0; i < roomGrid.floor.length; i++) {
+                if (roomGrid.floor[i] == TILE_ENEMY) {
                     var tileRow = Math.floor(i / ROOM_COLS);
                     var tileCol = i % ROOM_COLS;
                     this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
                     this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
-                    roomGrid[i] = TILE_GROUND;
+                    roomGrid.floor[i] = TILE_GROUND;
                     break; // found it, so no need to keep searching 
                 } // end of if
             } // end of for
@@ -175,7 +175,7 @@ function enemyClass() {
         var walkIntoTileType = TILE_WALL_7;
 
         if (walkIntoTileIndex != undefined) {
-            walkIntoTileType = roomGrid[walkIntoTileIndex];
+            walkIntoTileType = roomGrid.floor[walkIntoTileIndex];
         }
 
         switch (walkIntoTileType) {

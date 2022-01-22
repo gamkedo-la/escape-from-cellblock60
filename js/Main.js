@@ -15,8 +15,8 @@ window.onload = function() {
 
     SetupPathfindingGridData(p1);
     loadImages();
-	for(var i = 0; i < roomGrid.length; i++){
-		if(roomGrid[i] == TILE_ENEMY){
+	for(var i = 0; i < roomGrid.floor.length; i++){
+		if(roomGrid.floor[i] == TILE_ENEMY){
 			addEnemy();
 		} 
 	}
@@ -51,7 +51,7 @@ function moveEverything() {
 
 function drawEverything() {
 	shiftForCameraPan();
-  drawRoom();
+  drawLayer(roomGrid.floor);
 	if(pathFindingDisplay){
 		drawPathingFindingTiles();
   }
@@ -59,6 +59,7 @@ function drawEverything() {
 	for(var i = 0; i < enemyList.length; i++){
 		enemyList[i].draw();
 	}
+  drawLayer(roomGrid.ceiling)
 	finishedCameraPan();
   if(gameState == STATE_PAUSE) {
     drawPause();

@@ -49,13 +49,13 @@ function warriorClass() {
     this.reset = function() {
         this.keysHeld = 0;
         if (this.homeX == undefined) {
-            for (var i = 0; i < roomGrid.length; i++) {
-                if (roomGrid[i] == TILE_PLAYER) {
+            for (var i = 0; i < roomGrid.floor.length; i++) {
+                if (roomGrid.floor[i] == TILE_PLAYER) {
                     var tileRow = Math.floor(i / ROOM_COLS);
                     var tileCol = i % ROOM_COLS;
                     this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
                     this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
-                    roomGrid[i] = TILE_GROUND;
+                    roomGrid.floor[i] = TILE_GROUND;
                     break; // found it, so no need to keep searching 
                 } // end of if
             } // end of for
@@ -164,7 +164,7 @@ function warriorClass() {
         var walkIntoTileType = TILE_WALL_7;
 
         if (walkIntoTileIndex != undefined) {
-            walkIntoTileType = roomGrid[walkIntoTileIndex];
+            walkIntoTileType = roomGrid.floor[walkIntoTileIndex];
         }
 
         switch (walkIntoTileType) {
@@ -184,47 +184,47 @@ function warriorClass() {
             case TILE_DOOR_YELLOW_FRONT_BOTTOM:
                 if (this.keysHeld > 0) {
                     this.keysHeld--; // one less key
-                    roomGrid[walkIntoTileIndex] = TILE_DOOR_YELLOW_FRONT_BOTTOM_OPEN; //change to bottom part of door open
+                    roomGrid.floor[walkIntoTileIndex] = TILE_DOOR_YELLOW_FRONT_BOTTOM_OPEN; //change to bottom part of door open
                     let tileAbove = findTileAboveCurrent(walkIntoTileIndex);
-                    roomGrid[tileAbove] = TILE_DOOR_YELLOW_FRONT_TOP_OPEN; // change to top part of door open
+                    roomGrid.floor[tileAbove] = TILE_DOOR_YELLOW_FRONT_TOP_OPEN; // change to top part of door open
                     SetupPathfindingGridData(p1);
                 }
                 break;
             case TILE_PRISON_GATE_BOTTOM:
                 if (this.keysHeld > 0) {
                     this.keysHeld--; // one less key
-                    roomGrid[walkIntoTileIndex] = TILE_PRISON_GATE_BOTTOM_OPEN; //change to bottom part of door open
+                    roomGrid.floor[walkIntoTileIndex] = TILE_PRISON_GATE_BOTTOM_OPEN; //change to bottom part of door open
                     let tileAbove = findTileAboveCurrent(walkIntoTileIndex);
-                    roomGrid[tileAbove] = TILE_PRISON_GATE_TOP_OPEN; // change to top part of door open
+                    roomGrid.floor[tileAbove] = TILE_PRISON_GATE_TOP_OPEN; // change to top part of door open
                     SetupPathfindingGridData(p1);
                 }
                 break;
             case TILE_PRISON_GATE_TOP:
                 if (this.keysHeld > 0) {
                     this.keysHeld--; // one less key
-                    roomGrid[walkIntoTileIndex] = TILE_PRISON_GATE_TOP_OPEN; //change to top part of door open
+                    roomGrid.floor[walkIntoTileIndex] = TILE_PRISON_GATE_TOP_OPEN; //change to top part of door open
                     let tileBelow = findTileBelowCurrent(walkIntoTileIndex);
-                    roomGrid[tileBelow] = TILE_PRISON_GATE_BOTTOM_OPEN; // change to bottom part of door open
+                    roomGrid.floor[tileBelow] = TILE_PRISON_GATE_BOTTOM_OPEN; // change to bottom part of door open
                     SetupPathfindingGridData(p1);
                 }
                 break;
             case TILE_DOOR_YELLOW_SIDE_CLOSED:
                 if (this.keysHeld > 0) {
                     this.keysHeld--; // one less key
-                    roomGrid[walkIntoTileIndex] = TILE_DOOR_YELLOW_SIDE_OPEN; //change to top part of door open
+                    roomGrid.floor[walkIntoTileIndex] = TILE_DOOR_YELLOW_SIDE_OPEN; //change to top part of door open
                     let tileBelow = findTileBelowCurrent(walkIntoTileIndex);
                     SetupPathfindingGridData(p1);
                 }
                 break;
             case TILE_TREASURE_CHEST:
                 this.keysHeld--; // one less key
-                roomGrid[walkIntoTileIndex] = TILE_TREASURE_CHEST_OPEN; 
+                roomGrid.floor[walkIntoTileIndex] = TILE_TREASURE_CHEST_OPEN; 
                 SetupPathfindingGridData(p1);
                 break;
             case TILE_KEY:
                 this.keysHeld++; // gain key
                 document.getElementById("debugText").innerHTML = "Keys: " + this.keysHeld;
-                roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
+                roomGrid.floor[walkIntoTileIndex] = TILE_GROUND; // remove key
                 SetupPathfindingGridData(p1);
                 break;
             case TILE_WALL_1:
