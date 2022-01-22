@@ -61,7 +61,7 @@ function drawEverything() {
 	}
 	finishedCameraPan();
   if(gameState == STATE_PAUSE) {
-    drawText('Paused', 600, 60, 32, 'yellow')
+    drawPause();
   }
   frameIndex++;
 }
