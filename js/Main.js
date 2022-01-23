@@ -64,5 +64,6 @@ function drawEverything() {
   if(gameState == STATE_PAUSE) {
     drawPause();
   }
-  frameIndex++;
+  frameIndex++
+  drawHealth();
 }

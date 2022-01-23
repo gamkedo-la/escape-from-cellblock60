@@ -31,3 +31,10 @@ function drawText(str, x, y, size, colour) {
   canvasContext.font = size + 'px Arial';
   canvasContext.fillText(str, x, y);
 }
+
+function shadowText(text, atX, atY, foregroundColor, backgroundColor){
+	canvasContext.fillStyle = backgroundColor;
+	canvasContext.fillText(text, atX+2, atY+2)
+	canvasContext.fillStyle = foregroundColor;
+	canvasContext.fillText(text, atX, atY)
+}
