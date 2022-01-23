@@ -182,42 +182,25 @@ function enemyClass() {
             walkIntoTileType = roomGrid.floor[walkIntoTileIndex];
         }
 
-        switch (walkIntoTileType) {
-            case TILE_GROUND:
-            case TILE_DOOR_YELLOW_FRONT_TOP_OPEN:
-            case TILE_DOOR_YELLOW_FRONT_BOTTOM_OPEN:
-            case TILE_PRISON_GATE_TOP_OPEN:
-            case TILE_PRISON_GATE_BOTTOM_OPEN:
-            case TILE_GOAL:
-            case TILE_KEY:
-                this.x = nextX;
-                this.y = nextY;
-                break;
-            case TILE_DOOR:
-            case TILE_DOOR_YELLOW_FRONT_TOP:
-            case TILE_DOOR_YELLOW_FRONT_BOTTOM:
-            case TILE_WALL_1:
-            case TILE_WALL_2:
-            case TILE_WALL_3:
-            case TILE_WALL_4:
-            case TILE_WALL_5:
-            case TILE_WALL_6:
-            case TILE_WALL_7:
-            case TILE_WALL_8:
-            case TILE_WALL_9:
-            case TILE_WALL_10:
-            case TILE_WALL_11:
-            case TILE_WALL_12:
-            case TILE_WALL_13:
-            default:
-                // any other tile type number was found... do nothing, for now
-                break;
+        if(tileTypeWalkable(walkIntoTileType)){
+            this.x = nextX;
+            this.y = nextY;
+        } 
+
+        for(var i = 0; i < this.myProjectileList.length; i++){ //move projectile
+            this.myProjectileList[i].move();
+        }
+        for(var i = this.myProjectileList.length - 1; i >= 0; i--){
+           if(this.myProjectileList[i].readyToRemove){
+               this.myProjectileList.splice(i,1);
+           }
         }
     }
 
     this.shootProjectile = function() {
         if (this.myProjectileList.length < this.totalShots) {
             let tempShot = new ProjectileClass();
+            console.log("created projectile in enemy class")
             tempShot.shootFrom(this);
             this.myProjectileList.push(tempShot);
         }
@@ -234,6 +217,9 @@ function enemyClass() {
     this.draw = function() {
         //	this.animate();
         canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x, this.y, 50, 50);
+        for(var i = 0; i < this.myProjectileList.length; i++){
+            this.myProjectileList[i].draw();
+        }
     }
 
     // calculate damage recieved and deduct from current health, trigger death

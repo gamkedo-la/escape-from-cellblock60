@@ -206,6 +206,15 @@ function tileTypeHasTransparency(checkTileType) {
           checkTileType == TILE_DOOR);
 }
 
+function tileTypeWalkable(checkTileType){
+  return(checkTileType == TILE_GROUND ||
+    checkTileType == TILE_DOOR_YELLOW_FRONT_TOP_OPEN ||
+    checkTileType == TILE_DOOR_YELLOW_FRONT_BOTTOM_OPEN ||
+    checkTileType == TILE_PRISON_GATE_TOP_OPEN ||
+    checkTileType == TILE_PRISON_GATE_BOTTOM_OPEN ||
+    checkTileType == TILE_DOOR_YELLOW_SIDE_OPEN);
+}
+
 function tileTypeHasDungeonWallBottom(checkTileType){
   return (checkTileType == TILE_CABINET_1_TL ||
           checkTileType == TILE_CABINET_1_TR ||

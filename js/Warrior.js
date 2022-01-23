@@ -135,6 +135,9 @@ function warriorClass() {
             this.moving = false;
         }
 
+        this.movingCollisionsX = this.x;
+        this.movingCollisionsY = this.y + (this.height/4);
+
         if (this.keyHeld_North) {
             nextY -= PLAYER_MOVE_SPEED;
             this.sy = this.sheight;
@@ -145,42 +148,34 @@ function warriorClass() {
             nextX += PLAYER_MOVE_SPEED; 
             this.sy = this.sheight*2;
             this.moving = true;
-            this.movingCollisionsX = nextX - (this.width/2)
+            this.movingCollisionsX = nextX + (this.width/4)
         } else if (this.keyHeld_South) {
             nextY += PLAYER_MOVE_SPEED;
             this.sy = 0;
             this.moving = true;
-            this.movingCollisionsY = nextY - (this.height/2)
+            this.movingCollisionsY = nextY + (this.height/2)
         } else if (this.keyHeld_West) {
             nextX -= PLAYER_MOVE_SPEED;
             this.sy = this.sheight*3;
             this.moving = true;
-            this.movingCollisionsX = nextX - (this.width/2)
+            this.movingCollisionsX = nextX - (this.width/4)
         } else {
          //   this.moving = false;
         }
 
-        var movingCollisionsX = this.movingCollisionsX;
-        var movingCollisionsY = this.movingCollisionsY;
 
-        //var walkIntoTileIndex = getTileIndexAtPixelCoord(movingCollisionsX, movingCollisionsY);
-        var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
+        var walkIntoTileIndex = getTileIndexAtPixelCoord(this.movingCollisionsX, this.movingCollisionsY);
+        //var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
         var walkIntoTileType = TILE_WALL_7;
 
         if (walkIntoTileIndex != undefined) {
             walkIntoTileType = roomGrid.floor[walkIntoTileIndex];
         }
 
-        switch (walkIntoTileType) {
-            case TILE_GROUND:
-            case TILE_DOOR_YELLOW_FRONT_TOP_OPEN:
-            case TILE_DOOR_YELLOW_FRONT_BOTTOM_OPEN:
-            case TILE_PRISON_GATE_TOP_OPEN:
-            case TILE_PRISON_GATE_BOTTOM_OPEN:
-            case TILE_DOOR_YELLOW_SIDE_OPEN:
-                this.x = nextX;
-                this.y = nextY;
-                break;
+        if(tileTypeWalkable(walkIntoTileType)){
+            this.x = nextX;
+            this.y = nextY;
+        } else switch (walkIntoTileType) {
             case TILE_GOAL:
                 this.reset();
                 break;
@@ -277,7 +272,7 @@ function warriorClass() {
       this.sx = this.spriteIndex * this.width; //this advances the frame for animation
 
       canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x - this.width/2, this.y - this.height/2, 50, 50);
-      outlineRect(this.movingCollisionsX, this.movingCollisionsY, this.width, this.height, 'red');
+      outlineRect(this.movingCollisionsX, this.movingCollisionsY, 5, 5, 'red');
     }
 
     // calculate damage recieved and deduct from current health, trigger player death
