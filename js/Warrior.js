@@ -32,6 +32,9 @@ function warriorClass() {
     this.keyHeld_South = false;
     this.keyHeld_West = false;
 
+    // player full health
+    this.fullHealth = 100;
+
     // key controls used for this
     this.setupControls = function(northKey, eastKey, southKey, westKey) {
         this.controlKeyForNorth = northKey;
@@ -43,6 +46,7 @@ function warriorClass() {
     this.init = function(whichGraphic, whichName) {
         this.myBitmap = whichGraphic;
         this.myName = whichName;
+        this.health = this.fullHealth;
         this.reset();
     }
 
@@ -274,5 +278,19 @@ function warriorClass() {
 
       canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x - this.width/2, this.y - this.height/2, 50, 50);
       outlineRect(this.movingCollisionsX, this.movingCollisionsY, this.width, this.height, 'red');
+    }
+
+    // calculate damage recieved and deduct from current health, trigger player death
+    this.hit = function (damage) {
+        // dodge?
+
+        // damage reduction?
+
+        // reduce health
+        this.health -= damage;
+
+        if (this.health <= 0) {
+            // game over?
+        }
     }
 } 

@@ -36,9 +36,13 @@ function enemyClass() {
     this.swidth = 50;
     this.sheight = 50;
 
+    //full health
+    this.fullHealth = 100; // or should this be set by a passed parameter in init?
+
     this.init = function(whichGraphic, whichName) {
         this.myBitmap = whichGraphic;
         this.myName = whichName;
+        this.health = this.fullHealth;
         this.reset();
     }
 
@@ -230,6 +234,20 @@ function enemyClass() {
     this.draw = function() {
         //	this.animate();
         canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x, this.y, 50, 50);
+    }
+
+    // calculate damage recieved and deduct from current health, trigger death
+    this.hit = function (damage) {
+        // dodge?
+
+        // damage reduction?
+
+        // reduce health
+        this.health -= damage;
+
+        if (this.health <= 0) {
+            // monster dead
+        }
     }
 
 } // end of class
