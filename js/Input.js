@@ -9,6 +9,7 @@ const KEY_LETTER_S = 83;
 const KEY_LETTER_D = 68;
 const KEY_LETTER_P = 80;
 const KEY_LETTER_R = 82;
+const KEY_LETTER_M = 77;
 const KEY_NUMBER_1 = 49;
 
 var mouseX = 0;
@@ -53,6 +54,9 @@ function keyPressed(evt) {
   }
   if(evt.keyCode == KEY_LETTER_R){
 	  gameState = STATE_PLAY;
+  }
+  if (evt.keyCode == KEY_LETTER_M) {
+    // toggle mute
   }
   evt.preventDefault(); // without this, arrow keys scroll the browser!
 }
