@@ -28,7 +28,9 @@ function enemyClass() {
 
     //shots
     this.myProjectileList = [];
-    this.totalShots = 3;
+    this.totalShots = 1;
+    this.projectileX = 0;
+    this.projectileY = 0;
 
     //animation
     this.sx = 0;
@@ -160,19 +162,30 @@ function enemyClass() {
         if (this.move_North) {
             nextY -= ENEMY_MOVE_SPEED;
             this.sy = this.sheight;
+            this.projectileX = nextX + 25;
+            this.projectileY = nextY;
+            this.shootProjectile();
         }
         if (this.move_East) {
             nextX += ENEMY_MOVE_SPEED;
             this.sy = this.sheight*2;
+            this.projectileX = nextX + 30;
+            this.projectileY = nextY + (this.sheight/2) + 5; 
+			this.shootProjectile();
         }
         if (this.move_South) {
             nextY += ENEMY_MOVE_SPEED;
             this.sy = 0;
-			this.shootProjectile();
+            this.projectileX = nextX + 25;
+            this.projectileY = nextY + (this.sheight/2);
+            this.shootProjectile();
         }
-        if (this.move_West) {
+            if (this.move_West) {
             nextX -= ENEMY_MOVE_SPEED;
             this.sy = this.sheight*3;
+            this.projectileX = nextX + 10;
+            this.projectileY = nextY + (this.sheight/2) + 5;
+            this.shootProjectile();
         }
 
         var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
@@ -200,7 +213,6 @@ function enemyClass() {
     this.shootProjectile = function() {
         if (this.myProjectileList.length < this.totalShots) {
             let tempShot = new ProjectileClass();
-            console.log("created projectile in enemy class")
             tempShot.shootFrom(this);
             this.myProjectileList.push(tempShot);
         }

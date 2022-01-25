@@ -1,6 +1,6 @@
 const PROJECTILE_SPEED = 6.0;
 const PROJECTILE_LIFE = 100;
-const PROJECTILE_DISPLAY_RADIUS = 10;
+const PROJECTILE_DISPLAY_RADIUS = 5;
 var missProjectile = -10;
 
 //ProjectTileClass.prototype = new movingWrapPositionClass();
@@ -15,8 +15,8 @@ function ProjectileClass(){
 	}
 	
 	this.shootFrom = function(shipFiring){
-		this.x = shipFiring.x;
-		this.y = shipFiring.y;
+		this.x = shipFiring.projectileX;
+		this.y = shipFiring.projectileY;
 		
 		if(shipFiring.move_North){
 			this.xv = 0;
