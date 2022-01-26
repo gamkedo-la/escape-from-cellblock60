@@ -1,6 +1,8 @@
 var playerPic = document.createElement("img");
 var ghostPic = document.createElement("img");
+var projectilePic = document.createElement('img');
 var spookyEye = document.createElement("img");
+
 
 var tilePics = [];
 
@@ -35,6 +37,7 @@ function loadImages() {
   var imageList = [
     {varName:playerPic, theFile:"warrior.png"},
     {varName:ghostPic, theFile:"ghost.png"},
+    {varName:projectilePic, theFile:"projectile.png"},
     {varName:spookyEye, theFile:"spookyEye.png"},
     {tileType:TILE_GROUND, imgX: 0, imgY: 0, theFile:"world_ground.png"},
     //ROW 1

@@ -203,9 +203,10 @@ function enemyClass() {
         for(var i = 0; i < this.myProjectileList.length; i++){ //move projectile
             this.myProjectileList[i].move();
         }
+
         for(var i = this.myProjectileList.length - 1; i >= 0; i--){
            if(this.myProjectileList[i].readyToRemove){
-               this.myProjectileList.splice(i,1);
+               this.myProjectileList.splice(i,1); //remove projectile
            }
         }
     }

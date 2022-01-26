@@ -8,7 +8,12 @@ var missProjectile = -10;
 function ProjectileClass(){
 	this.x;
 	this.y;
+	this.sx = 0;
+	this.sy = 0;
+	this.swidth = 5;
+	this.sheight = 5;
 	this.readyToRemove = false;
+	this.myBitmap = projectilePic;
 		
 	this.isProjectileReadyToFire = function(){
 		return (this.projectileLife <= 0);
@@ -55,6 +60,7 @@ function ProjectileClass(){
 	}	
 	
 	this.draw = function(){
-		colorCircle(this.x, this.y, PROJECTILE_DISPLAY_RADIUS, 'white')
+		//colorCircle(this.x, this.y, PROJECTILE_DISPLAY_RADIUS, 'white')
+		canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x, this.y, 5, 5);
 	}
 }
