@@ -10,8 +10,8 @@ function ProjectileClass(){
 	this.y;
 	this.sx = 0;
 	this.sy = 0;
-	this.swidth = 5;
-	this.sheight = 5;
+	this.swidth = 10;
+	this.sheight = 10;
 	this.readyToRemove = false;
 	this.myBitmap = projectilePic;
 		
@@ -61,6 +61,6 @@ function ProjectileClass(){
 	
 	this.draw = function(){
 		//colorCircle(this.x, this.y, PROJECTILE_DISPLAY_RADIUS, 'white')
-		canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x, this.y, 5, 5);
+		canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x, this.y, 15, 15);
 	}
 }

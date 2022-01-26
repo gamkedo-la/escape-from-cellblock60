@@ -165,7 +165,6 @@ function warriorClass() {
 
 
         var walkIntoTileIndex = getTileIndexAtPixelCoord(this.movingCollisionsX, this.movingCollisionsY);
-        //var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
         var walkIntoTileType = TILE_WALL_7;
 
         if (walkIntoTileIndex != undefined) {

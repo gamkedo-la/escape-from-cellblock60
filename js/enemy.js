@@ -162,21 +162,21 @@ function enemyClass() {
         if (this.move_North) {
             nextY -= ENEMY_MOVE_SPEED;
             this.sy = this.sheight;
-            this.projectileX = nextX + 25;
+            this.projectileX = nextX + 20;
             this.projectileY = nextY;
             this.shootProjectile();
         }
         if (this.move_East) {
             nextX += ENEMY_MOVE_SPEED;
             this.sy = this.sheight*2;
-            this.projectileX = nextX + 30;
+            this.projectileX = nextX + 20;
             this.projectileY = nextY + (this.sheight/2) + 5; 
 			this.shootProjectile();
         }
         if (this.move_South) {
             nextY += ENEMY_MOVE_SPEED;
             this.sy = 0;
-            this.projectileX = nextX + 25;
+            this.projectileX = nextX + 20;
             this.projectileY = nextY + (this.sheight/2);
             this.shootProjectile();
         }
