@@ -112,6 +112,18 @@ function loadImages() {
     {tileType:TILE_TORCH_4, imgX: 450, imgY: 0, theFile:"dungeonArt.png"},
     {tileType:TILE_TORCH_1_BOTTOM, imgX: 300, imgY: 50, theFile:"dungeonArt.png"},
 
+    // floors
+    {tileType:TILE_FLOOR_TILE, imgX: 0, imgY: 0, theFile:"floors.png"},
+    {tileType:TILE_FLOOR_WOOD, imgX: 50, imgY: 0, theFile:"floors.png"},
+    {tileType:TILE_FLOOR_SLAB_1, imgX: 0, imgY: 50, theFile:"floors.png"},
+    {tileType:TILE_FLOOR_SLAB_2, imgX: 50, imgY: 50, theFile:"floors.png"},
+    {tileType:TILE_FLOOR_SLAB_3, imgX: 100, imgY: 50, theFile:"floors.png"},
+    {tileType:TILE_FLOOR_SLAB_4, imgX: 150, imgY: 50, theFile:"floors.png"},
+    {tileType:TILE_SPIKE_1, imgX: 0, imgY: 100, theFile:"floors.png"},
+    {tileType:TILE_SPIKE_2, imgX: 50, imgY: 100, theFile:"floors.png"},
+    {tileType:TILE_SPIKE_3, imgX: 100, imgY: 100, theFile:"floors.png"},
+    {tileType:TILE_SPIKE_4, imgX: 150, imgY: 100, theFile:"floors.png"},
+
     ];
 
   picsToLoad = imageList.length;

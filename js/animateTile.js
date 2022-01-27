@@ -25,3 +25,29 @@ function animateTile(i,j, frameRate, frames) {
     canvasContext.drawImage(tilePics[which].img, sx, sy, 50, 50, x, y, 50, 50);
 
 }
+
+/**
+ * randomize tile selection for given row/column.  The result for same row/column will always be the same
+ * @param {*} i - column index
+ * @param {*} j - row index
+ * @param {*} choices - array of tile types that are choices for randomization
+ */
+function prngTile(i,j, choices) {
+    // prng stuff
+    let mix = 64*j + i;
+    mix ^= (mix << 21);
+    mix ^= (mix >> 35);
+    mix ^= (mix << 4);
+    if (mix < 0) mix *= -1;
+    // determine local frame index
+    let idx = mix % choices.length;
+    // -- then look up the frame for that index
+    let which = choices[idx];
+    let x = i*TILE_W;
+    let y = j*TILE_H;
+    let sx = tilePics[which].imgX
+    let sy = tilePics[which].imgY;
+    // draw at position given
+    canvasContext.drawImage(tilePics[which].img, sx, sy, 50, 50, x, y, 50, 50);
+
+}
