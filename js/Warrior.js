@@ -165,7 +165,7 @@ function warriorClass() {
 
 
         var walkIntoTileIndex = getTileIndexAtPixelCoord(this.movingCollisionsX, this.movingCollisionsY);
-        var walkIntoTileType = TILE_WALL_7;
+        var walkIntoTileType = TILE_EMPTY; //TILE_WALL_7;
 
         if (walkIntoTileIndex != undefined) {
             walkIntoTileType = roomGrid.floor[walkIntoTileIndex];
@@ -184,7 +184,8 @@ function warriorClass() {
                     this.keysHeld--; // one less key
                     roomGrid.floor[walkIntoTileIndex] = TILE_GROUND; //change to bottom part of door open
                     let tileAbove = findTileAboveCurrent(walkIntoTileIndex);
-                    roomGrid.floor[tileAbove] = TILE_GROUND; // change to top part of door open
+                    roomGrid.floor[tileAbove] = TILE_GROUND;
+                    roomGrid.ceiling[tileAbove] = TILE_EMPTY; // change to top part of door open
                     SetupPathfindingGridData(p1);
                 }
                 break;
