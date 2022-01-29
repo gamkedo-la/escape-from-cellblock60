@@ -13,7 +13,7 @@ function warriorClass() {
     // Sprite variables
     this.sx = 0; //sprite xCoord to start clipping
     this.sy = 0; //sprite yCoord to start clipping
-    this.swidth = 51; //sprite width of image to be drawn
+    this.swidth = 50; //sprite width of image to be drawn
     this.sheight = 51; //sprite height to be drawn
     this.sframes = 0; //frames total per animation
     this.width = 50; //width of image
@@ -271,7 +271,7 @@ function warriorClass() {
 
       this.sx = this.spriteIndex * this.width; //this advances the frame for animation
 
-      canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x - this.width/2, this.y - this.height/2, 50, 50);
+      canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, Math.round(this.x - this.width/2), Math.round(this.y - this.height/2), 50, 51);
       outlineRect(this.movingCollisionsX, this.movingCollisionsY, 5, 5, 'red');
     }
 
