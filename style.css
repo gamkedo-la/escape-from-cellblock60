@@ -1,0 +1,40 @@
+body {
+    background-color : #3f3f3f;
+    color : #ffffff;
+    
+}
+
+p {
+    font-size : 1.2em;
+    font-family : monospace;
+    
+}
+
+canvas {
+    width: 1600px;
+    height: 900px;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    display: flex;
+}
+
+@media screen and (max-width: 1600px) {
+    canvas {
+        width: 100%;
+        height: 100%;
+    }
+    #gamecontainer {
+        width: 100%;
+        height: 56.25vw;
+    }
+
+  }
+
+#gamecontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
