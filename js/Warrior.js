@@ -1,6 +1,8 @@
 // tuning constants
 const PLAYER_MOVE_SPEED = 4.0;
+const FRAMES_BETWEEN_ATTACK = 100;
 
+var attackPowerDelay = 0;
 
 function warriorClass() {
     // variables to keep track of position
@@ -260,6 +262,12 @@ function warriorClass() {
                 // any other tile type number was found... do nothing, for now
                 break;
         }
+
+        if(attackPowerDelay<FRAMES_BETWEEN_ATTACK) {
+            attackPowerDelay++;
+            this.chargeAttackPower();
+        }
+
     }
 
     this.draw = function() {
@@ -296,4 +304,16 @@ function warriorClass() {
             // game over?
         }
     }
+
+    
+    this.chargeAttackPower = function () {
+        //toDO: if attackPowerDelay is not full return otherwise charge attack power and then decrease enemy health with the full amount
+        if(attackPowerDelay<FRAMES_BETWEEN_ATTACK){
+            return;
+        } else {
+            attackPowerDelay = 0;
+        }
+    }
+
+
 } 
