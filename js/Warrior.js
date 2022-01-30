@@ -188,6 +188,7 @@ function warriorClass() {
                     let tileAbove = findTileAboveCurrent(walkIntoTileIndex);
                     roomGrid.floor[tileAbove] = TILE_GROUND;
                     roomGrid.ceiling[tileAbove] = TILE_EMPTY; // change to top part of door open
+                    document.getElementById("debugText").innerHTML = "Keys: " + this.keysHeld;
                     SetupPathfindingGridData(p1);
                 }
                 break;
@@ -197,6 +198,7 @@ function warriorClass() {
                     roomGrid.floor[walkIntoTileIndex] = TILE_GROUND; //change to top part of door open
                     let tileBelow = findTileBelowCurrent(walkIntoTileIndex);
                     roomGrid.floor[tileBelow] = TILE_GROUND; // change to bottom part of door open
+                    document.getElementById("debugText").innerHTML = "Keys: " + this.keysHeld;
                     SetupPathfindingGridData(p1);
                 }
                 break;
@@ -206,6 +208,7 @@ function warriorClass() {
                     roomGrid.floor[walkIntoTileIndex] = TILE_PRISON_GATE_BOTTOM_OPEN; //change to bottom part of door open
                     let tileAbove = findTileAboveCurrent(walkIntoTileIndex);
                     roomGrid.floor[tileAbove] = TILE_PRISON_GATE_TOP_OPEN; // change to top part of door open
+                    document.getElementById("debugText").innerHTML = "Keys: " + this.keysHeld;
                     SetupPathfindingGridData(p1);
                 }
                 break;
@@ -215,6 +218,7 @@ function warriorClass() {
                     roomGrid.floor[walkIntoTileIndex] = TILE_PRISON_GATE_TOP_OPEN; //change to top part of door open
                     let tileBelow = findTileBelowCurrent(walkIntoTileIndex);
                     roomGrid.floor[tileBelow] = TILE_PRISON_GATE_BOTTOM_OPEN; // change to bottom part of door open
+                    document.getElementById("debugText").innerHTML = "Keys: " + this.keysHeld;
                     SetupPathfindingGridData(p1);
                 }
                 break;
@@ -223,6 +227,7 @@ function warriorClass() {
                     this.keysHeld--; // one less key
                     roomGrid.floor[walkIntoTileIndex] = TILE_DOOR_YELLOW_SIDE_OPEN; //change to top part of door open
                     let tileBelow = findTileBelowCurrent(walkIntoTileIndex);
+                    document.getElementById("debugText").innerHTML = "Keys: " + this.keysHeld;
                     SetupPathfindingGridData(p1);
                 }
                 break;
@@ -230,6 +235,7 @@ function warriorClass() {
                 this.keysHeld--; // one less key
                 roomGrid.floor[walkIntoTileIndex] = TILE_TREASURE_CHEST_OPEN; 
                 SetupPathfindingGridData(p1);
+                document.getElementById("debugText").innerHTML = "Keys: " + this.keysHeld;
                 break;
             case TILE_KEY:
                 this.keysHeld++; // gain key

@@ -172,24 +172,20 @@ function enemyClass() {
             this.sy = this.sheight*2;
             this.projectileX = nextX + 20;
             this.projectileY = nextY + (this.sheight/2) + 5; 
-			//this.shootProjectile();
         }
         if (this.move_South) {
             nextY += ENEMY_MOVE_SPEED;
             this.sy = 0;
             this.projectileX = nextX + 20;
             this.projectileY = nextY + (this.sheight/2);
-            //this.shootProjectile();
         }
             if (this.move_West) {
             nextX -= ENEMY_MOVE_SPEED;
             this.sy = this.sheight*3;
             this.projectileX = nextX + 10;
             this.projectileY = nextY + (this.sheight/2) + 5;
-           // this.shootProjectile();
         }
 
-        console.log("Fire: " + enemyRow == p1.row || enemyCol == p1.col);
         if(enemyRow == p1.row || enemyCol == p1.col){
             this.shootProjectile();
         }
