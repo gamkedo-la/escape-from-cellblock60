@@ -193,6 +193,19 @@ function getTileIndexAtPixelCoord(pixelX,pixelY) {
   return tileIndex;
 }
 
+function locationToRow(pixelY){
+  var tileRow = pixelY / TILE_H;
+  tileRow = Math.floor(tileRow);
+  return;
+}
+
+function locationToCol(pixelX){
+  var tileCol = pixelX / TILE_W;
+  tileCol = Math.floor(tileCol);
+  return;
+}
+
+
 function tileTypeHasTransparency(checkTileType) {
   return (checkTileType == TILE_GOAL ||
           checkTileType == TILE_KEY ||

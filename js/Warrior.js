@@ -6,6 +6,8 @@ function warriorClass() {
     // variables to keep track of position
     this.x;
     this.y;
+    this.col;
+    this.row;
     this.tilePath = [];
     this.pathfindingNow = false;
     this.moving = false;
@@ -76,10 +78,10 @@ function warriorClass() {
         var movingCollisionModifierX = nextX;
         var movingCollisionModifierY = nextY;
 
-        var playerCol = Math.floor(this.x / TILE_W);
-        var playerRow = Math.floor(this.y / TILE_H);
+        this.col = Math.floor(this.x / TILE_W);
+        this.row = Math.floor(this.y / TILE_H);
 
-        var playersCurrentTileIndex = roomTileToIndex(playerCol, playerRow);
+        this.currentTileIndex = roomTileToIndex(this.col, this.row);
 
         if (this.tilePath.length > 0) {
             var targetIndex = this.tilePath[0];
@@ -114,8 +116,8 @@ function warriorClass() {
                     this.keyHeld_East = true;
                 }
             } else { // move towards center of closest tile
-                targetX = playerCol * TILE_W + (TILE_W * 0.5);
-                targetY = playerRow * TILE_H + (TILE_H * 0.5);
+                targetX = this.col * TILE_W + (TILE_W * 0.5);
+                targetY = this.row * TILE_H + (TILE_H * 0.5);
                 if (targetY < this.y - PLAYER_MOVE_SPEED) {
                     this.keyHeld_North = true;
                 } else if (targetY > this.y + PLAYER_MOVE_SPEED) {
@@ -137,7 +139,7 @@ function warriorClass() {
 
         this.movingCollisionsX = this.x;
         this.movingCollisionsY = this.y + (this.height/4);
-
+        
         if (this.keyHeld_North) {
             nextY -= PLAYER_MOVE_SPEED;
             this.sy = this.sheight;
