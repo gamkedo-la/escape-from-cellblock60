@@ -94,6 +94,7 @@ function loadImages() {
     {tileType:TILE_DOOR_YELLOW_FRONT_BOTTOM, imgX: 0, imgY: 0, theFile:"yellowDoor_Front_Bottom.png"},
     {tileType:TILE_DOOR_YELLOW_FRONT_TOP_OPEN, imgX: 0, imgY: 0, theFile:"yellowDoor_Front_Top_Open.png"},	
     {tileType:TILE_DOOR_YELLOW_FRONT_BOTTOM_OPEN, imgX: 0, imgY: 0, theFile:"yellowDoor_Front_Bottom_Open.png"},
+    {tileType:TILE_TABLE_1, imgX: 0, imgY: 0, theFile:"table1.png"},
 
     // dungeon art
     {tileType:TILE_DUNGEON_ART_1_TOP, imgX: 0, imgY: 0, theFile:"dungeonArt.png"},
