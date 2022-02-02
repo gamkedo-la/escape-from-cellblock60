@@ -51,6 +51,7 @@ function warriorClass() {
         this.myBitmap = whichGraphic;
         this.myName = whichName;
         this.health = this.fullHealth;
+        this.sword = false;
         this.reset();
     }
 
@@ -245,6 +246,12 @@ function warriorClass() {
                 roomGrid.floor[walkIntoTileIndex] = TILE_GROUND; // remove key
                 SetupPathfindingGridData(p1);
                 break;
+            case TILE_SWORD:
+                this.sword = true; // gain sword
+                document.getElementById("debugText").innerHTML = "Sword: " + this.sword;
+                roomGrid.floor[walkIntoTileIndex] = TILE_GROUND; // remove sword
+                SetupPathfindingGridData(p1);
+                break;
             case TILE_WALL_1:
             case TILE_WALL_2:
             case TILE_WALL_3:
@@ -285,8 +292,11 @@ function warriorClass() {
         this.spriteIndex = 0;
       }
 
-      this.sx = this.spriteIndex * this.width; //this advances the frame for animation
-
+      if(this.sword){
+        this.sx = this.spriteIndex * this.width + 200; //move over to frames for sword
+      } else {
+        this.sx = this.spriteIndex * this.width; //this advances the frame for animation
+      }
       canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, Math.round(this.x - this.width/2), Math.round(this.y - this.height/2), 50, 51);
       outlineRect(this.movingCollisionsX, this.movingCollisionsY, 5, 5, 'red');
     }
@@ -305,7 +315,6 @@ function warriorClass() {
         }
     }
 
-    
     this.chargeAttackPower = function () {
         //toDO: if attackPowerDelay is not full return otherwise charge attack power and then decrease enemy health with the full amount
         if(attackPowerDelay<FRAMES_BETWEEN_ATTACK){

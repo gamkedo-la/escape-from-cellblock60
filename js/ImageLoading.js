@@ -76,9 +76,10 @@ function loadImages() {
     {tileType:TILE_TREASURE_CHEST_OPEN, imgX: 150, imgY: 150, theFile:"dungeonWalls.png"},
     {tileType:TILE_WHISKEY_BARREL_BOTTOM, imgX: 250, imgY: 150, theFile:"dungeonWalls.png"},
 
-    
     //END SPRITE SHEET
-    
+
+    {tileType:TILE_KEY, imgX: 0, imgY: 0, theFile:"items.png"},
+    {tileType:TILE_SWORD, imgX: 50, imgY: 0, theFile:"items.png"},
     
     {tileType:TILE_PRISON_WALL_1, imgX: 0, imgY: 0, theFile:"prisonWall_1.png"},
     {tileType:TILE_PRISON_WALL_2, imgX: 0, imgY: 0, theFile:"prisonWall_2.png"},
@@ -89,7 +90,7 @@ function loadImages() {
     {tileType:TILE_PRISON_GATE_BOTTOM, imgX: 0, imgY: 0, theFile:"prisonGate_Botom.png"},
     {tileType:TILE_PRISON_GATE_TOP_OPEN, imgX: 0, imgY: 0, theFile:"prisonGate_Top_Open.png"},
     {tileType:TILE_PRISON_GATE_BOTTOM_OPEN, imgX: 0, imgY: 0, theFile:"prisonGate_Botom_Open.png"},
-    {tileType:TILE_KEY, imgX: 0, imgY: 0, theFile:"world_key.png"},
+
     {tileType:TILE_DOOR_YELLOW_FRONT_TOP, imgX: 0, imgY: 0, theFile:"yellowDoor_Front_Top.png"},	
     {tileType:TILE_DOOR_YELLOW_FRONT_BOTTOM, imgX: 0, imgY: 0, theFile:"yellowDoor_Front_Bottom.png"},
     {tileType:TILE_DOOR_YELLOW_FRONT_TOP_OPEN, imgX: 0, imgY: 0, theFile:"yellowDoor_Front_Top_Open.png"},	
