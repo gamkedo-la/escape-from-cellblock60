@@ -68,7 +68,7 @@ function drawEverything() {
   if(gameState == STATE_PAUSE) {
     drawPause();
   }
-  if(gameState = STATE_GAME_OVER) {
+  if(gameState == STATE_GAME_OVER) {
     drawGameOver();
   }
   frameIndex++
