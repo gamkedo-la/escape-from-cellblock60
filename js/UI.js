@@ -21,8 +21,6 @@ function drawAttackPowerCharge() {
 }
 
 function drawGameOver() {
-  shadowText('GAME OVER', 10, 15, 12, 2, 'yellow', 'purple')
-  outlineRect(10, 20, 100, 12, 'grey');
-  colorRect(10, 20, 100, 12, 'brown');
-  colorRect(10, 20, p1.health, 12, 'red');
+  centerColorRect(CENTER_X, CENTER_Y, GAME_WIDTH, 200, 'red');
+  shadowText('GAME OVER', CENTER_X-200, CENTER_Y, 64, 5, 'white', 'black')
 }

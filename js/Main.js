@@ -5,6 +5,11 @@ var p1 = new warriorClass();
 var pathFindingDisplay = false;
 var frameIndex = 0;
 
+const GAME_WIDTH = 800;
+const GAME_HEIGHT = 450;
+const CENTER_X = GAME_WIDTH / 2;
+const CENTER_Y = GAME_HEIGHT / 2;
+
 const STATE_PLAY = 1;
 const STATE_PAUSE = 2;
 const STATE_GAME_OVER = 3;
@@ -47,8 +52,8 @@ function moveEverything() {
       }
       updatedCameraPosition();
       break;
-    case GAME_OVER:
-
+    case STATE_GAME_OVER:
+      drawGameOver();
       break;
   }
 }

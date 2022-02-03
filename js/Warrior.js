@@ -76,6 +76,11 @@ function warriorClass() {
     } // end of reset
 
     this.move = function() {
+
+        if (this.health <= 0) {
+            gameState = STATE_GAME_OVER;
+        }
+        
         var nextX = this.x;
         var nextY = this.y;
         var movingCollisionModifierX = nextX;
@@ -310,9 +315,7 @@ function warriorClass() {
         // reduce health
         this.health -= damage;
 
-        if (this.health <= 0) {
-            gameState = STATE_GAME_OVER;
-        }
+       
     }
 
     this.chargeAttackPower = function () {
