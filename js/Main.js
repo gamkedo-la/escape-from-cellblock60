@@ -7,6 +7,7 @@ var frameIndex = 0;
 
 const STATE_PLAY = 1;
 const STATE_PAUSE = 2;
+const STATE_GAME_OVER = 3;
 var gameState = STATE_PLAY;
 
 window.onload = function() {
@@ -46,6 +47,9 @@ function moveEverything() {
       }
       updatedCameraPosition();
       break;
+    case GAME_OVER:
+
+      break;
   }
 }
 
@@ -63,6 +67,9 @@ function drawEverything() {
 	finishedCameraPan();
   if(gameState == STATE_PAUSE) {
     drawPause();
+  }
+  if(gameState = STATE_GAME_OVER) {
+    drawGameOver();
   }
   frameIndex++
   drawHealth();

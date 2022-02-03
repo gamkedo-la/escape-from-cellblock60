@@ -301,7 +301,7 @@ function warriorClass() {
         this.health -= damage;
 
         if (this.health <= 0) {
-            // game over?
+            gameState = STATE_GAME_OVER;
         }
     }
 
