@@ -4,53 +4,56 @@ const AI_FRAME_THINK_TIME = 60;
 var enemyList = [];
 
 function addEnemy() {
-    var tempEnemy = new enemyClass();
+    var tempEnemy = new enemy();
     enemyList.push(tempEnemy);
 }
 
-function enemyClass() {
+class enemy {
     // variables to keep track of position
-    this.x;
-    this.y;
-    this.tilePath = [];
-    this.pathfindingNow = false;
-    this.framesBeforeReThink = AI_FRAME_THINK_TIME;
-    this.moving = false;
-    this.patrolling = true;
-    this.resting = false;
-    this.trackPlayerRange = 250;
-    this.myRow = 0;
-    this.myCol = 0;
+    constructor() {
+        this.x;
+        this.y;
+        this.tilePath = [];
+        this.pathfindingNow = false;
+        this.framesBeforeReThink = AI_FRAME_THINK_TIME;
+        this.moving = false;
+        this.patrolling = true;
+        this.resting = false;
+        this.trackPlayerRange = 250;
+        this.myRow = 0;
+        this.myCol = 0;
 
-    // move states
-    this.move_North = false;
-    this.move_East = false;
-    this.move_South = false;
-    this.move_West = false;
+        // move states
+        this.move_North = false;
+        this.move_East = false;
+        this.move_South = false;
+        this.move_West = false;
 
-    //shots
-    this.myProjectileList = [];
-    this.totalShots = 1;
-    this.projectileX = 0;
-    this.projectileY = 0;
+        //shots
+        this.myProjectileList = [];
+        this.totalShots = 1;
+        this.projectileX = 0;
+        this.projectileY = 0;
 
-    //animation
-    this.sx = 0;
-    this.sy = 0;
-    this.swidth = 50;
-    this.sheight = 50;
+        //animation
+        this.sx = 0;
+        this.sy = 0;
+        this.swidth = 50;
+        this.sheight = 50;
 
-    //full health
-    this.fullHealth = 100; // or should this be set by a passed parameter in init?
+        //full health
+        this.fullHealth = 100; // or should this be set by a passed parameter in init?
+    }
 
-    this.init = function(whichGraphic, whichName) {
+
+    init(whichGraphic, whichName) {
         this.myBitmap = whichGraphic;
         this.myName = whichName;
         this.health = this.fullHealth;
         this.reset();
     }
 
-    this.reset = function() {
+    reset() {
         if (this.homeX == undefined) {
             for (var i = 0; i < roomGrid.floor.length; i++) {
                 if (roomGrid.floor[i] == TILE_ENEMY) {
@@ -69,7 +72,7 @@ function enemyClass() {
 
     } // end of reset
 
-    this.move = function() {
+    move() {
         //pathfinding
         if (this.framesBeforeReThink-- < 0) {
             this.framesBeforeReThink = AI_FRAME_THINK_TIME;
@@ -104,8 +107,8 @@ function enemyClass() {
         var nextX = this.x;
         var nextY = this.y;
 
-        enemyCol = Math.floor(this.x / TILE_W);
-        enemyRow = Math.floor(this.y / TILE_H);
+        var enemyCol = Math.floor(this.x / TILE_W);
+        var enemyRow = Math.floor(this.y / TILE_H);
 
         var enemyCurrentTileIndex = roomTileToIndex(enemyCol, enemyRow);
 
@@ -213,7 +216,7 @@ function enemyClass() {
         }
     }
 
-    this.shootProjectile = function() {
+    shootProjectile() {
         if (this.myProjectileList.length < this.totalShots) {
             let tempShot = new ProjectileClass();
             tempShot.shootFrom(this);
@@ -221,7 +224,7 @@ function enemyClass() {
         }
     }
 
-    this.animate = function() {
+    animate() {
         this.swidth = this.swidth + this.swidth
         this.sx = this.swidth
         if (this.swidth > 300) {
@@ -229,7 +232,7 @@ function enemyClass() {
         }
     }
 
-    this.draw = function() {
+    draw() {
         //	this.animate();
         canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x, this.y, 50, 50);
         for(var i = 0; i < this.myProjectileList.length; i++){
@@ -238,7 +241,7 @@ function enemyClass() {
     }
 
     // calculate damage recieved and deduct from current health, trigger death
-    this.hit = function (damage) {
+    hit(damage) {
         // dodge?
 
         // damage reduction?
@@ -250,5 +253,7 @@ function enemyClass() {
             // monster dead
         }
     }
+}
+ // end of class
 
-} // end of class
+ 

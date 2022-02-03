@@ -23,7 +23,8 @@ window.onload = function() {
     loadImages();
 	for(var i = 0; i < roomGrid.floor.length; i++){
 		if(roomGrid.floor[i] == TILE_ENEMY){
-			addEnemy();
+			//addEnemy();
+    addGhost();
 		} 
 	}
 }
@@ -37,9 +38,11 @@ function loadingDoneSoStartGame() {
   }, 1000 / framesPerSecond);
 
   p1.init(playerPic, "Blue");
-	for(var i = 0; i < enemyList.length; i++){
-		enemyList[i].init(ghostPic, "red");
-	}
+  //init handled in ghost constructor
+	// for(var i = 0; i < enemyList.length; i++){
+    
+	// 	enemyList[i].init(ghostPic, "red");
+	// }
     initInput();
 }
 
