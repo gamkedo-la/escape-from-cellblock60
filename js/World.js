@@ -296,7 +296,11 @@ function drawLayer(layer) {
         }
   
         if (tileTypeHere==TILE_TORCH_1) {
+          
           animateTile(eachCol, eachRow, 5, [TILE_TORCH_1, TILE_TORCH_2, TILE_TORCH_3, TILE_TORCH_4]);
+          // smoke/fire particles
+          torch_particles(tileLeftEdgeX+TILE_W/2,tileTopEdgeY+TILE_H/3*2); 
+
         } else if (tileTypeHere==TILE_FLOOR_SLAB_1) {
           prngTile(eachCol, eachRow, [TILE_FLOOR_SLAB_1, TILE_FLOOR_SLAB_2, TILE_FLOOR_SLAB_3, TILE_FLOOR_SLAB_4]);
         } else {

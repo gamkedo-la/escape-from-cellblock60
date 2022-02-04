@@ -47,7 +47,10 @@ function loadingDoneSoStartGame() {
 }
 
 function moveEverything() {
-  switch (gameState) {
+    
+    particles.update();
+  
+    switch (gameState) {
     case STATE_PLAY:
       p1.move();
       for(var i = 0; i < enemyList.length; i++){
@@ -67,11 +70,14 @@ function drawEverything() {
 	if(pathFindingDisplay){
 		drawPathingFindingTiles();
   }
-	p1.draw();
+    p1.draw();
 	for(var i = 0; i < enemyList.length; i++){
 		enemyList[i].draw();
 	}
   drawLayer(roomGrid.ceiling)
+
+  particles.draw();
+
 	finishedCameraPan();
   if(gameState == STATE_PAUSE) {
     drawPause();
@@ -81,4 +87,5 @@ function drawEverything() {
   }
   frameIndex++
   drawHealth();
+
 }

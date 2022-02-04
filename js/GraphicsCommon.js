@@ -47,3 +47,13 @@ function shadowText(text, atX, atY, size, offset, foregroundColor, backgroundCol
 	canvasContext.fillStyle = foregroundColor;
 	canvasContext.fillText(text, atX, atY)
 }
+
+function drawImageRotatedAlpha(canvasContext, image, x, y, angle, opacity) {
+    canvasContext.save();
+    canvasContext.translate(x, y);
+    if (angle !== undefined) canvasContext.rotate(angle);
+    if (opacity !== undefined) canvasContext.globalAlpha = opacity;
+    canvasContext.drawImage(image, -image.width / 2, -image.height / 2);
+    canvasContext.restore();
+  }
+  
