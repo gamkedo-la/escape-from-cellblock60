@@ -2,8 +2,8 @@
 // that look at the player! spooooooky
 
 function spookyEyes(x,y,eysOffset=3) {
-    const moveSizeX = 2;
-    const moveSizeY = 2;
+    const moveSizeX = 1;
+    const moveSizeY = 1;
     const centerPlayerX = 15;
     const centerPlayerY = 15;
     let lookAngle = Math.atan2(p1.y-y+centerPlayerY,p1.x-x+centerPlayerX);
