@@ -87,7 +87,6 @@ function drawEverything() {
 }
 
 function drawTileAtlas() {
-  colorRect(0,0,800,450, 'magenta');
   checkerboard(8, '#111111', '#222222');
   Object.entries(TILES).forEach( function(entry, index, array) {
     
@@ -98,9 +97,9 @@ function drawTileAtlas() {
     if(tilePics[mapIndex] != undefined){
       sx = tilePics[mapIndex].imgX
       sy = tilePics[mapIndex].imgY;
-      canvasContext.drawImage(tilePics[mapIndex].img, sx, sy, 50, 50, index%16*50, Math.floor(index/16)*50, 50, 50);
+      canvasContext.drawImage(tilePics[mapIndex].img, sx, sy, 50, 50, mapIndex%16*50, Math.floor(mapIndex/16)*50, 50, 50);
       
-      shadowText(mapIndex.toString(), index%16*50+4, (Math.floor(index/16)*50)+15, 15, 1, "white", "black");
+      shadowText(mapIndex.toString(), mapIndex%16*50+4, (Math.floor(mapIndex/16)*50)+15, 15, 1, "white", "black");
     }
   })
   var dataURL = canvas.toDataURL("image/png");
