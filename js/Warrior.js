@@ -22,9 +22,11 @@ function warriorClass() {
     this.sframes = 0; //frames total per animation
     this.width = 50; //width of image
     this.height = 51; //height of image
-    this.frameCount = 0; //counting the Game FPS for this character
+	this.frameCount = 0; //counting the Game FPS for this character
+	this.idleFrameCount = 0;
     this.advanceFrameAmount = 5; //advance frame (this example: 12 times a second)
     this.spriteNumberOfFrames = 5; // this represents 4 frames of walking
+    this.spriteNumberOfIdleFrames = 7;
     this.frameIndex = 0; //Animation frame for this character 
     // collisions
     this.movingCollisionsX = this.x;
@@ -52,6 +54,7 @@ function warriorClass() {
         this.myName = whichName;
         this.health = this.fullHealth;
         this.sword = false;
+	    this.lastMovedTime = Date.now();
         this.reset();
     }
 
@@ -312,29 +315,54 @@ function warriorClass() {
             }
         }
 
+	  if (this.moving) {
+		this.lastMovedTime = Date.now();
+	  }
     }
 
-    this.draw = function() {
+	this.cycleMovingAnimation = function() {
+	  this.frameCount++;
+	  if (this.frameCount > this.advanceFrameAmount) {
+		this.frameCount = 0;
+		if(this.spriteIndex < this.spriteNumberOfFrames-1) {
+		  this.spriteIndex += 1;
+		} else {
+		  this.spriteIndex = 1;
+		}
+	  }
+	};
+
+  this.cycleIdleAnimation = function() {
+	this.idleFrameCount++;
+	  if (this.idleFrameCount > this.advanceFrameAmount) {
+		this.idleFrameCount = 0;
+		if(this.spriteIndex < this.spriteNumberOfIdleFrames-1) {
+		  this.spriteIndex += 1;
+		} else {
+		  this.spriteIndex = 1;
+		  this.lastMovedTime = Date.now();
+		}
+	  }
+  };
+
+  this.draw = function() {
+	  let currentBitMap = this.myBitmap;
+	  const isIdle = Date.now() - this.lastMovedTime > 2000;
       if(this.moving){
-		this.frameCount++;
-		if (this.frameCount > this.advanceFrameAmount) {
-			this.frameCount = 0;
-			if(this.spriteIndex < this.spriteNumberOfFrames-1) {
-				this.spriteIndex += 1;
-			} else {
-				this.spriteIndex = 1;
-			}
-        }
+		this.cycleMovingAnimation();
+	  } else if (isIdle) {
+		currentBitMap = playerIdlePic;
+		this.cycleIdleAnimation();
       } else {
         this.spriteIndex = 0;
       }
 
-      if(this.sword){
+      if(this.sword && !isIdle){
         this.sx = this.spriteIndex * this.width + 200; //move over to frames for sword
       } else {
         this.sx = this.spriteIndex * this.width; //this advances the frame for animation
       }
-      canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, Math.round(this.x - this.width/2), Math.round(this.y - this.height/2), 50, 51);
+      canvasContext.drawImage(currentBitMap,this.sx,this.sy, this.swidth, this.sheight, Math.round(this.x - this.width/2), Math.round(this.y - this.height/2), 50, 51);
       outlineRect(this.movingCollisionsX, this.movingCollisionsY, 5, 5, 'red');
     }
 

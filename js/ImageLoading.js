@@ -1,4 +1,5 @@
 var playerPic = document.createElement("img");
+var playerIdlePic = document.createElement("img");
 var ghostPic = document.createElement("img");
 var projectilePic = document.createElement('img');
 var spookyEye = document.createElement("img");
@@ -37,6 +38,7 @@ function loadImages() {
 
   var imageList = [
     {varName:playerPic, theFile:"warrior.png"},
+	{varName:playerIdlePic, theFile:"warrior-idle.png"},
     {varName:ghostPic, theFile:"ghost.png"},
     {varName:projectilePic, theFile:"projectile.png"},
     {varName:spookyEye, theFile:"spookyEye.png"},
