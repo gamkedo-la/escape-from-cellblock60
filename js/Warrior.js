@@ -1,5 +1,5 @@
 // tuning constants
-const PLAYER_MOVE_SPEED = 4.0;
+const PLAYER_MOVE_SPEED = 8.0;
 const FRAMES_BETWEEN_ATTACK = 100;
 
 var attackPowerDelay = 0;
@@ -278,6 +278,38 @@ function warriorClass() {
         if(attackPowerDelay<FRAMES_BETWEEN_ATTACK) {
             attackPowerDelay++;
             this.chargeAttackPower();
+        }
+
+        if(this.x < 0) {
+            
+            if(getRoomTo(EAST) != "00"){
+                this.x = GAME_WIDTH-10; // wrap around
+                moveToRoom(EAST);
+            }
+        }
+        if(this.x > GAME_WIDTH) {
+            
+            //mapMove(WEST);
+            if(getRoomTo(WEST) != "00"){
+                this.x = 10; // wrap around
+                moveToRoom(WEST);
+            }
+        }
+        if(this.y < 0) {
+            
+            //mapMove(NORTH);
+            if(getRoomTo(NORTH) != "00"){
+                this.y = GAME_HEIGHT-10; // wrap around
+                moveToRoom(NORTH);
+            }
+        }
+        if(this.y > GAME_HEIGHT) {
+            
+            //mapMove(SOUTH);
+            if(getRoomTo(SOUTH) != "00"){
+                this.y = 10; // wrap around
+                moveToRoom(SOUTH);
+            }
         }
 
     }

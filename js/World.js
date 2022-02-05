@@ -1,8 +1,8 @@
 // world, room, and tile constants, variables
-const ROOM_COLS = 64;
-const ROOM_ROWS = 40;
+// const ROOM_COLS = 64;
+// const ROOM_ROWS = 40;
 
-var roomGrid = {
+/* var roomGrid = {
   floor:
   [ 11,61,63,61,35,13,20,19,20,35,13,65,61,65,63,13,16,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,
     11,62,64,62,34,23,21,22,21,34,23,69,62,69,64,23,15,23,23,23,23,23,23,23,23,23,23,23,23,23,23, 9, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 9,
@@ -88,9 +88,38 @@ var roomGrid = {
      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   ]
 };
+*/
+
+
+const ROOM_COLS = 16;
+const ROOM_ROWS = 9;
+
 
 const TILE_W = 50;
 const TILE_H = 50;
+
+const WORLD_COLS=16;
+const WORLD_ROWS=9;
+
+const NORTH = 0;
+const EAST = 1;
+const SOUTH = 2;
+const WEST = 3;
+
+worldPosition = {x: 8, y: 4};
+worldGrid = [
+  "00","00","00","00","00","00","00","00","00","00","00","00","00","00","00","00",
+  "00","00","00","00","00","00","00","00","00","00","00","00","00","00","00","00",
+  "00","00","00","00","00","00","00","00","00","00","00","00","00","00","00","00",
+  "00","00","00","00","00","00","00","00","02","00","00","00","00","00","00","00",
+  "00","00","00","00","00","00","00","05","01","05","00","00","00","00","00","00",
+  "00","00","00","00","00","00","00","00","05","00","00","00","00","00","00","00",
+  "00","00","00","00","00","00","00","00","00","00","00","00","00","00","00","00",
+  "00","00","00","00","00","00","00","00","00","00","00","00","00","00","00","00",
+  "00","00","00","00","00","00","00","00","00","00","00","00","00","00","00","00",
+];
+
+var roomGrid = rooms[ worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x] ];
 
 TILES = {
 
@@ -335,3 +364,79 @@ function drawLayer(layer) {
     
   } // end of for eachRow    
 } // end of drawLayer()
+
+function moveToRoom(DIRECTION) {
+  // move to a new room
+  console.log(`moveToRoom() called with direction ${DIRECTION}`);
+  switch(DIRECTION) {
+    case NORTH:
+       worldPosition.y -=1;
+        break;
+    case SOUTH:
+        worldPosition.y +=1;
+        break;
+    case EAST:
+        worldPosition.x +=1;
+        break;
+    case WEST:
+        worldPosition.x -=1;
+        break;
+  }
+  roomGrid = rooms[ worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x] ]
+}
+
+function getRoomTo(DIRECTION) {
+  // get the room to the north, south, east, or west of the current room
+  switch(DIRECTION) {
+    case NORTH:
+      console.log(`getRoomTo() called with direction ${DIRECTION}`); 
+       return worldGrid[(worldPosition.y-1)*WORLD_COLS + worldPosition.x];
+       
+        break;
+    case SOUTH:
+      console.log(`getRoomTo() called with direction ${DIRECTION}`); 
+        return worldGrid[(worldPosition.y+1)*WORLD_COLS + worldPosition.x];
+        break;
+    case EAST:
+      console.log(`getRoomTo() called with direction ${DIRECTION}`); 
+        return worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x+1];
+        break;
+    case WEST:
+      console.log(`getRoomTo() called with direction ${DIRECTION}`); 
+        return worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x-1];
+        break;
+  }
+}
+
+function drawTileAtlas(drawText) {
+  //checkerboard(8, '#111111', '#222222');
+  canvas.width = GAME_WIDTH;
+  //draw the 'zero' tile with a very transparent magenta
+  colorRect(0,0, 50,50 , 'rgba(255,0,255,0.1)');
+  //draw the player at indice 2
+  canvasContext.drawImage(playerPic, 0, 0, 50, 50, 2%16*50, Math.floor(2/16)*50, 50, 50);
+  //draw enemy sprite at indice 30
+  canvasContext.drawImage(ghostPic, 0, 0, 50, 50, 30%16*50, Math.floor(30/16)*50, 50, 50);
+
+  Object.entries(TILES).forEach( function(entry) {
+    
+    let tilename = entry[0];
+    let mapIndex = entry[1];
+
+    if(tilePics[mapIndex] != undefined){
+      sx = tilePics[mapIndex].imgX
+      sy = tilePics[mapIndex].imgY;
+      canvasContext.drawImage(tilePics[mapIndex].img, sx, sy, 50, 50, mapIndex%16*50, Math.floor(mapIndex/16)*50, 50, 50);
+      //only draw numbers if drawText is true
+      if(drawText){ 
+        shadowText(mapIndex.toString(), mapIndex%16*50+4, (Math.floor(mapIndex/16)*50)+15, 15, 1, "white", "black");
+      }
+    }
+  })
+  var dataURL = canvas.toDataURL("image/png");
+  //var window = window.open();
+  var img = new Image();
+  img.src = dataURL;
+  document.getElementById("atlas").append(img);
+
+}

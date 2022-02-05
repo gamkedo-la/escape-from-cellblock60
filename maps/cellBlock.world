@@ -1,0 +1,83 @@
+{
+    "maps": [
+        {
+            "fileName": "dungeon-00.tmx",
+            "height": 450,
+            "width": 800,
+            "x": 800,
+            "y": 450
+        },
+        {
+            "fileName": "dungeon-01.tmx",
+            "height": 450,
+            "width": 800,
+            "x": 1600,
+            "y": 450
+        },
+        {
+            "fileName": "dungeon-02.tmx",
+            "height": 450,
+            "width": 800,
+            "x": 2400,
+            "y": 450
+        },
+        {
+            "fileName": "dungeon-03.tmx",
+            "height": 450,
+            "width": 800,
+            "x": 3200,
+            "y": 450
+        },
+        {
+            "fileName": "dungeon-04.tmx",
+            "height": 450,
+            "width": 800,
+            "x": 800,
+            "y": 900
+        },
+        {
+            "fileName": "dungeon-05.tmx",
+            "height": 450,
+            "width": 800,
+            "x": 1600,
+            "y": 900
+        },
+        {
+            "fileName": "dungeon-06.tmx",
+            "height": 450,
+            "width": 800,
+            "x": 2400,
+            "y": 900
+        },
+        {
+            "fileName": "dungeon-07.tmx",
+            "height": 450,
+            "width": 800,
+            "x": 3200,
+            "y": 900
+        },
+        {
+            "fileName": "dungeon-08.tmx",
+            "height": 450,
+            "width": 800,
+            "x": 800,
+            "y": 1350
+        },
+        {
+            "fileName": "dungeon-09.tmx",
+            "height": 450,
+            "width": 800,
+            "x": 1600,
+            "y": 1350
+        },
+        {
+            "fileName": "dungeon-10.tmx",
+            "height": 450,
+            "width": 800,
+            "x": 2400,
+            "y": 1350
+        }
+    ],
+    "onlyShowAdjacentMaps": false,
+    "type": "world"
+}

@@ -86,26 +86,3 @@ function drawEverything() {
 
 }
 
-function drawTileAtlas() {
-  checkerboard(8, '#111111', '#222222');
-  Object.entries(TILES).forEach( function(entry, index, array) {
-    
-    let tilename = entry[0];
-    let mapIndex = entry[1];
-   
-   // console.log(`${tilename} ${mapIndex}`);
-    if(tilePics[mapIndex] != undefined){
-      sx = tilePics[mapIndex].imgX
-      sy = tilePics[mapIndex].imgY;
-      canvasContext.drawImage(tilePics[mapIndex].img, sx, sy, 50, 50, mapIndex%16*50, Math.floor(mapIndex/16)*50, 50, 50);
-      
-      shadowText(mapIndex.toString(), mapIndex%16*50+4, (Math.floor(mapIndex/16)*50)+15, 15, 1, "white", "black");
-    }
-  })
-  var dataURL = canvas.toDataURL("image/png");
-  //var window = window.open();
-  var img = new Image();
-  img.src = dataURL;
-  document.getElementById("atlas").append(img);
-
-}
