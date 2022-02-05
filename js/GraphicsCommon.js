@@ -56,4 +56,14 @@ function drawImageRotatedAlpha(canvasContext, image, x, y, angle, opacity) {
     canvasContext.drawImage(image, -image.width / 2, -image.height / 2);
     canvasContext.restore();
   }
-  
+
+  function checkerboard(squareSize, color1, color2) {
+    for(let i=0; i<GAME_HEIGHT/squareSize; i++) {
+      for(let j=0; j<GAME_WIDTH/squareSize; j++) {
+        color = ((i+j)%2==0) ? color1 : color2;
+        let xOffset = j*squareSize;
+        let yOffset = i*squareSize;
+        colorRect(xOffset, yOffset, squareSize, squareSize, color);
+      }
+    }
+  }

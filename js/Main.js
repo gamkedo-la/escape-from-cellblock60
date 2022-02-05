@@ -38,12 +38,7 @@ function loadingDoneSoStartGame() {
   }, 1000 / framesPerSecond);
 
   p1.init(playerPic, "Blue");
-  //init handled in ghost constructor
-	// for(var i = 0; i < enemyList.length; i++){
-    
-	// 	enemyList[i].init(ghostPic, "red");
-	// }
-    initInput();
+  initInput();
 }
 
 function moveEverything() {
@@ -86,6 +81,32 @@ function drawEverything() {
     drawGameOver();
   }
   frameIndex++
-  drawHealth();
+ drawHealth();
+  //drawTileAtlas();
+
+}
+
+function drawTileAtlas() {
+  colorRect(0,0,800,450, 'magenta');
+  checkerboard(8, '#111111', '#222222');
+  Object.entries(TILES).forEach( function(entry, index, array) {
+    
+    let tilename = entry[0];
+    let mapIndex = entry[1];
+   
+   // console.log(`${tilename} ${mapIndex}`);
+    if(tilePics[mapIndex] != undefined){
+      sx = tilePics[mapIndex].imgX
+      sy = tilePics[mapIndex].imgY;
+      canvasContext.drawImage(tilePics[mapIndex].img, sx, sy, 50, 50, index%16*50, Math.floor(index/16)*50, 50, 50);
+      
+      shadowText(mapIndex.toString(), index%16*50+4, (Math.floor(index/16)*50)+15, 15, 1, "white", "black");
+    }
+  })
+  var dataURL = canvas.toDataURL("image/png");
+  //var window = window.open();
+  var img = new Image();
+  img.src = dataURL;
+  document.getElementById("atlas").append(img);
 
 }
