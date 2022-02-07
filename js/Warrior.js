@@ -363,7 +363,7 @@ function warriorClass() {
         this.sx = this.spriteIndex * this.width; //this advances the frame for animation
       }
       canvasContext.drawImage(currentBitMap,this.sx,this.sy, this.swidth, this.sheight, Math.round(this.x - this.width/2), Math.round(this.y - this.height/2), 50, 51);
-      outlineRect(this.movingCollisionsX, this.movingCollisionsY, 5, 5, 'red');
+    //  outlineRect(this.movingCollisionsX, this.movingCollisionsY, 5, 5, 'red');
     }
 
     // calculate damage recieved and deduct from current health, trigger player death
