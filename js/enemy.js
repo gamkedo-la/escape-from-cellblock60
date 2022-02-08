@@ -56,7 +56,10 @@ class enemy {
     reset() {
         if (this.homeX == undefined) {
             for (var i = 0; i < roomGrid.floor.length; i++) {
-                if (roomGrid.floor[i] == TILE_ENEMY) {
+                // draw floors underneath enemy tiles
+                if (roomGrid.floor[i] == TILE_ENEMY
+                    || roomGrid.floor[i] == TILE_OCTOGOLEM
+                    ) {
                     var tileRow = Math.floor(i / ROOM_COLS);
                     var tileCol = i % ROOM_COLS;
                     this.homeX = tileCol * TILE_W + 0.5 * TILE_W;

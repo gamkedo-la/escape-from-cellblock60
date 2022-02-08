@@ -4,7 +4,9 @@ var ghostPic = document.createElement("img");
 var projectilePic = document.createElement('img');
 var spookyEye = document.createElement("img");
 var smokePic = document.createElement("img");
-
+var octoGolemPic = document.createElement("img");
+var chain1Pic = document.createElement("img");
+var chain2Pic = document.createElement("img");
 
 var tilePics = [];
 
@@ -43,6 +45,9 @@ function loadImages() {
     {varName:projectilePic, theFile:"projectile.png"},
     {varName:spookyEye, theFile:"spookyEye.png"},
     {varName:smokePic, theFile:"smoke.png"},
+    {varName:octoGolemPic, theFile:"octoGolem.png"},
+    {varName:chain1Pic, theFile:"chain1.png"},
+    {varName:chain2Pic, theFile:"chain2.png"},
     {tileType:TILE_GROUND, imgX: 0, imgY: 0, theFile:"world_ground.png"},
     //ROW 1
     {tileType:TILE_WALL_1, imgX: 0, imgY: 0, theFile:"dungeonWalls.png"},
@@ -84,6 +89,9 @@ function loadImages() {
 
     {tileType:TILE_KEY, imgX: 0, imgY: 0, theFile:"items.png"},
     {tileType:TILE_SWORD, imgX: 50, imgY: 0, theFile:"items.png"},
+
+    // there is also a regular sprite above... fixme?
+    {tileType:TILE_OCTOGOLEM, imgX: 0, imgY: 0, theFile:"octoGolem.png"},
     
     {tileType:TILE_PRISON_WALL_1, imgX: 0, imgY: 0, theFile:"prisonWall_1.png"},
     {tileType:TILE_PRISON_WALL_2, imgX: 0, imgY: 0, theFile:"prisonWall_2.png"},

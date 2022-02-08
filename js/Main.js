@@ -23,8 +23,10 @@ window.onload = function() {
     loadImages();
 	for(var i = 0; i < roomGrid.floor.length; i++){
 		if(roomGrid.floor[i] == TILE_ENEMY){
-			//addEnemy();
-    addGhost();
+            addGhost();
+		} 
+		if(roomGrid.floor[i] == TILE_OCTOGOLEM){
+            addOctoGolem();
 		} 
 	}
 }
