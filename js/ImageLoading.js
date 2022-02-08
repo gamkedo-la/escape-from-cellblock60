@@ -8,6 +8,7 @@ var octoGolemPic = document.createElement("img");
 var chain1Pic = document.createElement("img");
 var chain2Pic = document.createElement("img");
 var shadowPic = document.createElement("img");
+var redSparkPic = document.createElement("img");
 
 var tilePics = [];
 
@@ -51,6 +52,7 @@ function loadImages() {
     {varName:projectilePic, theFile:"projectile.png"},
     {varName:spookyEye, theFile:"spookyEye.png"},
     {varName:smokePic, theFile:"smoke.png"},
+    {varName:redSparkPic, theFile:"redSpark.png"},
     {varName:octoGolemPic, theFile:"octoGolem.png"},
     {varName:chain1Pic, theFile:"chain1.png"},
     {varName:chain2Pic, theFile:"chain2.png"},

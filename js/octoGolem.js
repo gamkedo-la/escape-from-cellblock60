@@ -21,6 +21,10 @@ class octoGolem extends enemy {
     }
     
     draw() {
+        golem_particles(this.x+15,this.y-10);
+        golem_particles(this.x+35,this.y-10);
+        slow_smoke(this.x+25,this.y+45);
+
         canvasContext.drawImage(this.myBitmap,this.x,this.y-31);
         
         // draw the six tentacles

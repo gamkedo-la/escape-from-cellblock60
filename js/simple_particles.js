@@ -1,4 +1,5 @@
 // a very simple particle system
+// note: size is not yet implemented!
 
 const PARTICLES_ENABLED = true; // if false, no particles at all
 
@@ -93,5 +94,36 @@ function torch_particles(x, y) {
         let vely = Math.random()*-1.5;
         let alpha = 0.5;
         particles.add(x,y,smokePic,life,size,rotspd,ang,velx,vely,alpha);
+    }
+}
+
+function slow_smoke(x, y) {
+    if (Math.random()>0.1) return; // only spawn occasionally
+    var num = 1; 
+    for (var i = 0; i < num; i++) {
+        let life = randomInt(2222,4444);
+        let size = randomInt(1,4);
+        let rotspd = Math.random()*2-1;
+        let ang = 0;
+        let velx = Math.random()*1-0.5;
+        let vely = Math.random()*-0.25;
+        let alpha = 0.25;
+        let spawnxoffset = Math.random()*40-20;
+        particles.add(x+spawnxoffset,y,smokePic,life,size,rotspd,ang,velx,vely,alpha);
+    }
+}
+
+function golem_particles(x, y) {
+    if (Math.random()>0.25) return; // only spawn 25% of the time
+    var num = 1; 
+    for (var i = 0; i < num; i++) {
+        let life = randomInt(2222,3333);
+        let size = Math.random()*4;
+        let rotspd = Math.random()*3-1.5;
+        let ang = 0;
+        let velx = Math.random()*2-1;
+        let vely = Math.random()*-2;
+        let alpha = 0.5;
+        particles.add(x,y,redSparkPic,life,size,rotspd,ang,velx,vely,alpha);
     }
 }
