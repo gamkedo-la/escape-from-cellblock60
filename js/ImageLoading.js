@@ -7,8 +7,11 @@ var smokePic = document.createElement("img");
 var octoGolemPic = document.createElement("img");
 var chain1Pic = document.createElement("img");
 var chain2Pic = document.createElement("img");
+var shadowPic = document.createElement("img");
 
 var tilePics = [];
+
+var wallTiles = {};
 
 var picsToLoad = 0;
 
@@ -32,6 +35,9 @@ function loadImageForTileCode(tileData) {
     imgX: tileData.imgX,
     imgY: tileData.imgY
   }
+  if (tileData.isWall) {
+    wallTiles[tileCode] = true;
+  }
   tilePics[tileCode].img = document.createElement("img");
   beginLoadingImage(tilePics[tileCode].img,fileName);
 }
@@ -48,26 +54,27 @@ function loadImages() {
     {varName:octoGolemPic, theFile:"octoGolem.png"},
     {varName:chain1Pic, theFile:"chain1.png"},
     {varName:chain2Pic, theFile:"chain2.png"},
+    {varName:shadowPic, theFile:"wall_shadows.png"},
     {tileType:TILE_GROUND, imgX: 0, imgY: 0, theFile:"world_ground.png"},
     //ROW 1
-    {tileType:TILE_WALL_1, imgX: 0, imgY: 0, theFile:"dungeonWalls.png"},
-    {tileType:TILE_WALL_2, imgX: 50, imgY: 0, theFile:"dungeonWalls.png"},
-    {tileType:TILE_WALL_3, imgX: 100, imgY: 0, theFile:"dungeonWalls.png"},
-    {tileType:TILE_WALL_4, imgX: 150, imgY: 0, theFile:"dungeonWalls.png"},
-    {tileType:TILE_WALL_5, imgX: 200, imgY: 0, theFile:"dungeonWalls.png"},
-    {tileType:TILE_WALL_6, imgX: 250, imgY: 0, theFile:"dungeonWalls.png"},
-	  {tileType:TILE_WALL_7, imgX: 300, imgY: 0, theFile:"dungeonWalls.png"},
-    {tileType:TILE_WALL_8, imgX: 350, imgY: 0, theFile:"dungeonWalls.png"},
-    {tileType:TILE_WALL_9, imgX: 400, imgY: 0, theFile:"dungeonWalls.png"},
+    {tileType:TILE_WALL_1, imgX: 0, imgY: 0, theFile:"dungeonWalls.png", isWall: true},
+    {tileType:TILE_WALL_2, imgX: 50, imgY: 0, theFile:"dungeonWalls.png", isWall: true},
+    {tileType:TILE_WALL_3, imgX: 100, imgY: 0, theFile:"dungeonWalls.png", isWall: true},
+    {tileType:TILE_WALL_4, imgX: 150, imgY: 0, theFile:"dungeonWalls.png", isWall: true},
+    {tileType:TILE_WALL_5, imgX: 200, imgY: 0, theFile:"dungeonWalls.png", isWall: true},
+    {tileType:TILE_WALL_6, imgX: 250, imgY: 0, theFile:"dungeonWalls.png", isWall: true},
+	  {tileType:TILE_WALL_7, imgX: 300, imgY: 0, theFile:"dungeonWalls.png", isWall: true},
+    {tileType:TILE_WALL_8, imgX: 350, imgY: 0, theFile:"dungeonWalls.png", isWall: true},
+    {tileType:TILE_WALL_9, imgX: 400, imgY: 0, theFile:"dungeonWalls.png", isWall: true},
     {tileType:TILE_DUNGEON_STAIRS_TOP_1, imgX: 450, imgY: 0, theFile:"dungeonWalls.png"},
     //ROW 2
-    {tileType:TILE_WALL_11, imgX: 0, imgY: 50, theFile:"dungeonWalls.png"},
-    {tileType:TILE_WALL_12, imgX: 50, imgY: 50, theFile:"dungeonWalls.png"},
-    {tileType:TILE_WALL_13, imgX: 100, imgY: 50, theFile:"dungeonWalls.png"},
-    {tileType:TILE_WALL_14, imgX: 150, imgY: 50, theFile:"dungeonWalls.png"},
-    {tileType:TILE_WALL_15, imgX: 200, imgY: 50, theFile:"dungeonWalls.png"},
-    {tileType:TILE_WALL_16, imgX: 250, imgY: 50, theFile:"dungeonWalls.png"},
-    {tileType:TILE_WALL_10, imgX: 350, imgY: 50, theFile:"dungeonWalls.png"},
+    {tileType:TILE_WALL_11, imgX: 0, imgY: 50, theFile:"dungeonWalls.png", isWall: true},
+    {tileType:TILE_WALL_12, imgX: 50, imgY: 50, theFile:"dungeonWalls.png", isWall: true},
+    {tileType:TILE_WALL_13, imgX: 100, imgY: 50, theFile:"dungeonWalls.png", isWall: true},
+    {tileType:TILE_WALL_14, imgX: 150, imgY: 50, theFile:"dungeonWalls.png", isWall: true},
+    {tileType:TILE_WALL_15, imgX: 200, imgY: 50, theFile:"dungeonWalls.png", isWall: true},
+    {tileType:TILE_WALL_16, imgX: 250, imgY: 50, theFile:"dungeonWalls.png", isWall: true},
+    {tileType:TILE_WALL_10, imgX: 350, imgY: 50, theFile:"dungeonWalls.png", isWall: true},
     {tileType:TILE_DUNGEON_STAIRS_MIDDLE_1, imgX: 450, imgY: 50, theFile:"dungeonWalls.png"},
     //ROW 3
     {tileType:TILE_CABINET_1_TL, imgX: 0, imgY: 100, theFile:"dungeonWalls.png"},
@@ -111,21 +118,21 @@ function loadImages() {
     {tileType:TILE_TABLE_RIGHT, imgX: 0, imgY: 0, theFile:"table_right.png"},
 
     // dungeon art
-    {tileType:TILE_DUNGEON_ART_1_TOP, imgX: 0, imgY: 0, theFile:"dungeonArt.png"},
-    {tileType:TILE_DUNGEON_ART_1_BOTTOM, imgX: 0, imgY: 50, theFile:"dungeonArt.png"},
-    {tileType:TILE_DUNGEON_ART_2_TOP, imgX: 50, imgY: 0, theFile:"dungeonArt.png"},
-    {tileType:TILE_DUNGEON_ART_2_BOTTOM, imgX: 50, imgY: 50, theFile:"dungeonArt.png"},
-    {tileType:TILE_DUNGEON_ART_3_TOP, imgX: 100, imgY: 0, theFile:"dungeonArt.png"},
-    {tileType:TILE_DUNGEON_ART_3_BOTTOM, imgX: 100, imgY: 50, theFile:"dungeonArt.png"},
-    {tileType:TILE_DUNGEON_ART_4_TOP, imgX: 150, imgY: 0, theFile:"dungeonArt.png"},
-    {tileType:TILE_DUNGEON_ART_4_BOTTOM, imgX: 150, imgY: 50, theFile:"dungeonArt.png"},
-    {tileType:TILE_DUNGEON_ART_5_TOP, imgX: 200, imgY: 0, theFile:"dungeonArt.png"},
-    {tileType:TILE_DUNGEON_ART_5_BOTTOM, imgX: 200, imgY: 50, theFile:"dungeonArt.png"},
-    {tileType:TILE_TORCH_1, imgX: 300, imgY: 0, theFile:"dungeonArt.png"},
-    {tileType:TILE_TORCH_2, imgX: 350, imgY: 0, theFile:"dungeonArt.png"},
-    {tileType:TILE_TORCH_3, imgX: 400, imgY: 0, theFile:"dungeonArt.png"},
-    {tileType:TILE_TORCH_4, imgX: 450, imgY: 0, theFile:"dungeonArt.png"},
-    {tileType:TILE_TORCH_1_BOTTOM, imgX: 300, imgY: 50, theFile:"dungeonArt.png"},
+    {tileType:TILE_DUNGEON_ART_1_TOP, imgX: 0, imgY: 0, theFile:"dungeonArt.png", isWall: true},
+    {tileType:TILE_DUNGEON_ART_1_BOTTOM, imgX: 0, imgY: 50, theFile:"dungeonArt.png", isWall: true},
+    {tileType:TILE_DUNGEON_ART_2_TOP, imgX: 50, imgY: 0, theFile:"dungeonArt.png", isWall: true},
+    {tileType:TILE_DUNGEON_ART_2_BOTTOM, imgX: 50, imgY: 50, theFile:"dungeonArt.png", isWall: true},
+    {tileType:TILE_DUNGEON_ART_3_TOP, imgX: 100, imgY: 0, theFile:"dungeonArt.png", isWall: true},
+    {tileType:TILE_DUNGEON_ART_3_BOTTOM, imgX: 100, imgY: 50, theFile:"dungeonArt.png", isWall: true},
+    {tileType:TILE_DUNGEON_ART_4_TOP, imgX: 150, imgY: 0, theFile:"dungeonArt.png", isWall: true},
+    {tileType:TILE_DUNGEON_ART_4_BOTTOM, imgX: 150, imgY: 50, theFile:"dungeonArt.png", isWall: true},
+    {tileType:TILE_DUNGEON_ART_5_TOP, imgX: 200, imgY: 0, theFile:"dungeonArt.png", isWall: true},
+    {tileType:TILE_DUNGEON_ART_5_BOTTOM, imgX: 200, imgY: 50, theFile:"dungeonArt.png", isWall: true},
+    {tileType:TILE_TORCH_1, imgX: 300, imgY: 0, theFile:"dungeonArt.png", isWall: true},
+    {tileType:TILE_TORCH_2, imgX: 350, imgY: 0, theFile:"dungeonArt.png", isWall: true},
+    {tileType:TILE_TORCH_3, imgX: 400, imgY: 0, theFile:"dungeonArt.png", isWall: true},
+    {tileType:TILE_TORCH_4, imgX: 450, imgY: 0, theFile:"dungeonArt.png", isWall: true},
+    {tileType:TILE_TORCH_1_BOTTOM, imgX: 300, imgY: 50, theFile:"dungeonArt.png", isWall: true},
 
     // floors
     {tileType:TILE_FLOOR_TILE, imgX: 0, imgY: 0, theFile:"floors.png"},

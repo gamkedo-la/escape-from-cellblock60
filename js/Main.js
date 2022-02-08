@@ -71,6 +71,10 @@ function drawEverything() {
 	for(var i = 0; i < enemyList.length; i++){
 		enemyList[i].draw();
 	}
+  // draw shadows
+  let lvl = worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x];
+  //console.log(`which lvl: ${lvl}`);
+  drawShadows(lvl, roomGrid.floor, roomGrid.ceiling);
   drawLayer(roomGrid.ceiling)
 
   particles.draw();

@@ -27,6 +27,22 @@ worldGrid = [
 
 var roomGrid = rooms[ worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x] ];
 
+/**
+ * this variable is filled in while parsing the image list in imageLoading.js
+ * -- if you mark a tile with "isWall: true" that tile code will be added to this 
+ *    object with a value of true
+ */
+var wallTiles = {}
+
+/**
+ * Determines if the given tile is a wall tile
+ * @param {*} tile 
+ * @returns truthy
+ */
+function isWallTile(tile) {
+  return wallTiles[tile];
+}
+
 TILES = {
 
   TILE_EMPTY: 0,
