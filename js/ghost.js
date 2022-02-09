@@ -1,11 +1,11 @@
-function addGhost(){
-    tempghost = new ghost();
+function addGhost(roomId){
+    tempghost = new ghost(roomId);
     enemyList.push(tempghost);
 }
 
 class ghost extends enemy {
-    constructor(){
-        super();
+    constructor(roomId){
+        super(roomId);
         this.init(ghostPic, "red");
     }
 }

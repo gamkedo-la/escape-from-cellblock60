@@ -300,7 +300,9 @@ function moveToRoom(DIRECTION) {
         worldPosition.x -=1;
         break;
   }
-  roomGrid = rooms[ worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x] ]
+  currentRoomId =  worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x]
+  roomGrid = rooms[ currentRoomId ]
+  
 }
 
 function getRoomTo(DIRECTION) {

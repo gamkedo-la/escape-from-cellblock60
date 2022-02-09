@@ -14,6 +14,7 @@ const STATE_PLAY = 1;
 const STATE_PAUSE = 2;
 const STATE_GAME_OVER = 3;
 var gameState = STATE_PLAY;
+var currentRoomId = "01";
 
 window.onload = function() {
     canvas = document.getElementById('gameCanvas');
@@ -23,10 +24,10 @@ window.onload = function() {
     loadImages();
 	for(var i = 0; i < roomGrid.floor.length; i++){
 		if(roomGrid.floor[i] == TILE_ENEMY){
-            addGhost();
+            addGhost(currentRoomId);
 		} 
 		if(roomGrid.floor[i] == TILE_OCTOGOLEM){
-            addOctoGolem();
+            addOctoGolem(currentRoomId);
 		} 
 	}
 }

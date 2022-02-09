@@ -3,14 +3,15 @@ const ENEMY_MOVE_SPEED = 2.0;
 const AI_FRAME_THINK_TIME = 60;
 var enemyList = [];
 
-function addEnemy() {
+function addEnemy(roomId) {
     var tempEnemy = new enemy();
     enemyList.push(tempEnemy);
 }
 
 class enemy {
     // variables to keep track of position
-    constructor() {
+    constructor(roomId) {
+        this.roomId = roomId;
         this.x;
         this.y;
         this.tilePath = [];
@@ -77,6 +78,7 @@ class enemy {
 
     move() {
         //pathfinding
+        if(this.roomId != currentRoomId){ return };
         if (this.framesBeforeReThink-- < 0) {
             this.framesBeforeReThink = AI_FRAME_THINK_TIME;
             //check if within range of the player
@@ -236,6 +238,7 @@ class enemy {
     }
 
     draw() {
+        if(this.roomId != currentRoomId){ return };
         //	this.animate();
         canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x, this.y, 50, 50);
         for(var i = 0; i < this.myProjectileList.length; i++){

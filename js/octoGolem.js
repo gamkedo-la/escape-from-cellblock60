@@ -1,14 +1,14 @@
 // CHAIN GOLEM
 // a non-moving enemy with six arms
 
-function addOctoGolem(){
-    enemyList.push(new octoGolem());
+function addOctoGolem(roomId){
+    enemyList.push(new octoGolem(roomId));
 }
 
 class octoGolem extends enemy {
-    constructor(){
+    constructor(roomId){
         console.log("spawning a new octoGolem!");
-        super();
+        super(roomId);
         this.init(octoGolemPic, "red");
         this.moving = false;
     }
@@ -21,6 +21,7 @@ class octoGolem extends enemy {
     }
     
     draw() {
+        if(this.roomId != currentRoomId){ return; };
         golem_particles(this.x+15,this.y-10);
         golem_particles(this.x+35,this.y-10);
         slow_smoke(this.x+25,this.y+45);
