@@ -21,6 +21,9 @@ function animateTile(i,j, frameRate, frames) {
     let y = j*TILE_H;
     let sx = tilePics[which].imgX
     let sy = tilePics[which].imgY;
+    //update live room grid with current frame state, useful for traps, etc.
+    liveRoomGrid[roomTileToIndex(i,j)] = which;
+
     // draw at position given
     canvasContext.drawImage(tilePics[which].img, sx, sy, 50, 50, x, y, 50, 50);
 

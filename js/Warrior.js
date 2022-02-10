@@ -181,7 +181,7 @@ function warriorClass() {
         var walkIntoTileType = TILE_EMPTY; //TILE_WALL_7;
 
         if (walkIntoTileIndex != undefined) {
-            walkIntoTileType = roomGrid.floor[walkIntoTileIndex];
+            walkIntoTileType = liveRoomGrid[walkIntoTileIndex];
         }
 
         if(tileTypeWalkable(walkIntoTileType)){
@@ -260,6 +260,12 @@ function warriorClass() {
                 roomGrid.floor[walkIntoTileIndex] = TILE_GROUND; // remove sword
                 SetupPathfindingGridData(p1);
                 break;
+            case TILE_SPIKE_2:
+            case TILE_SPIKE_3:
+            case TILE_SPIKE_4:
+                this.hit(5);
+                this.x -= PLAYER_MOVE_SPEED;
+                blood_particles(this.x, this.y);
             case TILE_WALL_1:
             case TILE_WALL_2:
             case TILE_WALL_3:

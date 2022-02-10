@@ -28,6 +28,13 @@ worldGrid = [
 var roomGrid = rooms[ worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x] ];
 
 /**
+ * this copies the roomGrid array into a new array
+ * so we can track the state of animated tiles
+ * and maybe other things?
+ */
+var liveRoomGrid = [...roomGrid.floor ];
+
+/**
  * this variable is filled in while parsing the image list in imageLoading.js
  * -- if you mark a tile with "isWall: true" that tile code will be added to this 
  *    object with a value of true
@@ -41,98 +48,6 @@ var wallTiles = {}
  */
 function isWallTile(tile) {
   return wallTiles[tile];
-}
-
-TILES = {
-
-  TILE_EMPTY: 0,
-  TILE_GROUND: 1,
-  TILE_PLAYER: 2,
-  TILE_GOAL: 3,
-  TILE_DOOR: 5,
-  TILE_WALL_1: 6,
-  TILE_WALL_2: 7,
-  TILE_WALL_3: 8,
-  TILE_WALL_4: 9,
-  TILE_WALL_5: 10,
-  TILE_WALL_6: 11,
-  TILE_WALL_7: 12,
-  TILE_WALL_8: 13,
-  TILE_WALL_9: 14,
-  TILE_WALL_10: 15,
-  TILE_WALL_11: 16,
-  TILE_WALL_12: 17,
-  TILE_WALL_13: 18,
-  TILE_WALL_14: 20,
-  TILE_WALL_15: 21,
-  TILE_WALL_16: 23,
-  TILE_KEY: 4,
-  TILE_DOOR_YELLOW_FRONT_TOP: 19,
-  TILE_DOOR_YELLOW_FRONT_BOTTOM: 22,
-  TILE_DOOR_YELLOW_FRONT_TOP_OPEN: 24,
-  TILE_DOOR_YELLOW_FRONT_BOTTOM_OPEN: 25,
-  TILE_ENEMY: 30,
-  TILE_PRISON_WALL_1: 31,
-  TILE_PRISON_WALL_2: 32,
-  TILE_PRISON_WALL_3: 33,
-  TILE_PRISON_WALL_4: 34,
-  TILE_PRISON_WALL_5: 35,
-  TILE_PRISON_GATE_TOP: 36,
-  TILE_PRISON_GATE_BOTTOM: 37,
-  TILE_PRISON_GATE_TOP_OPEN: 38,
-  TILE_PRISON_GATE_BOTTOM_OPEN: 39,
-  TILE_DUNGEON_STAIRS_TOP_1: 40,
-  TILE_DUNGEON_STAIRS_MIDDLE_1: 41,
-  TILE_DUNGEON_STAIRS_BOTTOM_1: 42,
-  TILE_CABINET_1_TL: 43,
-  TILE_CABINET_1_TR: 44,
-  TILE_CABINET_1_BL: 45,
-  TILE_CABINET_1_BR: 46,
-  TILE_WHISKEY_BARREL_TOP: 47,
-  TILE_WHISKEY_BARREL_BOTTOM: 48,
-  TILE_CABINET_1_ML: 49,
-  TILE_CABINET_1_MR: 50,
-  TILE_TREASURE_CHEST: 51,
-  TILE_TREASURE_CHEST_OPEN: 52,
-  TILE_DOOR_YELLOW_SIDE_CLOSED: 53,
-  TILE_DOOR_YELLOW_SIDE_OPEN: 54,
-  TILE_DUNGEON_ART_1_TOP: 55,
-  TILE_DUNGEON_ART_1_BOTTOM: 56,
-  TILE_DUNGEON_ART_2_TOP: 57,
-  TILE_DUNGEON_ART_2_BOTTOM: 58,
-  TILE_DUNGEON_ART_3_TOP: 59,
-  TILE_DUNGEON_ART_3_BOTTOM: 60,
-  TILE_DUNGEON_ART_4_TOP: 61,
-  TILE_DUNGEON_ART_4_BOTTOM: 62,
-  TILE_DUNGEON_ART_5_TOP: 63,
-  TILE_DUNGEON_ART_5_BOTTOM: 64,
-  TILE_TORCH_1: 65,
-  TILE_TORCH_2: 66,
-  TILE_TORCH_3: 67,
-  TILE_TORCH_4: 68,
-  TILE_TORCH_1_BOTTOM: 69,
-
-  TILE_FLOOR_TILE: 70,
-  TILE_FLOOR_WOOD: 71,
-  TILE_FLOOR_SLAB_1: 72,
-  TILE_FLOOR_SLAB_2: 73,
-  TILE_FLOOR_SLAB_3: 74,
-  TILE_FLOOR_SLAB_4: 75,
-  TILE_SPIKE_1: 76,
-  TILE_SPIKE_2: 77,
-  TILE_SPIKE_3: 78,
-  TILE_SPIKE_4: 79,
-  TILE_TABLE_LEFT: 80,
-  TILE_TABLE_RIGHT: 81,
-
-  TILE_SWORD: 82,
-
-  TILE_OCTOGOLEM: 83
-  
-};
-
-for(const [key, value] of Object.entries(TILES)) {
-  window[key] = value;
 }
 
 function roomTileToIndex(tileCol, tileRow) {
@@ -172,42 +87,11 @@ function locationToCol(pixelX){
 
 
 function tileTypeHasTransparency(checkTileType) {
-  return (checkTileType == TILE_GOAL ||
-          checkTileType == TILE_KEY ||
-          checkTileType == TILE_SWORD ||
-          checkTileType == TILE_PRISON_WALL_1 ||
-          checkTileType == TILE_PRISON_WALL_2 ||
-          checkTileType == TILE_PRISON_WALL_3 ||
-          checkTileType == TILE_PRISON_GATE_TOP ||
-          checkTileType == TILE_PRISON_GATE_BOTTOM ||
-          checkTileType == TILE_PRISON_GATE_TOP_OPEN ||
-          checkTileType == TILE_PRISON_GATE_BOTTOM_OPEN ||
-		      checkTileType == TILE_DOOR_YELLOW_FRONT_BOTTOM ||
-          checkTileType == TILE_DOOR_YELLOW_FRONT_TOP ||
-          checkTileType == TILE_DOOR_YELLOW_FRONT_BOTTOM_OPEN ||
-          checkTileType == TILE_DOOR_YELLOW_FRONT_TOP_OPEN ||
-          checkTileType == TILE_WHISKEY_BARREL_BOTTOM ||
-          checkTileType == TILE_CABINET_1_BL ||
-          checkTileType == TILE_CABINET_1_BR ||
-          checkTileType == TILE_TREASURE_CHEST ||
-          checkTileType == TILE_TREASURE_CHEST_OPEN ||
-          checkTileType == TILE_DOOR ||
-          checkTileType == TILE_TABLE_LEFT ||
-          checkTileType == TILE_TABLE_RIGHT);
+  return transparentTiles.includes(checkTileType);
 }
 
 function tileTypeWalkable(checkTileType){
-  return(checkTileType == TILE_EMPTY ||
-    checkTileType == TILE_GROUND ||
-    checkTileType == TILE_DOOR_YELLOW_FRONT_TOP_OPEN ||
-    checkTileType == TILE_DOOR_YELLOW_FRONT_BOTTOM_OPEN ||
-    checkTileType == TILE_PRISON_GATE_TOP_OPEN ||
-    checkTileType == TILE_PRISON_GATE_BOTTOM_OPEN ||
-    checkTileType == TILE_DOOR_YELLOW_SIDE_OPEN ||
-    checkTileType == TILE_FLOOR_SLAB_1 ||
-    checkTileType == TILE_FLOOR_TILE ||
-    checkTileType == TILE_FLOOR_WOOD
-  );
+  return walkableTiles.includes(checkTileType);
 }
 
 function tileTypeHasDungeonWallBottom(checkTileType){
@@ -255,9 +139,15 @@ function drawLayer(layer) {
         if( tileTypeHasDungeonWallTop(tileTypeHere) ) {
           canvasContext.drawImage(tilePics[TILE_WALL_16].img,350,0, 50, 50, tileLeftEdgeX, tileTopEdgeY, 50, 50);
         }
-  
-        if (tileTypeHere==TILE_TORCH_1) {
-          
+
+        if (tileTypeHere==TILE_SPIKE_1) {
+          //this works.. so I have the right tile indice
+          trap_particles(tileLeftEdgeX+Math.random()*TILE_W,tileTopEdgeY+Math.random()*TILE_H);
+          //but this doesn't seem to have any effect?
+          animateTile(eachCol, eachRow, 5, tileAnims.tileTrap);
+        }
+
+        else if (tileTypeHere==TILE_TORCH_1) {
           animateTile(eachCol, eachRow, 5, [TILE_TORCH_1, TILE_TORCH_2, TILE_TORCH_3, TILE_TORCH_4]);
           // smoke/fire particles
           torch_particles(tileLeftEdgeX+TILE_W/2,tileTopEdgeY+TILE_H/3*2); 
@@ -302,6 +192,7 @@ function moveToRoom(DIRECTION) {
   }
   currentRoomId =  worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x]
   roomGrid = rooms[ currentRoomId ]
+  liveRoomGrid = [...roomGrid.floor];
   
 }
 

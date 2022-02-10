@@ -82,6 +82,8 @@ function particleSystem() {
 // helper function (inclusive: eg 1,10 may include 1 or 10)
 function randomInt(min,max) { return Math.floor(Math.random()*(max-min+1))+min; }
 
+function randomChoice(choices) { return choices[randomInt(0, choices.length-1)]}
+
 // custom stuff for this game:
 function torch_particles(x, y) {
     var num = randomInt(0,1); // sometimes adds none
@@ -93,6 +95,34 @@ function torch_particles(x, y) {
         let velx = Math.random()*3-1.5;
         let vely = Math.random()*-1.5;
         let alpha = 0.5;
+        particles.add(x,y,smokePic,life,size,rotspd,ang,velx,vely,alpha);
+    }
+}
+
+function blood_particles(x, y) {
+    var num = 8; // sometimes adds none
+    for (var i = 0; i < num; i++) {
+        let life = randomInt(333,777);
+        let size = 1;
+        let rotspd = Math.random()*0.3-0.15;
+        let ang = 0;
+        let velx = Math.random()*7-1.5;
+        let vely = Math.random()*-3;
+        let alpha = 0.5;
+        particles.add(x,y,bloodPic,life,size,rotspd,ang,velx,vely,alpha);
+    }
+}
+
+function trap_particles(x, y) {
+    var num = randomChoice([0,0,1,0,0,0,0,0,0,0,0,0,0,0,0])
+    for (var i = 0; i < num; i++) {
+        let life = randomInt(000,333);
+        let size = 1;
+        let rotspd = Math.random()*0.3-0.15;
+        let ang = 0;
+        let velx = Math.random()*3-1.5;
+        let vely = Math.random()*-1.5;
+        let alpha = 0.2;
         particles.add(x,y,smokePic,life,size,rotspd,ang,velx,vely,alpha);
     }
 }

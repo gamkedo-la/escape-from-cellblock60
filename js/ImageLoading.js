@@ -4,6 +4,7 @@ var ghostPic = document.createElement("img");
 var projectilePic = document.createElement('img');
 var spookyEye = document.createElement("img");
 var smokePic = document.createElement("img");
+var bloodPic = document.createElement("img");
 var octoGolemPic = document.createElement("img");
 var chain1Pic = document.createElement("img");
 var chain2Pic = document.createElement("img");
@@ -52,6 +53,7 @@ function loadImages() {
     {varName:projectilePic, theFile:"projectile.png"},
     {varName:spookyEye, theFile:"spookyEye.png"},
     {varName:smokePic, theFile:"smoke.png"},
+    {varName:bloodPic, theFile:"blood.png"},
     {varName:redSparkPic, theFile:"redSpark.png"},
     {varName:octoGolemPic, theFile:"octoGolem.png"},
     {varName:chain1Pic, theFile:"chain1.png"},
