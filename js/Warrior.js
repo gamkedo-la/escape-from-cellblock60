@@ -282,6 +282,7 @@ function warriorClass() {
             default:
                 // any other tile type number was found... do nothing, for now
                 break;
+                
         }
 
         if(attackPowerDelay<FRAMES_BETWEEN_ATTACK) {
@@ -324,6 +325,7 @@ function warriorClass() {
 	  if (this.moving) {
 		this.lastMovedTime = Date.now();
 	  }
+      liveRoomGrid=[...roomGrid.floor]
     }
 
 	this.cycleMovingAnimation = function() {
