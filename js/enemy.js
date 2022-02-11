@@ -165,8 +165,10 @@ class enemy {
 
         if (this.move_North || this.move_East || this.move_South || this.move_West) {
             this.moving = true;
+            this.sx = this.swidth;
         } else {
             this.moving = false;
+            this.sx = 0;
         }
 
         if (this.move_North) {
