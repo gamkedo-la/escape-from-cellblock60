@@ -11,6 +11,7 @@ const KEY_LETTER_P = 80;
 const KEY_LETTER_R = 82;
 const KEY_LETTER_M = 77;
 const KEY_NUMBER_1 = 49;
+const KEY_SPACEBAR = 32;
 
 var mouseX = 0;
 var mouseY = 0;
@@ -24,7 +25,7 @@ function initInput() {
   document.addEventListener("mousedown", mouseclicked);
   document.addEventListener("mouseup", mousereleased); /////
   
-  p1.setupControls(KEY_UP_ARROW,KEY_RIGHT_ARROW,KEY_DOWN_ARROW,KEY_LEFT_ARROW);
+  p1.setupControls(KEY_UP_ARROW,KEY_RIGHT_ARROW,KEY_DOWN_ARROW,KEY_LEFT_ARROW, KEY_SPACEBAR);
 }
 
 function setKeyHoldState(thisKey, thisPlayer, setTo) {
@@ -58,6 +59,12 @@ function keyPressed(evt) {
   if (evt.keyCode == KEY_LETTER_M) {
     // toggle mute
   }
+  if (evt.keyCode == KEY_SPACEBAR){
+    p1.swingSword();
+  }
+
+
+
   evt.preventDefault(); // without this, arrow keys scroll the browser!
 }
 

@@ -42,11 +42,12 @@ function warriorClass() {
     this.fullHealth = 100;
 
     // key controls used for this
-    this.setupControls = function(northKey, eastKey, southKey, westKey) {
+    this.setupControls = function(northKey, eastKey, southKey, westKey, attackKey) {
         this.controlKeyForNorth = northKey;
         this.controlKeyForEast = eastKey;
         this.controlKeyForSouth = southKey;
         this.controlKeyForWest = westKey;
+        this.controlKeyForAttack = attackKey;
     }
 
     this.init = function(whichGraphic, whichName) {
@@ -81,7 +82,7 @@ function warriorClass() {
     this.checkForCollision = function(x,y){
         if( x > this.x && x < this.x + this.swidth &&
             y > this.y && y < this.y + this.sheight)
-    
+
             return true;
     }
 
@@ -162,7 +163,6 @@ function warriorClass() {
             nextY -= PLAYER_MOVE_SPEED;
             this.sy = this.sheight;
             this.moving = true;
-
             this.movingCollisionsY = nextY - (this.height/2)
         } else if (this.keyHeld_East) {
             nextX += PLAYER_MOVE_SPEED; 
@@ -292,9 +292,15 @@ function warriorClass() {
                 
         }
 
+
+
         if(attackPowerDelay<FRAMES_BETWEEN_ATTACK) {
             attackPowerDelay++;
             this.chargeAttackPower();
+        }
+
+        this.swingSword = function(){
+            console.log("Player Swings Sword");
         }
 
         if(this.x < 0) {
