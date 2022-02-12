@@ -22,14 +22,7 @@ window.onload = function() {
 
     SetupPathfindingGridData(p1);
     loadImages();
-	for(var i = 0; i < roomGrid.floor.length; i++){
-		if(roomGrid.floor[i] == TILE_ENEMY){
-            addGhost(currentRoomId);
-		} 
-		if(roomGrid.floor[i] == TILE_OCTOGOLEM){
-            addOctoGolem(currentRoomId);
-		} 
-	}
+    addEnemies();
 }
 
 function loadingDoneSoStartGame() {
