@@ -157,3 +157,20 @@ function golem_particles(x, y) {
         particles.add(x,y,redSparkPic,life,size,rotspd,ang,velx,vely,alpha);
     }
 }
+
+
+function ghost_wisp(x, y) {
+    if (Math.random()>0.1) return; // only spawn occasionally
+    var num = 1; 
+    for (var i = 0; i < num; i++) {
+        let life = randomInt(2222,4444);
+        let size = randomInt(1,4);
+        let rotspd = Math.random()*2-1;
+        let ang = 0;
+        let velx = Math.random()*1-0.5;
+        let vely = Math.random()*-0.25;
+        let alpha = 0.25;
+        let spawnxoffset = Math.random()*40-20;
+        particles.add(x+spawnxoffset,y,ghostPic,life,size,rotspd,ang,velx,vely,alpha);
+    }
+}
