@@ -89,6 +89,7 @@ function drawEverything() {
   }
   frameIndex++
  drawHealth();
+ drawAttackPowerCharge();
   //drawTileAtlas();
 
 }

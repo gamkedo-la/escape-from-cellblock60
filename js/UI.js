@@ -17,7 +17,7 @@ function drawAttackPowerCharge() {
   outlineRect(10, 50, 100, 12, 'grey');
   colorRect(10, 50, 100, 12, 'yellow');
   colorRect(10, 50, attackPowerDelay, 12, 'green');
-  console.log(attackPowerDelay)
+  //console.log(attackPowerDelay)
 }
 
 function drawGameOver() {

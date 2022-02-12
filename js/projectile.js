@@ -64,6 +64,12 @@ function ProjectileClass(){
 		if(tileTypeWalkable(walkIntoTileType) == false){
 			this.readyToRemove = true;
         } 
+
+		if(p1.checkForCollision(this.x, this.y)){
+			p1.hit(5);
+			blood_particles(p1.x, p1.y);
+		}
+
 		if(this.projectileLife <= 0){
 			this.readyToRemove = true;
 		}

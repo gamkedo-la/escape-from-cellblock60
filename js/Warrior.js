@@ -78,6 +78,13 @@ function warriorClass() {
 
     } // end of reset
 
+    this.checkForCollision = function(x,y){
+        if( x > this.x && x < this.x + this.swidth &&
+            y > this.y && y < this.y + this.sheight)
+    
+            return true;
+    }
+
     this.move = function() {
 
         if (this.health <= 0) {
