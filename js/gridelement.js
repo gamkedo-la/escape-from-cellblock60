@@ -83,6 +83,9 @@ function GridElement() {
   
   this.isNotPassible = function(elementType){
 	updatedElementType = elementType;
+  if(tileTypeWalkable(updatedElementType)){ //if player can walk on it, so can the enemy
+    return NOTHING;
+  }
 	if(	updatedElementType == TILE_DOOR ||
 		updatedElementType == TILE_WALL_1 ||
 		updatedElementType == TILE_WALL_2 ||
