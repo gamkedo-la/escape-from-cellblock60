@@ -14,15 +14,16 @@ const WEST = 3;
 
 worldPosition = {x: 8, y: 4};
 worldGrid = [
-  "00","00","00","00","00","00","00","00","00","00","00","00","00","00","00","00",
-  "00","00","00","00","00","00","00","00","00","00","00","00","00","00","00","00",
-  "00","00","00","00","00","00","00","00","00","00","00","00","00","00","00","00",
-  "00","00","00","00","00","00","00","00","02","00","00","00","00","00","00","00",
-  "00","00","00","00","00","00","00","05","01","05","00","00","00","00","00","00",
-  "00","00","00","00","00","00","00","00","05","00","00","00","00","00","00","00",
-  "00","00","00","00","00","00","00","00","00","00","00","00","00","00","00","00",
-  "00","00","00","00","00","00","00","00","00","00","00","00","00","00","00","00",
-  "00","00","00","00","00","00","00","00","00","00","00","00","00","00","00","00",
+// 00   01   02   03   04   05   06   07   08   09   10   11   12   13   14   15
+  "00","00","00","00","00","00","00","00","00","00","00","00","00","00","00","00", // 0 - 15
+  "00","00","00","00","00","00","00","00","00","00","00","00","00","00","00","00", // 16 - 31
+  "00","00","00","00","00","00","00","00","00","00","00","00","00","00","00","00", // 32 - 47
+  "00","00","00","00","00","00","00","00","02","00","00","00","00","00","00","00", // 48 - 63
+  "00","00","00","00","00","00","00","05","01","05","00","00","00","00","00","00", // 64 - 79
+  "00","00","00","00","00","00","00","00","05","11","00","00","00","00","00","00", // 80 - 95
+  "00","00","00","00","00","00","00","00","00","00","00","00","00","00","00","00", // 96 - 111
+  "00","00","00","00","00","00","00","00","00","00","00","00","00","00","00","00", // 112 - 127
+  "00","00","00","00","00","00","00","00","00","00","00","00","00","00","00","00", // 128 - 143
 ];
 
 var roomGrid = rooms[ worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x] ];
@@ -202,21 +203,41 @@ function getRoomTo(DIRECTION) {
   // get the room to the north, south, east, or west of the current room
   switch(DIRECTION) {
     case NORTH:
-      console.log(`getRoomTo() called with direction ${DIRECTION}`); 
+      console.log(`getRoomTo() called with direction ${DIRECTION}; GridPos: ${(worldPosition.y-1)*WORLD_COLS + worldPosition.x}; result: ${worldGrid[(worldPosition.y-1)*WORLD_COLS + worldPosition.x]}`); 
        return worldGrid[(worldPosition.y-1)*WORLD_COLS + worldPosition.x];
-       
-        break;
     case SOUTH:
-      console.log(`getRoomTo() called with direction ${DIRECTION}`); 
+      console.log(`getRoomTo() called with direction ${DIRECTION}; GridPos: ${(worldPosition.y+1)*WORLD_COLS + worldPosition.x}; result: ${worldGrid[(worldPosition.y+1)*WORLD_COLS + worldPosition.x]}`);
         return worldGrid[(worldPosition.y+1)*WORLD_COLS + worldPosition.x];
-        break;
     case EAST:
-      console.log(`getRoomTo() called with direction ${DIRECTION}`); 
+      console.log(`getRoomTo() called with direction ${DIRECTION}; GridPos: ${worldPosition.y*WORLD_COLS + worldPosition.x+1}; result: ${worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x+1]}`); 
         return worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x+1];
+    case WEST:
+      console.log(`getRoomTo() called with direction ${DIRECTION}; GridPos: ${worldPosition.y*WORLD_COLS + worldPosition.x-1}; result: ${worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x-1]}`); 
+        return worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x-1];
+  }
+}
+
+function worldWrap(DIRECTION) {
+  switch(DIRECTION) {
+    case SOUTH:
+      if (worldGrid[(worldPosition.y+ROOM_ROWS)*WORLD_COLS + worldPosition.x] !== "00") {
+        return worldGrid[(worldPosition.y+ROOM_ROWS)*WORLD_COLS + worldPosition.x];
+      }
+      break;
+    case NORTH:
+        if (worldGrid[(worldPosition.y-ROOM_ROWS)*WORLD_COLS + worldPosition.x] !== "00") {
+          return worldGrid[(worldPosition.y-ROOM_ROWS)*WORLD_COLS + worldPosition.x];
+        }
         break;
     case WEST:
-      console.log(`getRoomTo() called with direction ${DIRECTION}`); 
-        return worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x-1];
+        if (worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x-ROOM_COLS] !== "00") {
+          return worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x-ROOM_COLS];
+        }
+        break;
+    case EAST:
+        if (worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x+ROOM_COLS] !== "00") {
+          return worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x+ROOM_COLS];
+        }
         break;
   }
 }

@@ -305,17 +305,17 @@ function warriorClass() {
 
         if(this.x < 0) {
             
-            if(getRoomTo(EAST) != "00"){
+            if(getRoomTo(WEST) != "00"){
                 this.x = GAME_WIDTH-10; // wrap around
-                moveToRoom(EAST);
+                moveToRoom(WEST);
             }
         }
         if(this.x > GAME_WIDTH) {
             
             //mapMove(WEST);
-            if(getRoomTo(WEST) != "00"){
+            if(getRoomTo(EAST) != "00"){
                 this.x = 10; // wrap around
-                moveToRoom(WEST);
+                moveToRoom(EAST);
             }
         }
         if(this.y < 0) {
