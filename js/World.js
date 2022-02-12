@@ -194,6 +194,7 @@ function moveToRoom(DIRECTION) {
   currentRoomId =  worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x]
   roomGrid = rooms[ currentRoomId ]
   addEnemies();
+  particles.clear();
  // if()
  document.getElementById("debugText").innerHTML += `\n current room: ${currentRoomId}`;``
   liveRoomGrid = [...roomGrid.floor];
