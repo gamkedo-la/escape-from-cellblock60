@@ -171,6 +171,20 @@ function ghost_wisp(x, y) {
         let vely = Math.random()*-0.25;
         let alpha = 0.25;
         let spawnxoffset = Math.random()*40-20;
-        particles.add(x+spawnxoffset,y,ghostPic,life,size,rotspd,ang,velx,vely,alpha);
+        particles.add(x+spawnxoffset,y,ghostWispPic,life,size,rotspd,ang,velx,vely,alpha);
+    }
+}
+
+function projectile_particle(x, y) {
+    var num = 8; // sometimes adds none
+    for (var i = 0; i < num; i++) {
+        let life = randomInt(333,777);
+        let size = 1;
+        let rotspd = Math.random()*0.3-0.15;
+        let ang = 0;
+        let velx = Math.random()*7-1.5;
+        let vely = Math.random()*-3;
+        let alpha = 0.5;
+        particles.add(x,y,projectileParticlePic,life,size,rotspd,ang,velx,vely,alpha);
     }
 }

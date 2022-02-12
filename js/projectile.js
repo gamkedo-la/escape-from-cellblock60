@@ -12,6 +12,8 @@ function ProjectileClass(){
 	this.sy = 0;
 	this.swidth = 10;
 	this.sheight = 10;
+	this.particleX = 0;
+	this.particleY= 0;
 	this.readyToRemove = false;
 	this.myBitmap = projectilePic;
 		
@@ -26,15 +28,23 @@ function ProjectileClass(){
 		if(shipFiring.move_North){
 			this.xv = 0;
 			this.yv = -PROJECTILE_SPEED;
+			this.particleX = this.xv;
+			this.particleY = this.yv;
 		} else if (shipFiring.move_East){
 			this.xv = PROJECTILE_SPEED;
 			this.yv = 0;
+			this.particleX = this.xv;
+			this.particleY = this.yv;
 		} else if (shipFiring.move_South){
 			this.xv = 0;
-			this.yv = PROJECTILE_SPEED
+			this.yv = PROJECTILE_SPEED;
+			this.particleX = this.xv+5;
+			this.particleY = this.yv;
 		} else if (shipFiring.move_West){
 			this.xv = -PROJECTILE_SPEED
 			this.yv = 0;
+			this.particleX = this.xv;
+			this.particleY = this.yv;
 		}
 		
 		this.projectileLife = PROJECTILE_LIFE;
@@ -60,7 +70,7 @@ function ProjectileClass(){
 	}	
 	
 	this.draw = function(){
-		//colorCircle(this.x, this.y, PROJECTILE_DISPLAY_RADIUS, 'white')
 		canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x, this.y, 15, 15);
+		projectile_particle(this.x, this.y);
 	}
 }
