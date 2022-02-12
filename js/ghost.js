@@ -11,6 +11,7 @@ class ghost extends enemy {
 
     draw(){
         super.draw();
+        if(this.roomId != currentRoomId){ return };
         ghost_wisp(this.x+15, this.y+50);
     }
 }
