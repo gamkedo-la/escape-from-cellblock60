@@ -14,6 +14,9 @@ class enemy {
         this.roomId = roomId;
         this.x;
         this.y;
+	    this.yOffset = 0;
+	    this.fameCount = 0;
+		this.frameStep = 1;
         this.tilePath = [];
         this.pathfindingNow = false;
         this.framesBeforeReThink = AI_FRAME_THINK_TIME;
@@ -72,7 +75,8 @@ class enemy {
         } // end of if position not saved yet
 
         this.x = this.homeX;
-        this.y = this.homeY;
+		this.y = this.yOffset = this.homeY;
+		this.frameCount = 0;
 
     } // end of reset
 
@@ -221,6 +225,14 @@ class enemy {
                this.myProjectileList.splice(i,1); //remove projectile
            }
         }
+
+		if (this.frameCount >= 60) {
+			this.frameStep = -1;
+		} else if (this.frameCount <= 0) {
+			this.frameStep = 1;
+		}
+		this.frameCount += this.frameStep;
+		this.yOffset = Math.sin(-1 + this.frameCount/30)*8;
     }
 
     shootProjectile() {
@@ -242,7 +254,7 @@ class enemy {
     draw() {
         if(this.roomId != currentRoomId){ return };
         //	this.animate();
-        canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x, this.y, 50, 50);
+        canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x, this.y + this.yOffset, 50, 50);
         for(var i = 0; i < this.myProjectileList.length; i++){
             this.myProjectileList[i].draw();
         }
