@@ -154,6 +154,12 @@ function loadImages() {
     {tileType:TILE_SPIKE_3, imgX: 100, imgY: 100, theFile:"floors.png"},
     {tileType:TILE_SPIKE_4, imgX: 150, imgY: 100, theFile:"floors.png"},
 
+    // cave
+    {tileType:TILE_FLOOR_CAVE_1, imgX: 0, imgY: 0, theFile:"cave.png"},
+    {tileType:TILE_FLOOR_CAVE_2, imgX: 50, imgY: 0, theFile:"cave.png"},
+    {tileType:TILE_FLOOR_CAVE_3, imgX: 100, imgY: 0, theFile:"cave.png"},
+    {tileType:TILE_FLOOR_CAVE_4, imgX: 150, imgY: 0, theFile:"cave.png"},
+
     ];
 
   picsToLoad = imageList.length;

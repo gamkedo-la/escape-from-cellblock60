@@ -82,7 +82,12 @@ TILES = {
   
     TILE_SWORD: 82,
   
-    TILE_OCTOGOLEM: 83
+    TILE_OCTOGOLEM: 83,
+
+    TILE_FLOOR_CAVE_1: 84,
+    TILE_FLOOR_CAVE_2: 85,
+    TILE_FLOOR_CAVE_3: 86,
+    TILE_FLOOR_CAVE_4: 87,
     
   };
   for(const [key, value] of Object.entries(TILES)) {
@@ -123,6 +128,7 @@ TILES = {
     TILE_PRISON_GATE_BOTTOM_OPEN,
     TILE_DOOR_YELLOW_SIDE_OPEN,
     TILE_FLOOR_SLAB_1,
+    TILE_FLOOR_CAVE_1,
     TILE_FLOOR_TILE,
     TILE_FLOOR_WOOD,
     TILE_SPIKE_1

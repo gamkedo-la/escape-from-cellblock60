@@ -155,6 +155,8 @@ function drawLayer(layer) {
 
         } else if (tileTypeHere==TILE_FLOOR_SLAB_1) {
           prngTile(eachCol, eachRow, [TILE_FLOOR_SLAB_1, TILE_FLOOR_SLAB_2, TILE_FLOOR_SLAB_3, TILE_FLOOR_SLAB_4]);
+        } else if (tileTypeHere==TILE_FLOOR_CAVE_1) {
+          prngTile(eachCol, eachRow, [TILE_FLOOR_CAVE_1, TILE_FLOOR_CAVE_2, TILE_FLOOR_CAVE_3, TILE_FLOOR_CAVE_4]);
         } else {
           canvasContext.drawImage(tilePics[tileTypeHere].img,tile_sx,tile_sy, 50, 50, tileLeftEdgeX, tileTopEdgeY, 50, 50);
         }
