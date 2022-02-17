@@ -202,10 +202,32 @@ function warriorClass() {
             case TILE_DOOR_YELLOW_FRONT_BOTTOM:
                 if (this.keysHeld > 0) {
                     this.keysHeld--; // one less key
+                    
+                    // open the door we touched
+                    // FIXME: does this assume we touched the bottom tile even if we touched the top one?
                     roomGrid.floor[walkIntoTileIndex] = TILE_GROUND; //change to bottom part of door open
                     let tileAbove = findTileAboveCurrent(walkIntoTileIndex);
                     roomGrid.floor[tileAbove] = TILE_GROUND;
                     roomGrid.ceiling[tileAbove] = TILE_EMPTY; // change to top part of door open
+
+                    // DOUBLE DOOR SUPPORT
+                    // try to the left
+                    if (roomGrid.floor[walkIntoTileIndex-1]==TILE_DOOR_YELLOW_FRONT_BOTTOM) {
+                        console.log("double door: opening a 2nd door to the left");
+                        roomGrid.floor[walkIntoTileIndex-1] = TILE_GROUND;
+                        tileAbove = findTileAboveCurrent(walkIntoTileIndex-1);
+                        roomGrid.floor[tileAbove] = TILE_GROUND;
+                        roomGrid.ceiling[tileAbove] = TILE_EMPTY;
+                    }
+                    // and to the right
+                    if (roomGrid.floor[walkIntoTileIndex+1]==TILE_DOOR_YELLOW_FRONT_BOTTOM) {
+                        console.log("double door: opening a 2nd door to the right");
+                        roomGrid.floor[walkIntoTileIndex+1] = TILE_GROUND;
+                        tileAbove = findTileAboveCurrent(walkIntoTileIndex+1);
+                        roomGrid.floor[tileAbove] = TILE_GROUND;
+                        roomGrid.ceiling[tileAbove] = TILE_EMPTY;
+                    }
+
                     document.getElementById("debugText").innerHTML = "Keys: " + this.keysHeld;
                     SetupPathfindingGridData(p1);
                 }
