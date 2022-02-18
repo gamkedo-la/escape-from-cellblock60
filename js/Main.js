@@ -40,6 +40,7 @@ function loadingDoneSoStartGame() {
 
   p1.init(playerPic, "Blue");
   initInput();
+  updateMiniMap();
 }
 
 function moveEverything() {
@@ -88,6 +89,7 @@ function drawEverything() {
   frameIndex++
  drawHealth();
  drawAttackPowerCharge();
+ drawMiniMap(canvas.width-170,10);
   //drawTileAtlas();
 
 }
