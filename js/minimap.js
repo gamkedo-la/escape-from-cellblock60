@@ -20,9 +20,9 @@ function drawMiniMap (x, y) {
         x -= scrollOverlap * minimapHorizentalPercent * 1.99;  
     }
     canvasContext.drawImage(miniMapCanvas, x, y);
-    
-
-    //showPlayerInMap(x + mapCol * MINIMAP_TILE_SIZE, y + mapRow * MINIMAP_TILE_SIZE, screenCols * MINIMAP_TILE_SIZE, screenRows * MINIMAP_TILE_SIZE, "red");
+    var roomSizeOnMapW =  MINIMAP_TILE_SIZE * ROOM_COLS;
+    var roomSizeOnMapH =  MINIMAP_TILE_SIZE * ROOM_ROWS;
+    outlineRect(x + worldPosition.x * roomSizeOnMapW, y + worldPosition.y * roomSizeOnMapH, roomSizeOnMapW, roomSizeOnMapH, 'lime', 1);
 }
 
 function updateMiniMap() {//should only be called when the map changes

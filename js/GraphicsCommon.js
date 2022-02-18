@@ -7,10 +7,10 @@ function centerColorRect(centerX, centerY, boxWidth, boxHeight, fillColor){
   colorRect(centerX - boxWidth/2, centerY - boxHeight/2, boxWidth, boxHeight, fillColor);
 }
 
-function outlineRect(topLeftX, topLeftY, boxWidth, boxHeight, lineColor) {
+function outlineRect(topLeftX, topLeftY, boxWidth, boxHeight, lineColor, lineThickness = 3) {
     canvasContext.beginPath();
     canvasContext.strokeStyle = lineColor;
-    canvasContext.lineWidth = "3";
+    canvasContext.lineWidth = "" +  lineThickness;
     canvasContext.rect(topLeftX, topLeftY, boxWidth, boxHeight);
     canvasContext.stroke();
 }
