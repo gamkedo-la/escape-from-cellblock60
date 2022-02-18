@@ -20,11 +20,7 @@ window.onload = function() {
     canvas = document.getElementById('gameCanvas');
     canvasContext = canvas.getContext('2d');
 
-    miniMapCanvas = document.createElement('canvas');
-    miniMapCanvas.width = MINIMAP_TILE_SIZE * ROOM_COLS;
-    miniMapCanvas.height = MINIMAP_TILE_SIZE * ROOM_ROWS;
-    miniMapCanvasContext = miniMapCanvas.getContext('2d');
-
+    setUpMiniMapCanvas();
     SetupPathfindingGridData(p1);
     loadImages();
     addEnemies();
