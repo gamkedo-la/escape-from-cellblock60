@@ -204,6 +204,17 @@ class enemy {
             this.shootProjectile();
         }
 
+        //Ram Player
+        if(enemyRow == p1.row && enemyCol == p1.col){
+            var newMoveSpeed = ENEMY_MOVE_SPEED;
+            while (newMoveSpeed < 8.0){
+                newMoveSpeed++;
+            }
+            newMoveSpeed = ENEMY_MOVE_SPEED;
+            var playerIdx = pixCoordToIndex(p1.x, p1.y);
+                startPath(playerIdx, this);
+        }
+        
         var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
         var walkIntoTileType = TILE_WALL_7;
 
