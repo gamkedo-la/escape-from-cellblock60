@@ -68,6 +68,7 @@ function ProjectileClass(){
 		if(p1.checkForCollision(this.x, this.y)){
 			p1.hit(5);
 			blood_particles(p1.x, p1.y);
+			this.projectileLife = -1;
 		}
 
 		if(this.projectileLife <= 0){

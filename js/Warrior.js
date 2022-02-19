@@ -40,6 +40,8 @@ function warriorClass() {
 
     // player full health
     this.fullHealth = 100;
+    this.hitCooldown = 0;
+    this.HIT_COOLDOWN = 50;
 
     // key controls used for this
     this.setupControls = function(northKey, eastKey, southKey, westKey, attackKey) {
@@ -87,6 +89,7 @@ function warriorClass() {
     }
 
     this.move = function() {
+        this.hitCooldown--;
 
         if (this.health <= 0) {
             gameState = STATE_GAME_OVER;
@@ -292,9 +295,8 @@ function warriorClass() {
             case TILE_SPIKE_2:
             case TILE_SPIKE_3:
             case TILE_SPIKE_4:
-                this.hit(5);
-                this.x -= PLAYER_MOVE_SPEED;
-                blood_particles(this.x, this.y);
+                    this.hit(5);
+                break;
             case TILE_WALL_1:
             case TILE_WALL_2:
             case TILE_WALL_3:
@@ -405,7 +407,11 @@ function warriorClass() {
       } else {
         this.sx = this.spriteIndex * this.width; //this advances the frame for animation
       }
-      canvasContext.drawImage(currentBitMap,this.sx,this.sy, this.swidth, this.sheight, Math.round(this.x - this.width/2), Math.round(this.y - this.height/2), 50, 51);
+      if(this.hitCooldown > 0 && this.hitCooldown % 4 == 0){
+        canvasContext.drawImage(currentBitMap,this.sx,this.sy, this.swidth, this.sheight, Math.round(this.x - this.width/2), Math.round(this.y - this.height/2), 50, 51);
+      }else if(this.hitCooldown <= 0){
+        canvasContext.drawImage(currentBitMap,this.sx,this.sy, this.swidth, this.sheight, Math.round(this.x - this.width/2), Math.round(this.y - this.height/2), 50, 51);
+      }
     //  outlineRect(this.movingCollisionsX, this.movingCollisionsY, 5, 5, 'red');
     }
 
@@ -416,10 +422,34 @@ function warriorClass() {
         // damage reduction?
 
         // reduce health
-        this.health -= damage;
+        if(this.hitCooldown < 0){
+            blood_particles(this.x, this.y);
+            this.health -= damage;
+            this.hitCooldown = this.HIT_COOLDOWN;
+        }
 
-       
     }
+
+    this.repel = function () {
+        if(this.keyHeld_East){
+            this.x -= PLAYER_MOVE_SPEED;
+            return;
+        }
+        if(this.keyHeld_West){
+            this.x += PLAYER_MOVE_SPEED;
+            return;
+        }
+        if(this.keyHeld_South){
+            this.y -= PLAYER_MOVE_SPEED;
+            return;
+        }
+        if(this.keyHeld_North){
+            this.y += PLAYER_MOVE_SPEED;
+            return;
+        }
+
+    }
+
 
     this.chargeAttackPower = function () {
         //toDO: if attackPowerDelay is not full return otherwise charge attack power and then decrease enemy health with the full amount
