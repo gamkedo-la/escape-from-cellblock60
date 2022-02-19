@@ -101,6 +101,10 @@ function tileTypeHasDungeonWallBottom(checkTileType){
           checkTileType == TILE_WHISKEY_BARREL_TOP);
 }
 
+function tileTypeHasTileFloor(checkTileType){
+  return (checkTileType == TILE_POTTERY_1 );
+}
+
 function tileTypeHasDungeonWallTop(checkTileType){
   return (checkTileType == TILE_CABINET_1_TL ||
           checkTileType == TILE_CABINET_1_TR);
@@ -138,7 +142,11 @@ function drawLayer(layer) {
           canvasContext.drawImage(tilePics[TILE_WALL_16].img,250,50, 50, 50, tileLeftEdgeX, tileTopEdgeY, 50, 50);
         }
         if( tileTypeHasDungeonWallTop(tileTypeHere) ) {
-          canvasContext.drawImage(tilePics[TILE_WALL_16].img,350,0, 50, 50, tileLeftEdgeX, tileTopEdgeY, 50, 50);
+          canvasContext.drawImage(tilePics[TILE_WALL_16].img,tileLeftEdgeX, tileTopEdgeY);
+        }
+
+        if( tileTypeHasTileFloor(tileTypeHere) ) {
+          canvasContext.drawImage(tilePics[TILE_FLOOR_TILE].img,0,0, 50, 50, tileLeftEdgeX, tileTopEdgeY, 50, 50);
         }
 
         if (tileTypeHere==TILE_SPIKE_1) {
@@ -155,6 +163,7 @@ function drawLayer(layer) {
 
         } else if (tileTypeHere==TILE_FLOOR_SLAB_1) {
           prngTile(eachCol, eachRow, [TILE_FLOOR_SLAB_1, TILE_FLOOR_SLAB_2, TILE_FLOOR_SLAB_3, TILE_FLOOR_SLAB_4]);
+
         } else if (tileTypeHere==TILE_FLOOR_CAVE_1) {
           prngTile(eachCol, eachRow, [TILE_FLOOR_CAVE_1, TILE_FLOOR_CAVE_2, TILE_FLOOR_CAVE_3, TILE_FLOOR_CAVE_4]);
         } else {
