@@ -407,11 +407,15 @@ function warriorClass() {
       } else {
         this.sx = this.spriteIndex * this.width; //this advances the frame for animation
       }
+
       if(this.hitCooldown > 0 && this.hitCooldown % 4 == 0){
         canvasContext.drawImage(currentBitMap,this.sx,this.sy, this.swidth, this.sheight, Math.round(this.x - this.width/2), Math.round(this.y - this.height/2), 50, 51);
+      canvasContext.drawImage(characterShadow,0,0, this.swidth, this.sheight, Math.round(this.x - this.width/2+5), Math.round(this.y + this.height/2 - 10), 50, 51);
       }else if(this.hitCooldown <= 0){
         canvasContext.drawImage(currentBitMap,this.sx,this.sy, this.swidth, this.sheight, Math.round(this.x - this.width/2), Math.round(this.y - this.height/2), 50, 51);
+      canvasContext.drawImage(characterShadow,0,0, this.swidth, this.sheight, Math.round(this.x - this.width/2+5), Math.round(this.y + this.height/2 - 10), 50, 51);
       }
+
     //  outlineRect(this.movingCollisionsX, this.movingCollisionsY, 5, 5, 'red');
     }
 

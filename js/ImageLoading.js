@@ -12,6 +12,7 @@ var chain1Pic = document.createElement("img");
 var chain2Pic = document.createElement("img");
 var shadowPic = document.createElement("img");
 var redSparkPic = document.createElement("img");
+var characterShadow = document.createElement("img");
 
 var tilePics = [];
 
@@ -59,6 +60,7 @@ function loadImages() {
     {varName:smokePic, theFile:"smoke.png"},
     {varName:bloodPic, theFile:"blood.png"},
     {varName:redSparkPic, theFile:"redSpark.png"},
+    {varName:characterShadow, theFile:"character_shadow.png"},
     {varName:octoGolemPic, theFile:"octoGolem.png"},
     {varName:chain1Pic, theFile:"chain1.png"},
     {varName:chain2Pic, theFile:"chain2.png"},
@@ -99,6 +101,9 @@ function loadImages() {
     {tileType:TILE_TREASURE_CHEST, imgX: 100, imgY: 150, theFile:"dungeonWalls.png"},
     {tileType:TILE_TREASURE_CHEST_OPEN, imgX: 150, imgY: 150, theFile:"dungeonWalls.png"},
     {tileType:TILE_WHISKEY_BARREL_BOTTOM, imgX: 250, imgY: 150, theFile:"dungeonWalls.png"},
+    {tileType:TILE_POTTERY_1, imgX: 300, imgY: 150, theFile:"dungeonWalls.png"},
+    {tileType:TILE_POTTERY_2, imgX: 350, imgY: 150, theFile:"dungeonWalls.png"},
+    {tileType:TILE_POTTERY_3, imgX: 400, imgY: 150, theFile:"dungeonWalls.png"},
 
     //END SPRITE SHEET
 
