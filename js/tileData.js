@@ -88,6 +88,9 @@ TILES = {
     TILE_FLOOR_CAVE_2: 85,
     TILE_FLOOR_CAVE_3: 86,
     TILE_FLOOR_CAVE_4: 87,
+    TILE_POTTERY_1: 88,
+    TILE_POTTERY_2: 89,
+    TILE_POTTERY_3: 90
     
   };
   for(const [key, value] of Object.entries(TILES)) {
@@ -116,7 +119,10 @@ TILES = {
   TILE_TREASURE_CHEST_OPEN ,
   TILE_DOOR ,
   TILE_TABLE_LEFT ,
-  TILE_TABLE_RIGHT
+  TILE_TABLE_RIGHT,
+  TILE_POTTERY_1,
+  TILE_POTTERY_2,
+  TILE_POTTERY_3,
   ]
   
   walkableTiles = [

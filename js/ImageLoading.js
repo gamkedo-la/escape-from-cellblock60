@@ -99,6 +99,9 @@ function loadImages() {
     {tileType:TILE_TREASURE_CHEST, imgX: 100, imgY: 150, theFile:"dungeonWalls.png"},
     {tileType:TILE_TREASURE_CHEST_OPEN, imgX: 150, imgY: 150, theFile:"dungeonWalls.png"},
     {tileType:TILE_WHISKEY_BARREL_BOTTOM, imgX: 250, imgY: 150, theFile:"dungeonWalls.png"},
+    {tileType:TILE_POTTERY_1, imgX: 300, imgY: 150, theFile:"dungeonWalls.png"},
+    {tileType:TILE_POTTERY_2, imgX: 350, imgY: 150, theFile:"dungeonWalls.png"},
+    {tileType:TILE_POTTERY_3, imgX: 400, imgY: 150, theFile:"dungeonWalls.png"},
 
     //END SPRITE SHEET
 
