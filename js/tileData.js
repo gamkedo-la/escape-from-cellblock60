@@ -93,6 +93,7 @@ TILES = {
     TILE_POTTERY_3: 90
     
   };
+
   for(const [key, value] of Object.entries(TILES)) {
     window[key] = value;
   }
@@ -141,7 +142,9 @@ TILES = {
   ]
 
   tileAnims = {
-      tileTrap: [
+    [TILE_SPIKE_1]: {
+      frameRate: 5,
+      frames: [
         TILE_SPIKE_1,
         TILE_SPIKE_1,
         TILE_SPIKE_1,
@@ -159,6 +162,63 @@ TILES = {
         TILE_SPIKE_3,
         TILE_SPIKE_2,
         TILE_SPIKE_1
-      ]
+      ],
+      drawParticles: function (tileLeftEdgeX, tileTopEdgeY) {
+        trap_particles(tileLeftEdgeX+Math.random()*TILE_W,tileTopEdgeY+Math.random()*TILE_H);
+      }
+    },
+      [TILE_TORCH_1]: {
+        frameRate: 5,
+        frames: [
+          TILE_TORCH_1,
+          TILE_TORCH_2,
+          TILE_TORCH_3,
+          TILE_TORCH_4
+        ],
+        drawParticles: function (tileLeftEdgeX, tileTopEdgeY) {
+          torch_particles(tileLeftEdgeX+TILE_W/2,tileTopEdgeY+TILE_H/3*2);
+        }
+      },
+      [TILE_TORCH_2]: {
+        frameRate: 5,
+        frames: [
+          TILE_TORCH_2,
+          TILE_TORCH_3,
+          TILE_TORCH_4,
+          TILE_TORCH_1
+        ],
+        drawParticles: function (tileLeftEdgeX, tileTopEdgeY) {
+          torch_particles(tileLeftEdgeX+TILE_W/2,tileTopEdgeY+TILE_H/3*2);
+        }
+      },
+      [TILE_TORCH_3]: {
+        frameRate: 5,
+        frames: [
+          TILE_TORCH_3,
+          TILE_TORCH_4,
+          TILE_TORCH_1,
+          TILE_TORCH_2
+        ],
+        drawParticles: function (tileLeftEdgeX, tileTopEdgeY) {
+          torch_particles(tileLeftEdgeX+TILE_W/2,tileTopEdgeY+TILE_H/3*2);
+        }
+      },
+      [TILE_TORCH_4]: {
+        frameRate: 5,
+        frames: [
+          TILE_TORCH_4,
+          TILE_TORCH_1,
+          TILE_TORCH_2,
+          TILE_TORCH_3
+        ],
+        drawParticles: function (tileLeftEdgeX, tileTopEdgeY) {
+          torch_particles(tileLeftEdgeX+TILE_W/2,tileTopEdgeY+TILE_H/3*2);
+        }
+      }
   }
+
+  const animatedTiles = Array.from(Object.keys(tileAnims))
+  animatedTiles.forEach((item, index) => {
+    animatedTiles[index] = parseInt(item)
+  })
 

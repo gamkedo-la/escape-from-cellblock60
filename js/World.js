@@ -149,21 +149,14 @@ function drawLayer(layer) {
           canvasContext.drawImage(tilePics[TILE_FLOOR_TILE].img,0,0, 50, 50, tileLeftEdgeX, tileTopEdgeY, 50, 50);
         }
 
-        if (tileTypeHere==TILE_SPIKE_1) {
-          //this works.. so I have the right tile indice
-          trap_particles(tileLeftEdgeX+Math.random()*TILE_W,tileTopEdgeY+Math.random()*TILE_H);
-          //but this doesn't seem to have any effect?
-          animateTile(eachCol, eachRow, 5, tileAnims.tileTrap);
-        }
-
-        else if (tileTypeHere==TILE_TORCH_1) {
-          animateTile(eachCol, eachRow, 5, [TILE_TORCH_1, TILE_TORCH_2, TILE_TORCH_3, TILE_TORCH_4]);
-          // smoke/fire particles
-          torch_particles(tileLeftEdgeX+TILE_W/2,tileTopEdgeY+TILE_H/3*2); 
-
+        if (animatedTiles.includes(tileTypeHere)) {
+          // takes care of all animated tiles,
+          // ensure the tileAnims object in tileData.js is updated
+          // to include your new animated tile
+          animateTile(eachCol, eachRow, tileAnims[tileTypeHere].frameRate, tileAnims[tileTypeHere].frames);
+          if (tileAnims[tileTypeHere].drawParticles) tileAnims[tileTypeHere].drawParticles(tileLeftEdgeX, tileTopEdgeY)
         } else if (tileTypeHere==TILE_FLOOR_SLAB_1) {
           prngTile(eachCol, eachRow, [TILE_FLOOR_SLAB_1, TILE_FLOOR_SLAB_2, TILE_FLOOR_SLAB_3, TILE_FLOOR_SLAB_4]);
-
         } else if (tileTypeHere==TILE_FLOOR_CAVE_1) {
           prngTile(eachCol, eachRow, [TILE_FLOOR_CAVE_1, TILE_FLOOR_CAVE_2, TILE_FLOOR_CAVE_3, TILE_FLOOR_CAVE_4]);
         } else {
