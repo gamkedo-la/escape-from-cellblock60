@@ -5,7 +5,18 @@ function addOctoGolem(roomId){
     enemyList.push(new octoGolem(roomId));
 }
 
+const OCTO_AI_IDLE = 0; // normal waiting
+const OCTO_AI_HURT = 1; // flashing red almost dead
+const OCTO_AI_WINDUP = 1; // draw in arms
+const OCTO_AI_ATTACK = 2; // extend arms toward player
+const OCTO_HURT_HP = 25; // when it starts to flash
+
 class octoGolem extends enemy {
+
+    aiState = OCTO_AI_IDLE;
+
+    hp = 100;
+
     constructor(roomId){
         console.log("spawning a new octoGolem!");
         super(roomId);
@@ -22,10 +33,13 @@ class octoGolem extends enemy {
     
     draw() {
         if(this.roomId != currentRoomId){ return; };
+        // burning eyes
         golem_particles(this.x+15,this.y-10);
         golem_particles(this.x+35,this.y-10);
+        // smoldering base
         slow_smoke(this.x+25,this.y+45);
 
+        // the main sprite
         canvasContext.drawImage(this.myBitmap,this.x,this.y-31);
         
         // draw the six tentacles
@@ -39,6 +53,9 @@ class octoGolem extends enemy {
         const ARMOFFSETX = -15;
         const ARMOFFSETY = -30;
         let linkx, linky, linkwobble, armdir, linkpic;
+
+        
+
         for (let sidenum=0; sidenum<2; sidenum++) {
             for (let armnum=0; armnum<ARMS; armnum++) {
                 for (let linknum=0; linknum<LINKS; linknum++) {
