@@ -256,6 +256,9 @@ function addEnemies() {
     if(roomGrid.floor[i] == TILE_OCTOGOLEM){
             addOctoGolem(currentRoomId);
     } 
+    if(roomGrid.floor[i] == TILE_SKELETON){
+      addSkeleton(currentRoomId);
+}
   }
 }
 

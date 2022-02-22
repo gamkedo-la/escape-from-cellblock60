@@ -1,6 +1,7 @@
 var playerPic = document.createElement("img");
 var playerIdlePic = document.createElement("img");
 var ghostPic = document.createElement("img");
+var skeletonPic = document.createElement("img");
 var ghostWispPic = document.createElement("img");
 var projectilePic = document.createElement('img');
 var projectileParticlePic = document.createElement('img');
@@ -54,6 +55,7 @@ function loadImages() {
 	{varName:playerIdlePic, theFile:"warrior-idle.png"},
     {varName:ghostPic, theFile:"ghost.png"},
     {varName:ghostWispPic, theFile:"ghostwisp.png"},
+    {varName:skeletonPic, theFile:"skeleton.png"},
     {varName:projectilePic, theFile:"projectile.png"},
     {varName:projectileParticlePic, theFile:"projectileParticle.png"},
     {varName:spookyEye, theFile:"spookyEye.png"},

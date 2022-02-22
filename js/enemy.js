@@ -63,6 +63,7 @@ class enemy {
                 // draw floors underneath enemy tiles
                 if (roomGrid.floor[i] == TILE_ENEMY
                     || roomGrid.floor[i] == TILE_OCTOGOLEM
+                    || roomGrid.floor[i] == TILE_SKELETON
                     ) {
                     var tileRow = Math.floor(i / ROOM_COLS);
                     var tileCol = i % ROOM_COLS;
@@ -205,7 +206,7 @@ class enemy {
         }
 
         //Ram Player
-        if(enemyRow == p1.row && enemyCol == p1.col){
+        if(enemyRow == p1.row || enemyCol == p1.col){
             var newMoveSpeed = ENEMY_MOVE_SPEED;
             while (newMoveSpeed < 8.0){
                 newMoveSpeed++;
