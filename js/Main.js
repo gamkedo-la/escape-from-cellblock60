@@ -49,11 +49,20 @@ function moveEverything() {
       for(var i = 0; i < enemyList.length; i++){
         enemyList[i].move();
       }
+      pruneEnemies();
       updatedCameraPosition();
       break;
     case STATE_GAME_OVER:
       drawGameOver();
       break;
+  }
+}
+
+function pruneEnemies(){
+  for(var i = 0; i < enemyList.length; i++){
+    if(enemyList[i].dead){
+      enemyList.splice(i,1);
+    }
   }
 }
 

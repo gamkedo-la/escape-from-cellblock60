@@ -98,7 +98,7 @@ function warriorClass() {
 
     this.move = function() {
         this.hitCooldown--;
-
+        //this.swordRect = {x:0, y:0, width:0, height:0};
         if (this.health <= 0) {
             gameState = STATE_GAME_OVER;
         }
@@ -405,64 +405,65 @@ function warriorClass() {
 	  }
   };
 
-  this.draw = function() {
-	  let currentBitMap = this.myBitmap;
-	  const isIdle = Date.now() - this.lastMovedTime > 2000;
-      if(this.moving){
-		this.cycleMovingAnimation();
-	  } else if (isIdle) {
-		currentBitMap = playerIdlePic;
-		this.cycleIdleAnimation();
-      } else {
+    this.draw = function() {
+        let currentBitMap = this.myBitmap;
+        const isIdle = Date.now() - this.lastMovedTime > 2000;
+        if(this.moving){
+        this.cycleMovingAnimation();
+        } else if (isIdle) {
+        currentBitMap = playerIdlePic;
+        this.cycleIdleAnimation();
+        } else {
         this.spriteIndex = 0;
-      }
-
-      if(this.sword && !isIdle){
-        this.sx = this.spriteIndex * this.width + 200; //move over to frames for sword
-      } else {
-        this.sx = this.spriteIndex * this.width; //this advances the frame for animation
-      }
-      //we swung the sword, cooldown is set
-      if(this.swingSwordCooldown > 0){
-        //draw swoosh based on player move direction
-       
-        switch(this.facing){
-            case EAST:
-                canvasContext.drawImage(swordSwooshEastPic, this.x, this.y-20 );
-                this.swordRect = {x:this.x, y:this.y-20, width:swordSwooshEastPic.width, height:swordSwooshEastPic.height};
-                break;
-            case WEST:
-                canvasContext.drawImage(swordSwooshWestPic, this.x-40, this.y-20 );
-                this.swordRect = {x:this.x-40, y:this.y-20, width:swordSwooshWestPic.width, height:swordSwooshWestPic.height};
-                break;
-            case NORTH:
-                canvasContext.drawImage(swordSwooshNorthPic, this.x-40, this.y-30);
-                this.swordRect = {x:this.x-40, y:this.y-30, width:swordSwooshNorthPic.width, height:swordSwooshNorthPic.height};
-                break;
-            case SOUTH:
-                canvasContext.drawImage(swordSwooshSouthPic, this.x-40, this.y+30);
-                this.swordRect = {x:this.x-40, y:this.y+30, width:swordSwooshSouthPic.width, height:swordSwooshSouthPic.height};
-                break;
-            default:
-                break;
         }
 
-        
-        this.swingSwordCooldown--;
-      }
+        // canvasContext.strokeStyle = "red";
+        // canvasContext.strokeRect(this.swordRect.x, this.swordRect.y, this.swordRect.width, this.swordRect.height);
 
-      if(this.hitCooldown > 0 && this.hitCooldown % 4 == 0){
+        if(this.sword && !isIdle){
+        this.sx = this.spriteIndex * this.width + 200; //move over to frames for sword
+        } else {
+        this.sx = this.spriteIndex * this.width; //this advances the frame for animation
+        }
+        //we swung the sword, cooldown is set
+        if(this.swingSwordCooldown > 0){
+        //draw swoosh based on player move direction, and set sword rect for collision
+            switch(this.facing){
+                case EAST:
+                    canvasContext.drawImage(swordSwooshEastPic, this.x, this.y-20 );
+                    this.swordRect = {x:this.x, y:this.y-20, width:swordSwooshEastPic.width, height:swordSwooshEastPic.height};
+                    break;
+                case WEST:
+                    canvasContext.drawImage(swordSwooshWestPic, this.x-40, this.y-20 );
+                    this.swordRect = {x:this.x-40, y:this.y-20, width:swordSwooshWestPic.width, height:swordSwooshWestPic.height};
+                    break;
+                case NORTH:
+                    canvasContext.drawImage(swordSwooshNorthPic, this.x-40, this.y-30);
+                    this.swordRect = {x:this.x-40, y:this.y-30, width:swordSwooshNorthPic.width, height:swordSwooshNorthPic.height};
+                    break;
+                case SOUTH:
+                    canvasContext.drawImage(swordSwooshSouthPic, this.x-40, this.y+30);
+                    this.swordRect = {x:this.x-40, y:this.y+30, width:swordSwooshSouthPic.width, height:swordSwooshSouthPic.height};
+                    break;
+                default:
+                    break;
+            }
+            this.swingSwordCooldown--;
+        } else{
+            this.swordRect={x:0, y:0, width:0, height:0};
+        } 
+        if(this.hitCooldown > 0 && this.hitCooldown % 4 == 0){
         canvasContext.drawImage(characterShadow,0,0, this.swidth, this.sheight, Math.round(this.x - this.width/2+5), Math.round(this.y + this.height/2 - 10), 50, 51);
         canvasContext.drawImage(currentBitMap,this.sx,this.sy, this.swidth, this.sheight, Math.round(this.x - this.width/2), Math.round(this.y - this.height/2), 50, 51);
-      }else if(this.hitCooldown <= 0){
+        }else if(this.hitCooldown <= 0){
         canvasContext.drawImage(characterShadow,0,0, this.swidth, this.sheight, Math.round(this.x - this.width/2+5), Math.round(this.y + this.height/2 - 10), 50, 51);
         canvasContext.drawImage(currentBitMap,this.sx,this.sy, this.swidth, this.sheight, Math.round(this.x - this.width/2), Math.round(this.y - this.height/2), 50, 51);
-      }
+        }
 
     //  outlineRect(this.movingCollisionsX, this.movingCollisionsY, 5, 5, 'red');
     }
 
-    // calculate damage recieved and deduct from current health, trigger player death
+// calculate damage recieved and deduct from current health, trigger player death
     this.hit = function (damage) {
         // dodge?
 
@@ -476,27 +477,6 @@ function warriorClass() {
         }
 
     }
-
-    this.repel = function () {
-        if(this.keyHeld_East){
-            this.x -= PLAYER_MOVE_SPEED;
-            return;
-        }
-        if(this.keyHeld_West){
-            this.x += PLAYER_MOVE_SPEED;
-            return;
-        }
-        if(this.keyHeld_South){
-            this.y -= PLAYER_MOVE_SPEED;
-            return;
-        }
-        if(this.keyHeld_North){
-            this.y += PLAYER_MOVE_SPEED;
-            return;
-        }
-
-    }
-
 
     this.chargeAttackPower = function () {
         //toDO: if attackPowerDelay is not full return otherwise charge attack power and then decrease enemy health with the full amount

@@ -47,6 +47,13 @@ class enemy {
 
         //full health
         this.fullHealth = 100; // or should this be set by a passed parameter in init?
+        this.dead = false;
+        this.rect = {
+            x: this.x,
+            y: this.y,
+            width: this.swidth,
+            height: this.sheight,
+        }
     }
 
 
@@ -84,6 +91,21 @@ class enemy {
     move() {
         //pathfinding
         if(this.roomId != currentRoomId){ return };
+
+        this.rect = {
+            x: this.x,
+            y: this.y,
+            width: this.swidth,
+            height: this.sheight,
+        }
+
+
+        if (p1.swingSwordCooldown) {
+           if(overlaps(p1.swordRect, this.rect)){
+               this.hit(100);
+               console.log("enemy hit");
+           }
+        }
         if (this.framesBeforeReThink-- < 0) {
             this.framesBeforeReThink = AI_FRAME_THINK_TIME;
             //check if within range of the player
@@ -271,6 +293,10 @@ class enemy {
         for(var i = 0; i < this.myProjectileList.length; i++){
             this.myProjectileList[i].draw();
         }
+
+        
+        // canvasContext.strokeStyle = "red";
+        // canvasContext.strokeRect(this.rect.x, this.rect.y, this.rect.width, this.rect.height);
     }
 
     // calculate damage recieved and deduct from current health, trigger death
@@ -283,7 +309,7 @@ class enemy {
         this.health -= damage;
 
         if (this.health <= 0) {
-            // monster dead
+           this.dead = true;
         }
     }
 }

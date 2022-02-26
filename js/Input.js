@@ -49,7 +49,7 @@ function keyPressed(evt) {
   //console.log(evt.keyCode);
   if(evt.keyCode == KEY_NUMBER_1){
 	  pathFindingDisplay = !pathFindingDisplay;
-  }  
+  }
   if(evt.keyCode == KEY_LETTER_P){
 	  gameState = STATE_PAUSE;
   }
@@ -59,7 +59,7 @@ function keyPressed(evt) {
   if (evt.keyCode == KEY_LETTER_M) {
     // toggle mute
   }
-  if (evt.keyCode == KEY_SPACEBAR){
+  if (evt.keyCode == KEY_SPACEBAR && p1.sword){
     p1.swingSword();
   }
 
