@@ -245,6 +245,7 @@ class enemy {
 		}
 		this.frameCount += this.frameStep;
 		this.yOffset = Math.sin(-1 + this.frameCount/30)*8;
+
     }
 
     shootProjectile() {

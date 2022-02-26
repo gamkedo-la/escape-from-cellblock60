@@ -49,7 +49,7 @@ function keyPressed(evt) {
   //console.log(evt.keyCode);
   if(evt.keyCode == KEY_NUMBER_1){
 	  pathFindingDisplay = !pathFindingDisplay;
-  }
+  }  
   if(evt.keyCode == KEY_LETTER_P){
 	  gameState = STATE_PAUSE;
   }

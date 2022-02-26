@@ -8,6 +8,10 @@ var projectileParticlePic = document.createElement('img');
 var spookyEye = document.createElement("img");
 var smokePic = document.createElement("img");
 var bloodPic = document.createElement("img");
+var swordSwooshEastPic = document.createElement("img");
+var swordSwooshWestPic = document.createElement("img");
+var swordSwooshNorthPic = document.createElement("img");
+var swordSwooshSouthPic = document.createElement("img");
 var octoGolemPic = document.createElement("img");
 var chain1Pic = document.createElement("img");
 var chain2Pic = document.createElement("img");
@@ -61,6 +65,10 @@ function loadImages() {
     {varName:spookyEye, theFile:"spookyEye.png"},
     {varName:smokePic, theFile:"smoke.png"},
     {varName:bloodPic, theFile:"blood.png"},
+    {varName:swordSwooshEastPic, theFile:"sword_swoosh_east.png"},
+    {varName:swordSwooshWestPic, theFile:"sword_swoosh_west.png"},
+    {varName:swordSwooshNorthPic, theFile:"sword_swoosh_north.png"},
+    {varName:swordSwooshSouthPic, theFile:"sword_swoosh_south.png"},
     {varName:redSparkPic, theFile:"redSpark.png"},
     {varName:characterShadow, theFile:"character_shadow.png"},
     {varName:octoGolemPic, theFile:"octoGolem.png"},

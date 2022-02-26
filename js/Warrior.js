@@ -14,6 +14,14 @@ function warriorClass() {
     this.pathfindingNow = false;
     this.moving = false;
 
+    // number of frames to keep sword swing animation on screen
+    this.swingSwordCooldown = 0;
+    this.SWING_SWORD_COOLDOWN = 5;
+    //which direction are we facing? (keys held or not)
+    this.facing = 0;
+    //where is the sword swoosh?
+    this.swordRect = {x:0, y:0, width:0, height:0};
+
     // Sprite variables
     this.sx = 0; //sprite xCoord to start clipping
     this.sy = 0; //sprite yCoord to start clipping
@@ -167,21 +175,25 @@ function warriorClass() {
             this.sy = this.sheight;
             this.moving = true;
             this.movingCollisionsY = nextY - (this.height/2)
+            this.facing = NORTH;
         } else if (this.keyHeld_East) {
             nextX += PLAYER_MOVE_SPEED; 
             this.sy = this.sheight*2;
             this.moving = true;
             this.movingCollisionsX = nextX + (this.width/4)
+            this.facing = EAST;
         } else if (this.keyHeld_South) {
             nextY += PLAYER_MOVE_SPEED;
             this.sy = 0;
             this.moving = true;
             this.movingCollisionsY = nextY + (this.height/2)
+            this.facing = SOUTH;
         } else if (this.keyHeld_West) {
             nextX -= PLAYER_MOVE_SPEED;
             this.sy = this.sheight*3;
             this.moving = true;
             this.movingCollisionsX = nextX - (this.width/4)
+            this.facing = WEST;
         } else {
          //   this.moving = false;
         }
@@ -325,6 +337,9 @@ function warriorClass() {
 
         this.swingSword = function(){
             console.log("Player Swings Sword");
+            //we just set the flag here, logic is in the update function
+            //and draw function
+            this.swingSwordCooldown = this.SWING_SWORD_COOLDOWN;
         }
 
         if(this.x < 0) {
@@ -406,6 +421,34 @@ function warriorClass() {
         this.sx = this.spriteIndex * this.width + 200; //move over to frames for sword
       } else {
         this.sx = this.spriteIndex * this.width; //this advances the frame for animation
+      }
+      //we swung the sword, cooldown is set
+      if(this.swingSwordCooldown > 0){
+        //draw swoosh based on player move direction
+       
+        switch(this.facing){
+            case EAST:
+                canvasContext.drawImage(swordSwooshEastPic, this.x, this.y-20 );
+                this.swordRect = {x:this.x, y:this.y-20, width:swordSwooshEastPic.width, height:swordSwooshEastPic.height};
+                break;
+            case WEST:
+                canvasContext.drawImage(swordSwooshWestPic, this.x-40, this.y-20 );
+                this.swordRect = {x:this.x-40, y:this.y-20, width:swordSwooshWestPic.width, height:swordSwooshWestPic.height};
+                break;
+            case NORTH:
+                canvasContext.drawImage(swordSwooshNorthPic, this.x-40, this.y-30);
+                this.swordRect = {x:this.x-40, y:this.y-30, width:swordSwooshNorthPic.width, height:swordSwooshNorthPic.height};
+                break;
+            case SOUTH:
+                canvasContext.drawImage(swordSwooshSouthPic, this.x-40, this.y+30);
+                this.swordRect = {x:this.x-40, y:this.y+30, width:swordSwooshSouthPic.width, height:swordSwooshSouthPic.height};
+                break;
+            default:
+                break;
+        }
+
+        
+        this.swingSwordCooldown--;
       }
 
       if(this.hitCooldown > 0 && this.hitCooldown % 4 == 0){
