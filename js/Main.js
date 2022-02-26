@@ -71,7 +71,7 @@ function drawEverything() {
 	for(var i = 0; i < enemyList.length; i++){
 		enemyList[i].draw();
 	}
-  drawLayer(roomGrid.ceiling)
+  drawLayer(roomGrid.ceiling, true)
 
   particles.draw();
 

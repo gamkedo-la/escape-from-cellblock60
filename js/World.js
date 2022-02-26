@@ -120,7 +120,7 @@ function findTileBelowCurrent(currentTile) {
   return tileBelow;
 }
 
-function drawLayer(layer) {
+function drawLayer(layer, isCeiling = false) {
   var tileIndex = 0;
   var tileLeftEdgeX = 0;
   var tileTopEdgeY = 0;
@@ -135,7 +135,7 @@ function drawLayer(layer) {
       if (tileTypeHere != TILE_EMPTY) { // don't do any drawing if there's nothing to draw
         let tile_sx = tilePics[tileTypeHere].imgX
         let tile_sy = tilePics[tileTypeHere].imgY;
-        if( tileTypeHasTransparency(tileTypeHere) ) {
+        if( tileTypeHasTransparency(tileTypeHere) && !isCeiling ) {
           canvasContext.drawImage(tilePics[TILE_GROUND].img, tileLeftEdgeX, tileTopEdgeY);
         }
         if( tileTypeHasDungeonWallBottom(tileTypeHere) ) {
