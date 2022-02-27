@@ -14,6 +14,7 @@ const STATE_PLAY = 1;
 const STATE_PAUSE = 2;
 const STATE_GAME_OVER = 3;
 var gameState = STATE_PLAY;
+var paused = false;
 var currentRoomId = "01";
 
 window.onload = function() {
@@ -87,6 +88,9 @@ function drawEverything() {
 	finishedCameraPan();
   if(gameState == STATE_PAUSE) {
     drawPause();
+    paused = true;
+  } else {
+    paused = false;
   }
   if(gameState == STATE_GAME_OVER) {
     drawGameOver();

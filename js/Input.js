@@ -50,8 +50,10 @@ function keyPressed(evt) {
   if(evt.keyCode == KEY_NUMBER_1){
 	  pathFindingDisplay = !pathFindingDisplay;
   }
-  if(evt.keyCode == KEY_LETTER_P){
+  if(evt.keyCode == KEY_LETTER_P && paused == false){
 	  gameState = STATE_PAUSE;
+  } else if (paused = true) {
+    gameState = STATE_PLAY;
   }
   if(evt.keyCode == KEY_LETTER_R){
 	  gameState = STATE_PLAY;
