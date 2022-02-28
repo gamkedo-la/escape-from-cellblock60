@@ -1,7 +1,5 @@
 function drawPause() {
   // offset colour so text shows on any background
-  // drawText('Paused', 306, 253, 64, 'black')
-  // drawText('Paused', 300, 250, 64, 'yellow')
   shadowText('Paused', 300, 250, 64, 4, 'yellow', 'black');
 }
 
@@ -18,6 +16,11 @@ function drawAttackPowerCharge() {
   colorRect(10, 50, 100, 12, 'yellow');
   colorRect(10, 50, attackPowerDelay, 12, 'green');
   //console.log(attackPowerDelay)
+}
+
+function drawCountEnemiesKilled() {
+  victoryStr = 'Enemies defeated: '.concat(countEnemiesKilled)
+  shadowText(victoryStr, 120, 15, 12, 2, 'yellow', 'purple')
 }
 
 function drawGameOver() {

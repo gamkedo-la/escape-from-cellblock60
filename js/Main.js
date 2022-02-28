@@ -98,6 +98,8 @@ function drawEverything() {
   frameIndex++
  drawHealth();
  drawAttackPowerCharge();
+ drawCountEnemiesKilled();
+ 
  drawMiniMap(canvas.width-170,10);
   //drawTileAtlas();
 
