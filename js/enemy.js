@@ -2,6 +2,7 @@
 const ENEMY_MOVE_SPEED = 2.0;
 const AI_FRAME_THINK_TIME = 60;
 var enemyList = [];
+var countEnemiesKilled = 0;
 
 function addEnemy(roomId) {
     var tempEnemy = new enemy();
@@ -310,6 +311,7 @@ class enemy {
 
         if (this.health <= 0) {
            this.dead = true;
+           countEnemiesKilled = countEnemiesKilled + 1;
         }
     }
 }
