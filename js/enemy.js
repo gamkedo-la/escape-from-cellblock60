@@ -24,6 +24,7 @@ class enemy {
         this.moving = false;
         this.patrolling = true;
         this.resting = false;
+		this.tracking = false;
         this.trackPlayerRange = 250;
         this.myRow = 0;
         this.myCol = 0;
@@ -117,10 +118,15 @@ class enemy {
             if (playerDistance >= this.trackPlayerRange) {
                 if (randomIntFromInterval(0, 10) < 4) {
                     this.resting = true;
+					this.onStateChange("resting");
                 } else {
                     this.patrolling = true;
+					this.onStateChange("patrolling");
                 }
-            }
+            } else {
+				this.tracking = true;
+				this.onStateChange("tracking");
+			}
 
             if (this.patrolling) { //patrolling
                 var patrolLocationX = randomIntFromInterval(0, 800);
@@ -314,7 +320,8 @@ class enemy {
            countEnemiesKilled = countEnemiesKilled + 1;
         }
     }
+
+	onStateChange(state) {
+	}
 }
  // end of class
-
- 
