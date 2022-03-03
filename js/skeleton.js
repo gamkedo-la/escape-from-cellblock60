@@ -8,9 +8,13 @@ class skeleton extends enemy {
     constructor(roomId){
         super(roomId);
         this.init(skeletonPic, "red");
+        //animation
+        this.sheight = 51;
+        //shots
+        this.totalShots = 0;
     }
 
     draw(){
-        super.draw();
+        canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x, this.y, 50, 50);
     }
 }
