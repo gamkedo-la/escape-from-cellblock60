@@ -44,6 +44,7 @@ function setKeyHoldState(thisKey, thisPlayer, setTo) {
 }
 
 function keyPressed(evt) {
+  if (!musicStarted) startMusic();
   setKeyHoldState(evt.keyCode, p1, true);
   //console.log(evt.keyCode);
   //console.log(evt.keyCode);
@@ -74,12 +75,19 @@ function keyReleased(evt) {
   setKeyHoldState(evt.keyCode, p1, false);
 }
 
-var userHasClicked = false;
+var musicStarted = false;
+var music = null;
+function startMusic() {
+    console.log("first click or keypress occurred: now we can start the music");
+    music = sfx("sounds/dungeon-music.mp3",0.1,true);
+    musicStarted = true;
+}
+
 
 function mouseclicked(evt) {
-    
-    userHasClicked = true; // because sounds are only allowed to play after this
 
+    if (!musicStarted) startMusic();
+    
     if(grid[tileOverIdx].elementType != WALL) {
 		startPath(tileOverIdx, p1); 
     }
