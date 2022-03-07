@@ -74,10 +74,16 @@ function keyReleased(evt) {
   setKeyHoldState(evt.keyCode, p1, false);
 }
 
+var userHasClicked = false;
+
 function mouseclicked(evt) {
-	if(grid[tileOverIdx].elementType != WALL) {
+    
+    userHasClicked = true; // because sounds are only allowed to play after this
+
+    if(grid[tileOverIdx].elementType != WALL) {
 		startPath(tileOverIdx, p1); 
     }
+
 }
 
 

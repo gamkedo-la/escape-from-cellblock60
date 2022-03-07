@@ -1,6 +1,8 @@
 // tuning constants
 const PLAYER_MOVE_SPEED = 8.0;
 const FRAMES_BETWEEN_ATTACK = 100;
+const FOOTSTEP_INTERVAL = 250; // ms between footstep sounds
+const FOOTSTEP_VOLUME = 0.1; // not too loud
 
 var attackPowerDelay = 0;
 
@@ -94,6 +96,18 @@ function warriorClass() {
             y > this.y && y < this.y + this.sheight)
 
             return true;
+    }
+
+    this.maybePlayFootstepSFX = function() {
+        if (!this.moving) return;
+        let now = performance.now();
+        if (!this.lastFootstepTime) this.lastFootstepTime = now;
+        if (now > this.lastFootstepTime + FOOTSTEP_INTERVAL) {
+            this.lastFootstepTime = now;
+            let stepnum = Math.ceil(Math.random()*8);
+            let sfxurl = "sounds/footstep"+stepnum+".mp3";
+            sfx(sfxurl,FOOTSTEP_VOLUME);
+        }
     }
 
     this.move = function() {
@@ -198,6 +212,7 @@ function warriorClass() {
          //   this.moving = false;
         }
 
+        this.maybePlayFootstepSFX();
 
         var walkIntoTileIndex = getTileIndexAtPixelCoord(this.movingCollisionsX, this.movingCollisionsY);
         var walkIntoTileType = TILE_EMPTY; //TILE_WALL_7;
