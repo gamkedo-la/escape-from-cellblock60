@@ -66,7 +66,8 @@ function ProjectileClass(){
         } 
 
 		if(p1.checkForCollision(this.x, this.y)){
-			p1.hit(5);
+			sfx("sounds/hurt.mp3",0.025);
+            p1.hit(5);
 			blood_particles(p1.x, p1.y);
 			this.projectileLife = -1;
 		}
