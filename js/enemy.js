@@ -16,7 +16,7 @@ class enemy {
         this.x;
         this.y;
 	    this.yOffset = 0;
-	    this.fameCount = 0;
+	    this.frameCount = 0;
 		this.frameStep = 1;
         this.tilePath = [];
         this.pathfindingNow = false;
@@ -288,6 +288,7 @@ class enemy {
     animate() {
         this.swidth = this.swidth + this.swidth
         this.sx = this.swidth
+        console.log("animate)")
         if (this.swidth > 300) {
             this.swidth = 0;
         }
