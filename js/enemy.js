@@ -46,6 +46,8 @@ class enemy {
         this.sy = 0;
         this.swidth = 50;
         this.sheight = 50;
+        this.spriteIndex = 0;
+        this.spriteNumberOfFrames = 3;
 
         //full health
         this.fullHealth = 100; // or should this be set by a passed parameter in init?
