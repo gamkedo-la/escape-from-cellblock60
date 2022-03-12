@@ -114,6 +114,7 @@ TILES = {
     TILE_WALL_CAVE_13_BOTTOM: 110,
     TILE_WALL_CAVE_14_TOP: 111,
     
+    TILE_DUNGEON_STAIRS_DOWN_1: 112,
   };
 
   for(const [key, value] of Object.entries(TILES)) {

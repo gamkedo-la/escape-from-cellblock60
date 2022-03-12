@@ -224,6 +224,21 @@ function warriorClass() {
         if(tileTypeWalkable(walkIntoTileType)){
             this.x = nextX;
             this.y = nextY;
+        } else if (isStairUpTile(walkIntoTileType)) {
+            console.log(`tile: ${walkIntoTileType} is stairs up`);
+            // update level
+            loadLevel(level+1);
+            moveToRoom(UPPER);
+            // update position
+            this.x = this.movingCollisionsX - this.movingCollisionsX%50 + 25;
+            this.y = this.movingCollisionsY - this.movingCollisionsY%50 + 25 - 150;
+        } else if (isStairDownTile(walkIntoTileType)) {
+            console.log(`tile: ${walkIntoTileType} is stairs down`);
+            // update level
+            loadLevel(level-1);
+            // update position
+            this.x = this.movingCollisionsX - this.movingCollisionsX%50 + 25;
+            this.y = this.movingCollisionsY - this.movingCollisionsY%50 + 25 + 150;
         } else switch (walkIntoTileType) {
             case TILE_GOAL:
                 this.reset();

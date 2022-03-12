@@ -21,8 +21,6 @@ var characterShadow = document.createElement("img");
 
 var tilePics = [];
 
-var wallTiles = {};
-
 var picsToLoad = 0;
 
 function countLoadedImageAndLaunchIfReady() {
@@ -47,6 +45,12 @@ function loadImageForTileCode(tileData) {
   }
   if (tileData.isWall) {
     wallTiles[tileCode] = true;
+  }
+  if (tileData.isStairsUp) {
+    stairUpTiles[tileCode] = true;
+  }
+  if (tileData.isStairsDown) {
+    stairDownTiles[tileCode] = true;
   }
   tilePics[tileCode].img = document.createElement("img");
   beginLoadingImage(tilePics[tileCode].img,fileName);
@@ -104,7 +108,7 @@ function loadImages() {
     {tileType:TILE_WHISKEY_BARREL_TOP, imgX: 250, imgY: 100, theFile:"dungeonWalls.png"},
     {tileType:TILE_DOOR_YELLOW_SIDE_CLOSED, imgX: 350, imgY: 100, theFile:"dungeonWalls.png"},
     {tileType:TILE_DOOR_YELLOW_SIDE_OPEN, imgX: 400, imgY: 100, theFile:"dungeonWalls.png"},
-    {tileType:TILE_DUNGEON_STAIRS_BOTTOM_1, imgX: 450, imgY: 100, theFile:"dungeonWalls.png"},
+    {tileType:TILE_DUNGEON_STAIRS_BOTTOM_1, imgX: 450, imgY: 100, theFile:"dungeonWalls.png", isStairsUp: true},
     //ROW 4
     {tileType:TILE_CABINET_1_ML, imgX: 0, imgY: 150, theFile:"dungeonWalls.png"},
     {tileType:TILE_CABINET_1_MR, imgX: 50, imgY: 150, theFile:"dungeonWalls.png"},
@@ -114,6 +118,7 @@ function loadImages() {
     {tileType:TILE_POTTERY_1, imgX: 300, imgY: 150, theFile:"dungeonWalls.png"},
     {tileType:TILE_POTTERY_2, imgX: 350, imgY: 150, theFile:"dungeonWalls.png"},
     {tileType:TILE_POTTERY_3, imgX: 400, imgY: 150, theFile:"dungeonWalls.png"},
+    {tileType:TILE_DUNGEON_STAIRS_DOWN_1, imgX: 450, imgY: 150, theFile:"dungeonWalls.png", isStairsDown: true},
 
     //END SPRITE SHEET
 

@@ -11,6 +11,8 @@ const NORTH = 0;
 const EAST = 1;
 const SOUTH = 2;
 const WEST = 3;
+const UPPER = 4;
+const LOWER = 5;
 
 worldPosition = {x: 8, y: 4};
 var level = 0;
@@ -55,6 +57,9 @@ var levels = [
 function loadLevel(idx) {
   level = idx;
   worldGrid = levels[idx];
+  console.log(`load level: ${idx}`);
+  currentRoomId =  worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x]
+  roomGrid = rooms[ currentRoomId ]
 }
 
 /**
@@ -78,6 +83,39 @@ var wallTiles = {}
  */
 function isWallTile(tile) {
   return wallTiles[tile];
+}
+
+
+/**
+ * this variable is filled in while parsing the image list in imageLoading.js
+ * -- if you mark a tile with "isStairUp: true" that tile code will be added to this 
+ *    object with a value of true
+ */
+var stairUpTiles = {};
+
+/**
+ * Determines if the given tile is a stair tile
+ * @param {*} tile 
+ * @returns truthy
+ */
+function isStairUpTile(tile) {
+  return stairUpTiles[tile];
+}
+
+/**
+ * this variable is filled in while parsing the image list in imageLoading.js
+ * -- if you mark a tile with "isStairDown: true" that tile code will be added to this 
+ *    object with a value of true
+ */
+var stairDownTiles = {};
+
+/**
+ * Determines if the given tile is a stair tile
+ * @param {*} tile 
+ * @returns truthy
+ */
+function isStairDownTile(tile) {
+  return stairDownTiles[tile];
 }
 
 function roomTileToIndex(tileCol, tileRow) {
@@ -162,6 +200,7 @@ function drawLayer(layer, isCeiling = false) {
 
       var tileTypeHere = layer[tileIndex]; // getting the tile code for this index
       if (tileTypeHere != TILE_EMPTY) { // don't do any drawing if there's nothing to draw
+        if (!tilePics[tileTypeHere]) console.log(`no image for tile: ${tileTypeHere}`);
         let tile_sx = tilePics[tileTypeHere].imgX
         let tile_sy = tilePics[tileTypeHere].imgY;
         if( tileTypeHasTransparency(tileTypeHere) && !isCeiling ) {
