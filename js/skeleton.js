@@ -22,7 +22,6 @@ class skeleton extends enemy {
         this.cycleMovingAnimation();
 
         this.sx = this.spriteIndex * this.width;
-        console.log(this.sx)
        // console.log("SX: " + this.sx + " SY: " + this.sy + " swidth " + this.swidth + " sHeight "+ this.sheight);
         canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x, this.y, 50, 50);
     }
@@ -34,7 +33,7 @@ class skeleton extends enemy {
             this.spriteIndex += 1;
 
           } else {
-            this.spriteIndex = 0;
+            this.spriteIndex = 1;
           }
         }
       };
