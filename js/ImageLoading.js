@@ -199,6 +199,32 @@ function loadImages() {
     {tileType:TILE_WALL_CAVE_13_TOP, imgX: 400, imgY: 200, theFile:"cave.png", isWall: true},
     {tileType:TILE_WALL_CAVE_13_BOTTOM, imgX: 400, imgY: 250, theFile:"cave.png", isWall: true},
     {tileType:TILE_WALL_CAVE_14_TOP, imgX: 450, imgY: 200, theFile:"cave.png", isWall: true},
+	
+	  // brokenBricks
+    {tileType:TILE_FLOOR_BROKENBRICKS_1, imgX: 0, imgY: 0, theFile:"brokenBricks.png"},
+    {tileType:TILE_FLOOR_BROKENBRICKS_2, imgX: 50, imgY: 0, theFile:"brokenBricks.png"},
+    {tileType:TILE_FLOOR_BROKENBRICKS_3, imgX: 100, imgY: 0, theFile:"brokenBricks.png"},
+    {tileType:TILE_FLOOR_BROKENBRICKS_4, imgX: 150, imgY: 0, theFile:"brokenBricks.png"},
+    {tileType:TILE_CEIL_BROKENBRICKS_1, imgX: 0, imgY: 50, theFile:"brokenBricks.png", isWall: true},
+    {tileType:TILE_CEIL_BROKENBRICKS_2, imgX: 50, imgY: 50, theFile:"brokenBricks.png", isWall: true},
+    {tileType:TILE_CEIL_BROKENBRICKS_3, imgX: 100, imgY: 50, theFile:"brokenBricks.png", isWall: true},
+    {tileType:TILE_WALL_BROKENBRICKS_1_TOP, imgX: 350, imgY: 0, theFile:"brokenBricks.png", isWall: true},
+    {tileType:TILE_WALL_BROKENBRICKS_2_TOP, imgX: 400, imgY: 0, theFile:"brokenBricks.png", isWall: true},
+    {tileType:TILE_WALL_BROKENBRICKS_3_TOP, imgX: 450, imgY: 0, theFile:"brokenBricks.png", isWall: true},
+    {tileType:TILE_WALL_BROKENBRICKS_4_TOP, imgX: 350, imgY: 50, theFile:"brokenBricks.png", isWall: true},
+    {tileType:TILE_WALL_BROKENBRICKS_5_TOP, imgX: 450, imgY: 50, theFile:"brokenBricks.png", isWall: true},
+    {tileType:TILE_WALL_BROKENBRICKS_6_TOP, imgX: 300, imgY: 100, theFile:"brokenBricks.png", isWall: true},
+    {tileType:TILE_WALL_BROKENBRICKS_7_TOP, imgX: 500, imgY: 100, theFile:"brokenBricks.png", isWall: true},
+    {tileType:TILE_WALL_BROKENBRICKS_8_TOP, imgX: 300, imgY: 150, theFile:"brokenBricks.png", isWall: true},
+    {tileType:TILE_WALL_BROKENBRICKS_8_BOTTOM, imgX: 300, imgY: 200, theFile:"brokenBricks.png", isWall: true},
+    {tileType:TILE_WALL_BROKENBRICKS_9_TOP, imgX: 350, imgY: 150, theFile:"brokenBricks.png", isWall: true},
+    {tileType:TILE_WALL_BROKENBRICKS_10_TOP, imgX: 450, imgY: 150, theFile:"brokenBricks.png", isWall: true},
+    {tileType:TILE_WALL_BROKENBRICKS_11_TOP, imgX: 500, imgY: 150, theFile:"brokenBricks.png", isWall: true},
+    {tileType:TILE_WALL_BROKENBRICKS_11_BOTTOM, imgX: 500, imgY: 200, theFile:"brokenBricks.png", isWall: true},
+    {tileType:TILE_WALL_BROKENBRICKS_12_TOP, imgX: 350, imgY: 200, theFile:"brokenBricks.png", isWall: true},
+    {tileType:TILE_WALL_BROKENBRICKS_13_TOP, imgX: 400, imgY: 200, theFile:"brokenBricks.png", isWall: true},
+    {tileType:TILE_WALL_BROKENBRICKS_13_BOTTOM, imgX: 400, imgY: 250, theFile:"brokenBricks.png", isWall: true},
+    {tileType:TILE_WALL_BROKENBRICKS_14_TOP, imgX: 450, imgY: 200, theFile:"brokenBricks.png", isWall: true},
 
     ];
 
