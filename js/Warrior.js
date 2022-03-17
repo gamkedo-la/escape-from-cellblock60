@@ -80,7 +80,7 @@ function warriorClass() {
                     var tileCol = i % ROOM_COLS;
                     this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
                     this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
-                    roomGrid.floor[i] = TILE_GROUND;
+                    roomGrid.floor[i] = TILE_EMPTY;
                     break; // found it, so no need to keep searching 
                 } // end of if
             } // end of for
@@ -250,26 +250,26 @@ function warriorClass() {
                     this.keysHeld--; // one less key
                     // open the door we touched
                     // FIXME: does this assume we touched the bottom tile even if we touched the top one?
-                    roomGrid.floor[walkIntoTileIndex] = TILE_GROUND; //change to bottom part of door open
+                    roomGrid.floor[walkIntoTileIndex] = TILE_EMPTY; //change to bottom part of door open
                     let tileAbove = findTileAboveCurrent(walkIntoTileIndex);
-                    roomGrid.floor[tileAbove] = TILE_GROUND;
+                    roomGrid.floor[tileAbove] = TILE_EMPTY;
                     roomGrid.ceiling[tileAbove] = TILE_EMPTY; // change to top part of door open
 
                     // DOUBLE DOOR SUPPORT
                     // try to the left
                     if (roomGrid.floor[walkIntoTileIndex-1]==TILE_DOOR_YELLOW_FRONT_BOTTOM) {
                         console.log("double door: opening a 2nd door to the left");
-                        roomGrid.floor[walkIntoTileIndex-1] = TILE_GROUND;
+                        roomGrid.floor[walkIntoTileIndex-1] = TILE_EMPTY;
                         tileAbove = findTileAboveCurrent(walkIntoTileIndex-1);
-                        roomGrid.floor[tileAbove] = TILE_GROUND;
+                        roomGrid.floor[tileAbove] = TILE_EMPTY;
                         roomGrid.ceiling[tileAbove] = TILE_EMPTY;
                     }
                     // and to the right
                     if (roomGrid.floor[walkIntoTileIndex+1]==TILE_DOOR_YELLOW_FRONT_BOTTOM) {
                         console.log("double door: opening a 2nd door to the right");
-                        roomGrid.floor[walkIntoTileIndex+1] = TILE_GROUND;
+                        roomGrid.floor[walkIntoTileIndex+1] = TILE_EMPTY;
                         tileAbove = findTileAboveCurrent(walkIntoTileIndex+1);
-                        roomGrid.floor[tileAbove] = TILE_GROUND;
+                        roomGrid.floor[tileAbove] = TILE_EMPTY;
                         roomGrid.ceiling[tileAbove] = TILE_EMPTY;
                     }
 
@@ -281,9 +281,9 @@ function warriorClass() {
                 if (this.keysHeld > 0) {
                     sfx("sounds/door.mp3",0.5);
                     this.keysHeld--; // one less key
-                    roomGrid.floor[walkIntoTileIndex] = TILE_GROUND; //change to top part of door open
+                    roomGrid.floor[walkIntoTileIndex] = TILE_EMPTY; //change to top part of door open
                     let tileBelow = findTileBelowCurrent(walkIntoTileIndex);
-                    roomGrid.floor[tileBelow] = TILE_GROUND; // change to bottom part of door open
+                    roomGrid.floor[tileBelow] = TILE_EMPTY; // change to bottom part of door open
                     document.getElementById("debugText").innerHTML = "Keys: " + this.keysHeld;
                     SetupPathfindingGridData(p1);
                 }
@@ -331,14 +331,14 @@ function warriorClass() {
                 sfx("sounds/key.mp3",0.5);
                 this.keysHeld++; // gain key
                 document.getElementById("debugText").innerHTML = "Keys: " + this.keysHeld;
-                roomGrid.floor[walkIntoTileIndex] = TILE_GROUND; // remove key
+                roomGrid.floor[walkIntoTileIndex] = TILE_EMPTY; // remove key
                 SetupPathfindingGridData(p1);
                 break;
             case TILE_SWORD:
                 sfx("sounds/pickup.mp3",0.25);
                 this.sword = true; // gain sword
                 document.getElementById("debugText").innerHTML = "Sword: " + this.sword;
-                roomGrid.floor[walkIntoTileIndex] = TILE_GROUND; // remove sword
+                roomGrid.floor[walkIntoTileIndex] = TILE_EMPTY; // remove sword
                 SetupPathfindingGridData(p1);
                 break;
             case TILE_SPIKE_2:

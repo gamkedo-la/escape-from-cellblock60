@@ -80,7 +80,7 @@ class enemy {
                     var tileCol = i % ROOM_COLS;
                     this.homeX = tileCol * TILE_W + 0.5 * TILE_W;
                     this.homeY = tileRow * TILE_H + 0.5 * TILE_H;
-                    roomGrid.floor[i] = TILE_GROUND;
+                    roomGrid.floor[i] = TILE_EMPTY;
                     break; // found it, so no need to keep searching 
                 } // end of if
             } // end of for

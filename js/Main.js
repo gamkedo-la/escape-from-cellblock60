@@ -69,6 +69,7 @@ function pruneEnemies(){
 
 function drawEverything() {
 	shiftForCameraPan();
+  drawLayer(roomGrid.bg || []);
   drawLayer(roomGrid.floor);
   // draw shadows
   let lvl = worldGrid[worldPosition.y*WORLD_COLS + worldPosition.x];

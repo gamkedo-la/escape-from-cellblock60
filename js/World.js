@@ -200,12 +200,17 @@ function drawLayer(layer, isCeiling = false) {
 
       var tileTypeHere = layer[tileIndex]; // getting the tile code for this index
       if (tileTypeHere != TILE_EMPTY) { // don't do any drawing if there's nothing to draw
-        if (!tilePics[tileTypeHere]) console.log(`no image for tile: ${tileTypeHere}`);
+        if (!tilePics[tileTypeHere]) {
+          //console.log(`no image for tile: ${tileTypeHere}`);
+          continue;
+        }
         let tile_sx = tilePics[tileTypeHere].imgX
         let tile_sy = tilePics[tileTypeHere].imgY;
+        /*
         if( tileTypeHasTransparency(tileTypeHere) && !isCeiling ) {
           canvasContext.drawImage(tilePics[TILE_GROUND].img, tileLeftEdgeX, tileTopEdgeY);
         }
+        */
         if( tileTypeHasDungeonWallBottom(tileTypeHere) ) {
           canvasContext.drawImage(tilePics[TILE_WALL_16].img,250,50, 50, 50, tileLeftEdgeX, tileTopEdgeY, 50, 50);
         }
