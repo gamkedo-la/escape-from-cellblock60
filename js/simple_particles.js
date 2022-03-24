@@ -140,17 +140,17 @@ function pickup_key_sparkly_particles(x, y) {
 }
 
 function door_open_particles(x, y) {
-    for (var i = 0; i < 32; i++) {
-        let life = randomInt(1000,2000);
+    for (var i = 0; i < 64; i++) {
+        let life = randomInt(1500,2500);
         let size = 10;
         let rotspd = Math.random()*4-2;
         let ang = 0;
         let velx = Math.random()*2-1;
         let vely = Math.random()*2-1;
         let ofsx = Math.random()*100-50;
-        let ofsy = Math.random()*20-10;
-        let alpha = 0.25;
-        particles.add(x+ofsx,y,smokePic,life,size,rotspd,ang,velx,vely,alpha);
+        let ofsy = Math.random()*100-50;
+        let alpha = 0.5;
+        particles.add(x+ofsx,y+ofsy,smokePic,life,size,rotspd,ang,velx,vely,alpha);
     }
 }
 

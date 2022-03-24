@@ -217,6 +217,12 @@ function warriorClass() {
         var walkIntoTileIndex = getTileIndexAtPixelCoord(this.movingCollisionsX, this.movingCollisionsY);
         var walkIntoTileType = TILE_EMPTY; //TILE_WALL_7;
 
+        // this is where the TILE we hit is located
+        // used to set where particles should spawn
+        // as opposed to spawning at the player x,y
+        var particleX = (walkIntoTileIndex % ROOM_COLS) * TILE_W + (TILE_W * 0.5);
+        var particleY = Math.floor(walkIntoTileIndex / ROOM_COLS) * TILE_H + (TILE_H * 0.5);
+
         if (walkIntoTileIndex != undefined) {
             walkIntoTileType = liveRoomGrid[walkIntoTileIndex];
         }
@@ -247,7 +253,7 @@ function warriorClass() {
             case TILE_DOOR_YELLOW_FRONT_BOTTOM:
                 if (this.keysHeld > 0) {
                     sfx("sounds/door.mp3",0.5);
-                    door_open_particles(this.x,this.y);
+                    door_open_particles(particleX,particleY);
                     this.keysHeld--; // one less key
                     // open the door we touched
                     // FIXME: does this assume we touched the bottom tile even if we touched the top one?
@@ -281,7 +287,7 @@ function warriorClass() {
             case TILE_DOOR_YELLOW_FRONT_TOP:
                 if (this.keysHeld > 0) {
                     sfx("sounds/door.mp3",0.5);
-                    door_open_particles(this.x,this.y);
+                    door_open_particles(particleX,particleY);
                     this.keysHeld--; // one less key
                     roomGrid.floor[walkIntoTileIndex] = TILE_EMPTY; //change to top part of door open
                     let tileBelow = findTileBelowCurrent(walkIntoTileIndex);
@@ -294,7 +300,7 @@ function warriorClass() {
                 if (this.keysHeld > 0) {
                     this.keysHeld--; // one less key
                     sfx("sounds/celldoor.mp3",0.25);
-                    door_open_particles(this.x,this.y);
+                    door_open_particles(particleX,particleY);
                     roomGrid.floor[walkIntoTileIndex] = TILE_PRISON_GATE_BOTTOM_OPEN; //change to bottom part of door open
                     let tileAbove = findTileAboveCurrent(walkIntoTileIndex);
                     roomGrid.floor[tileAbove] = TILE_PRISON_GATE_TOP_OPEN; // change to top part of door open
@@ -306,7 +312,7 @@ function warriorClass() {
                 if (this.keysHeld > 0) {
                     this.keysHeld--; // one less key
                     sfx("sounds/celldoor.mp3",0.25);
-                    door_open_particles(this.x,this.y);
+                    door_open_particles(particleX,particleY);
                     roomGrid.floor[walkIntoTileIndex] = TILE_PRISON_GATE_TOP_OPEN; //change to top part of door open
                     let tileBelow = findTileBelowCurrent(walkIntoTileIndex);
                     roomGrid.floor[tileBelow] = TILE_PRISON_GATE_BOTTOM_OPEN; // change to bottom part of door open
@@ -318,7 +324,7 @@ function warriorClass() {
                 if (this.keysHeld > 0) {
                     this.keysHeld--; // one less key
                     sfx("sounds/door.mp3",0.5);
-                    door_open_particles(this.x,this.y);
+                    door_open_particles(particleX,particleY);
                     roomGrid.floor[walkIntoTileIndex] = TILE_DOOR_YELLOW_SIDE_OPEN; //change to top part of door open
                     let tileBelow = findTileBelowCurrent(walkIntoTileIndex);
                     document.getElementById("debugText").innerHTML = "Keys: " + this.keysHeld;
@@ -335,7 +341,9 @@ function warriorClass() {
                 break;
             case TILE_KEY:
                 sfx("sounds/key.mp3",0.5);
-                pickup_key_sparkly_particles(this.x,this.y); // FIXME maybe use the key's position instead, using walkIntoTileIndex
+                // FIXME maybe use the key's position instead
+                // pickup_key_sparkly_particles(this.x,this.y); 
+                pickup_key_sparkly_particles(particleX,particleY);
                 this.keysHeld++; // gain key
                 document.getElementById("debugText").innerHTML = "Keys: " + this.keysHeld;
                 roomGrid.floor[walkIntoTileIndex] = TILE_EMPTY; // remove key
@@ -343,6 +351,7 @@ function warriorClass() {
                 break;
             case TILE_SWORD:
                 sfx("sounds/pickup.mp3",0.25);
+                pickup_key_sparkly_particles(particleX,particleY);
                 this.sword = true; // gain sword
                 document.getElementById("debugText").innerHTML = "Sword: " + this.sword;
                 roomGrid.floor[walkIntoTileIndex] = TILE_EMPTY; // remove sword
