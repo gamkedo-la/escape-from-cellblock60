@@ -247,6 +247,7 @@ function warriorClass() {
             case TILE_DOOR_YELLOW_FRONT_BOTTOM:
                 if (this.keysHeld > 0) {
                     sfx("sounds/door.mp3",0.5);
+                    door_open_particles(this.x,this.y);
                     this.keysHeld--; // one less key
                     // open the door we touched
                     // FIXME: does this assume we touched the bottom tile even if we touched the top one?
@@ -280,6 +281,7 @@ function warriorClass() {
             case TILE_DOOR_YELLOW_FRONT_TOP:
                 if (this.keysHeld > 0) {
                     sfx("sounds/door.mp3",0.5);
+                    door_open_particles(this.x,this.y);
                     this.keysHeld--; // one less key
                     roomGrid.floor[walkIntoTileIndex] = TILE_EMPTY; //change to top part of door open
                     let tileBelow = findTileBelowCurrent(walkIntoTileIndex);
@@ -292,6 +294,7 @@ function warriorClass() {
                 if (this.keysHeld > 0) {
                     this.keysHeld--; // one less key
                     sfx("sounds/celldoor.mp3",0.25);
+                    door_open_particles(this.x,this.y);
                     roomGrid.floor[walkIntoTileIndex] = TILE_PRISON_GATE_BOTTOM_OPEN; //change to bottom part of door open
                     let tileAbove = findTileAboveCurrent(walkIntoTileIndex);
                     roomGrid.floor[tileAbove] = TILE_PRISON_GATE_TOP_OPEN; // change to top part of door open
@@ -303,6 +306,7 @@ function warriorClass() {
                 if (this.keysHeld > 0) {
                     this.keysHeld--; // one less key
                     sfx("sounds/celldoor.mp3",0.25);
+                    door_open_particles(this.x,this.y);
                     roomGrid.floor[walkIntoTileIndex] = TILE_PRISON_GATE_TOP_OPEN; //change to top part of door open
                     let tileBelow = findTileBelowCurrent(walkIntoTileIndex);
                     roomGrid.floor[tileBelow] = TILE_PRISON_GATE_BOTTOM_OPEN; // change to bottom part of door open
@@ -314,6 +318,7 @@ function warriorClass() {
                 if (this.keysHeld > 0) {
                     this.keysHeld--; // one less key
                     sfx("sounds/door.mp3",0.5);
+                    door_open_particles(this.x,this.y);
                     roomGrid.floor[walkIntoTileIndex] = TILE_DOOR_YELLOW_SIDE_OPEN; //change to top part of door open
                     let tileBelow = findTileBelowCurrent(walkIntoTileIndex);
                     document.getElementById("debugText").innerHTML = "Keys: " + this.keysHeld;
@@ -322,6 +327,7 @@ function warriorClass() {
                 break;
             case TILE_TREASURE_CHEST:
                 sfx("sounds/pickup.mp3",0.25);
+                treasure_chest_particles(this.x,this.y);
                 this.keysHeld--; // one less key
                 roomGrid.floor[walkIntoTileIndex] = TILE_TREASURE_CHEST_OPEN; 
                 SetupPathfindingGridData(p1);
@@ -329,6 +335,7 @@ function warriorClass() {
                 break;
             case TILE_KEY:
                 sfx("sounds/key.mp3",0.5);
+                pickup_key_sparkly_particles(this.x,this.y); // FIXME maybe use the key's position instead, using walkIntoTileIndex
                 this.keysHeld++; // gain key
                 document.getElementById("debugText").innerHTML = "Keys: " + this.keysHeld;
                 roomGrid.floor[walkIntoTileIndex] = TILE_EMPTY; // remove key

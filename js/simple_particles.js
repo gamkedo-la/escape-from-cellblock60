@@ -113,6 +113,47 @@ function blood_particles(x, y) {
     }
 }
 
+function treasure_chest_particles(x, y) {
+    for (var i = 0; i < 32; i++) {
+        let life = randomInt(1000,2000);
+        let size = 1;
+        let rotspd = Math.random()*4-2;
+        let ang = 0;
+        let velx = Math.random()*2-1.5;
+        let vely = Math.random()*-8;
+        let alpha = 1.0;
+        particles.add(x,y,sparklePic,life,size,rotspd,ang,velx,vely,alpha);
+    }
+}
+
+function pickup_key_sparkly_particles(x, y) {
+    for (var i = 0; i < 32; i++) {
+        let life = randomInt(555,999);
+        let size = 1;
+        let rotspd = Math.random()*4-2;
+        let ang = 0;
+        let velx = Math.random()*6-3;
+        let vely = Math.random()*8-4;
+        let alpha = 1.0;
+        particles.add(x,y,sparklePic,life,size,rotspd,ang,velx,vely,alpha);
+    }
+}
+
+function door_open_particles(x, y) {
+    for (var i = 0; i < 32; i++) {
+        let life = randomInt(1000,2000);
+        let size = 10;
+        let rotspd = Math.random()*4-2;
+        let ang = 0;
+        let velx = Math.random()*2-1;
+        let vely = Math.random()*2-1;
+        let ofsx = Math.random()*100-50;
+        let ofsy = Math.random()*20-10;
+        let alpha = 0.25;
+        particles.add(x+ofsx,y,smokePic,life,size,rotspd,ang,velx,vely,alpha);
+    }
+}
+
 function trap_particles(x, y) {
     var num = randomChoice([0,0,1,0,0,0,0,0,0,0,0,0,0,0,0])
     for (var i = 0; i < num; i++) {
