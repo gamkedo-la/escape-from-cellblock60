@@ -14,6 +14,7 @@ const STATE_PLAY = 1;
 const STATE_PAUSE = 2;
 const STATE_GAME_OVER = 3;
 var gameState = STATE_PLAY;
+var showMenu = false;
 var paused = false;
 var currentRoomId = "01";
 
@@ -57,6 +58,13 @@ function moveEverything() {
       drawGameOver();
       break;
   }
+
+  if (showMenu) {
+    cellMenu.draw();
+    cellMenu.update();
+} else {
+  showMenu = false;
+}
 }
 
 function pruneEnemies(){
@@ -96,6 +104,7 @@ function drawEverything() {
   if(gameState == STATE_GAME_OVER) {
     drawGameOver();
   }
+  
   frameIndex++
  drawHealth();
  drawAttackPowerCharge();
