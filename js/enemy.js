@@ -1,5 +1,4 @@
 // tuning constants
-const ENEMY_MOVE_SPEED = 2.0;
 const AI_FRAME_THINK_TIME = 60;
 var enemyList = [];
 var countEnemiesKilled = 0;
@@ -28,6 +27,8 @@ class enemy {
         this.trackPlayerRange = 250;
         this.myRow = 0;
         this.myCol = 0;
+        this.enemyMoveSpeed = 2;
+        this.ramCoolOff = 120;
 
         // move states
         this.move_North = false;
@@ -164,9 +165,9 @@ class enemy {
 
             this.move_East = this.move_West = this.move_North = this.move_South = false;
 
-            if (deltaX <= ENEMY_MOVE_SPEED) {
+            if (deltaX <= this.enemyMoveSpeed) {
                 this.x = targetX;
-                if (deltaY <= ENEMY_MOVE_SPEED) {
+                if (deltaY <= this.enemyMoveSpeed) {
                     this.y = targetY;
                     this.tilePath.shift();
                 } else if (targetY < this.y) {
@@ -174,9 +175,9 @@ class enemy {
                 } else {
                     this.move_South = true;
                 }
-            } else if (deltaY <= ENEMY_MOVE_SPEED) {
+            } else if (deltaY <= this.enemyMoveSpeed) {
                 this.y = targetY;
-                if (deltaX <= ENEMY_MOVE_SPEED) {
+                if (deltaX <= this.enemyMoveSpeed) {
                     this.x = targetX;
                     this.tilePath.shift();
                 } else if (targetX < this.x) {
@@ -187,9 +188,9 @@ class enemy {
             } else { // move towards center of closest tile
                 targetX = enemyCol * TILE_W + (TILE_W * 0.5);
                 targetY = enemyRow * TILE_H + (TILE_H * 0.5);
-                if (targetY < this.y - ENEMY_MOVE_SPEED) {
+                if (targetY < this.y - this.enemyMoveSpeed) {
                     this.move_North = true;
-                } else if (targetY > this.y + ENEMY_MOVE_SPEED) {
+                } else if (targetY > this.y + this.enemyMoveSpeed) {
                     this.move_South = true;
                 } else if (targetX < this.x) {
                     this.move_West = true;
@@ -208,25 +209,25 @@ class enemy {
         }
 
         if (this.move_North) {
-            nextY -= ENEMY_MOVE_SPEED;
+            nextY -= this.enemyMoveSpeed;
             this.sy = this.sheight;
             this.projectileX = nextX + 20;
             this.projectileY = nextY;
         }
         if (this.move_East) {
-            nextX += ENEMY_MOVE_SPEED;
+            nextX += this.enemyMoveSpeed;
             this.sy = this.sheight*2;
             this.projectileX = nextX + 20;
             this.projectileY = nextY + (this.sheight/2) + 5; 
         }
         if (this.move_South) {
-            nextY += ENEMY_MOVE_SPEED;
+            nextY += this.enemyMoveSpeed;
             this.sy = 0;
             this.projectileX = nextX + 20;
             this.projectileY = nextY + (this.sheight/2);
         }
             if (this.move_West) {
-            nextX -= ENEMY_MOVE_SPEED;
+            nextX -= this.enemyMoveSpeed;
             this.sy = this.sheight*3;
             this.projectileX = nextX + 10;
             this.projectileY = nextY + (this.sheight/2) + 5;
@@ -237,14 +238,29 @@ class enemy {
         }
 
         //Ram Player
-        if(enemyRow == p1.row || enemyCol == p1.col){
-            var newMoveSpeed = ENEMY_MOVE_SPEED;
-            while (newMoveSpeed < 8.0){
-                newMoveSpeed++;
+        if(this.enemyCanRam){
+            console.log(this.ramCoolOff)
+            if(this.ramCoolOff > 0){
+                this.ramCoolOff--
+                if(enemyRow == p1.row || enemyCol == p1.col){
+                    if(enemyRow == p1.row){
+                            this.enemyMoveSpeed = 8;
+                    } else if (enemyCol == p1.col){
+                        this.enemyMoveSpeed = 8;
+                    } else {
+                        this.enemyMoveSpeed = 2;
+                    }
+                    var playerIdx = pixCoordToIndex(p1.x, p1.y);
+                        startPath(playerIdx, this);
+                }
             }
-            newMoveSpeed = ENEMY_MOVE_SPEED;
-            var playerIdx = pixCoordToIndex(p1.x, p1.y);
-                startPath(playerIdx, this);
+            if(this.ramCoolOff <= 0){
+                this.ramCoolOff--;
+                this.enemyMoveSpeed = 2;
+                if(this.ramCoolOff < -400){
+                    this.ramCoolOff = 120;
+                }
+            }
         }
         
         var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);

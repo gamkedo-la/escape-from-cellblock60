@@ -16,6 +16,8 @@ class ghost extends enemy {
 		this.currentAnimationFrameIndex = 0;
 		this.currentAnimation = this.animations.default;
         this.init(ghostPic, "red");
+		//attacking abilities
+		this.enemyCanRam = false;
     }
 
     draw(){

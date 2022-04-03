@@ -13,8 +13,9 @@ class skeleton extends enemy {
         this.sheight = 51;
         this.advanceFrameAmount = 5
         this.spriteNumberOfFrames = 4
-        //shots
+         //attacking abilities
         this.totalShots = 0;
+        this.enemyCanRam = true;
     }
 
     draw = function(){
