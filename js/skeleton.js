@@ -8,6 +8,7 @@ class skeleton extends enemy {
     constructor(roomId){
         super(roomId);
         this.init(skeletonPic, "red");
+        this.walkSpeed = 2;
         //animation
         this.width = 50;
         this.sheight = 51;
@@ -16,15 +17,26 @@ class skeleton extends enemy {
          //attacking abilities
         this.totalShots = 0;
         this.enemyCanRam = true;
+        this.ramSpeed = 8;
+        this.enemyCanMelee = true;
+        this.usesPoleArm = true;
     }
 
     draw = function(){
         if(this.roomId != currentRoomId){ return };
         this.cycleMovingAnimation();
 
-        this.sx = this.spriteIndex * this.width;
-       // console.log("SX: " + this.sx + " SY: " + this.sy + " swidth " + this.swidth + " sHeight "+ this.sheight);
+        
+        if(this.poleArmAttacking){
+          this.sx = this.spriteIndex + 4 * this.width;
+        } else {
+          this.sx = this.spriteIndex * this.width;
+        }
         canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x, this.y, 50, 50);
+
+        if(this.poleArmAttacking){
+          outlineRect(this.poleArmX, this.poleArmY, 50, 50, "red", 3)
+      }
     }
 
 	cycleMovingAnimation = function() {

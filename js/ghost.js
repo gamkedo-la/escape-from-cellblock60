@@ -18,6 +18,8 @@ class ghost extends enemy {
         this.init(ghostPic, "red");
 		//attacking abilities
 		this.enemyCanRam = false;
+		this.enemyCanMelee = false;
+		this.usesPoleArm = false;
     }
 
     draw(){

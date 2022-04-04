@@ -98,6 +98,13 @@ function warriorClass() {
             return true;
     }
 
+    this.inMeleeRange = function(x,y){
+        if( x > this.x -25 && this.x + this.swidth + 25 &&
+            y > this.y - 25 && y < this.y + this.sheight + 25)
+
+            return true;
+    }
+
     this.maybePlayFootstepSFX = function() {
         if (!this.moving) return;
         let now = performance.now();

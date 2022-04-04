@@ -28,7 +28,7 @@ class enemy {
         this.myRow = 0;
         this.myCol = 0;
         this.enemyMoveSpeed = 2;
-        this.ramCoolOff = 120;
+        this.ramCoolOff = 0;
 
         // move states
         this.move_North = false;
@@ -143,8 +143,76 @@ class enemy {
                 var playerIdx = pixCoordToIndex(p1.x, p1.y);
                 startPath(playerIdx, this);
             }
-        }
 
+            if(this.enemyCanMelee){
+                if(p1.inMeleeRange(this.x, this.y)){
+                    console.log("Melee Combat Started");
+                    if(this.usesPoleArm){
+                        console.log("Attacking with PoleArm");
+                        this.poleArmAttacking = true;
+                        this.enemyMoveSpeed = 0;
+                        if(p1.x > this.x && 
+                           p1.y > this.y - 10 && 
+                           p1.y < this.y + 10)
+                            {
+                            this.poleArmX = this.x + 50;
+                            this.poleArmY = this.y;
+                            console.log("Pole arm to the right");
+                            if(p1.checkForCollision(this.poleArmX, this.poleArmY)){
+                                console.log("Hit")
+                                sfx("sounds/hurt.mp3",0.025);
+                                p1.hit(5);
+                                blood_particles(p1.x, p1.y);
+                            }
+                            return;
+                        }
+                        if(p1.x < this.x &&
+                            p1.y > this.y - 10 && 
+                            p1.y < this.y + 10)
+                            {
+                            this.poleArmX = this.x - 50;
+                            this.poleArmY = this.y;
+                            console.log("Pole arm to the left")
+                            if(p1.checkForCollision(this.poleArmX, this.poleArmY)){
+                                console.log("Hit")
+                                sfx("sounds/hurt.mp3",0.025);
+                                p1.hit(5);
+                                blood_particles(p1.x, p1.y);
+                            }
+                            return;
+                        }
+                        if(p1.y < this.y){
+                            this.poleArmX = this.x;
+                            this.poleArmY = this.y - 50;
+                            console.log("Pole arm above");
+                            if(p1.checkForCollision(this.poleArmX, this.poleArmY)){
+                                console.log("Hit")
+                                sfx("sounds/hurt.mp3",0.025);
+                                p1.hit(5);
+                                blood_particles(p1.x, p1.y);
+                            }
+                            return;
+                        }
+                        if(p1.y > this.y){
+                            this.poleArmX = this.x;
+                            this.poleArmY = this.y + 50;
+                            console.log("Pole arm below")
+                            if(p1.checkForCollision(this.poleArmX, this.poleArmY)){
+                                console.log("Hit")
+                                sfx("sounds/hurt.mp3",0.025);
+                                p1.hit(5);
+                                blood_particles(p1.x, p1.y);
+                            }
+                            return;
+                        }
+                        console.log("Suppose to attack with polearm, but no direction")
+                    } 
+                } else {
+                    this.poleArmAttacking = false;
+                    this.enemyMoveSpeed = 2;
+                }
+            }    
+        }
 
         var nextX = this.x;
         var nextY = this.y;
@@ -239,16 +307,15 @@ class enemy {
 
         //Ram Player
         if(this.enemyCanRam){
-            console.log(this.ramCoolOff)
+            this.ramCoolOff--
             if(this.ramCoolOff > 0){
-                this.ramCoolOff--
                 if(enemyRow == p1.row || enemyCol == p1.col){
                     if(enemyRow == p1.row){
-                            this.enemyMoveSpeed = 8;
+                            this.enemyMoveSpeed = this.ramSpeed;
                     } else if (enemyCol == p1.col){
                         this.enemyMoveSpeed = 8;
                     } else {
-                        this.enemyMoveSpeed = 2;
+                        this.enemyMoveSpeed = this.walkSpeed;
                     }
                     var playerIdx = pixCoordToIndex(p1.x, p1.y);
                         startPath(playerIdx, this);
@@ -258,8 +325,15 @@ class enemy {
                 this.ramCoolOff--;
                 this.enemyMoveSpeed = 2;
                 if(this.ramCoolOff < -400){
-                    this.ramCoolOff = 120;
+                    this.ramCoolOff = 60;
                 }
+            }
+
+            if(p1.checkForCollision(this.x, this.y)){
+                console.log("Hit")
+                sfx("sounds/hurt.mp3",0.025);
+                p1.hit(5);
+                blood_particles(p1.x, p1.y);
             }
         }
         
@@ -319,7 +393,6 @@ class enemy {
         for(var i = 0; i < this.myProjectileList.length; i++){
             this.myProjectileList[i].draw();
         }
-
         
         // canvasContext.strokeStyle = "red";
         // canvasContext.strokeRect(this.rect.x, this.rect.y, this.rect.width, this.rect.height);
@@ -328,6 +401,7 @@ class enemy {
     // calculate damage recieved and deduct from current health, trigger death
     hit(damage) {
         // dodge?
+        
 
         // damage reduction?
 
