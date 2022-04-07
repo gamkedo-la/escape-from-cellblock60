@@ -29,6 +29,7 @@ class enemy {
         this.myCol = 0;
         this.enemyMoveSpeed = 2;
         this.ramCoolOff = 0;
+        this.isRamming = false;
 
         // move states
         this.move_North = false;
@@ -60,7 +61,6 @@ class enemy {
             height: this.sheight,
         }
     }
-
 
     init(whichGraphic, whichName) {
         this.myBitmap = whichGraphic;
@@ -308,12 +308,15 @@ class enemy {
         //Ram Player
         if(this.enemyCanRam){
             this.ramCoolOff--
+            this.isRamming = false;
             if(this.ramCoolOff > 0){
                 if(enemyRow == p1.row || enemyCol == p1.col){
                     if(enemyRow == p1.row){
                             this.enemyMoveSpeed = this.ramSpeed;
+                            this.isRamming = true;
                     } else if (enemyCol == p1.col){
                         this.enemyMoveSpeed = 8;
+                        this.isRamming = true;
                     } else {
                         this.enemyMoveSpeed = this.walkSpeed;
                     }

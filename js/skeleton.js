@@ -20,6 +20,8 @@ class skeleton extends enemy {
         this.ramSpeed = 8;
         this.enemyCanMelee = true;
         this.usesPoleArm = true;
+        this.rammingSX = 250;
+        this.PoleArmSX = 500;
     }
 
     draw = function(){
@@ -28,10 +30,16 @@ class skeleton extends enemy {
 
         
         if(this.poleArmAttacking){
-          this.sx = this.spriteIndex + 4 * this.width;
+          console.log("Is attacking with pole arm");
+          this.sx = (this.spriteIndex * this.swidth) + this.PoleArmSX;
+        } else if (this.isRamming){
+            console.log("Is Ramming")
+            this.sx = (this.spriteIndex * this.swidth) + this.rammingSX;
         } else {
-          this.sx = this.spriteIndex * this.width;
+          this.sx = this.spriteIndex * this.swidth;
         }
+
+        console.log("SX: " + this.sx)
         canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x, this.y, 50, 50);
 
         if(this.poleArmAttacking){
