@@ -88,8 +88,8 @@ function mouseclicked(evt) {
 
     if (!musicStarted) startMusic();
     
-    if(grid[tileOverIdx].elementType != WALL) {
-		startPath(tileOverIdx, p1); 
+    if(tileOverIdx != -1 && grid[tileOverIdx].elementType != WALL) {
+		  startPath(tileOverIdx, p1); 
     }
 
 }

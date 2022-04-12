@@ -42,7 +42,9 @@ function loadingDoneSoStartGame() {
 }
 
 function moveEverything() {
-    
+   if (showMenu) {
+     return;
+   }  
     particles.update();
   
     switch (gameState) {
@@ -58,13 +60,6 @@ function moveEverything() {
       drawGameOver();
       break;
   }
-
-  if (showMenu) {
-    cellMenu.draw();
-    cellMenu.update();
-} else {
-  showMenu = false;
-}
 }
 
 function pruneEnemies(){
@@ -111,6 +106,11 @@ function drawEverything() {
  drawCountEnemiesKilled();
  
  drawMiniMap(canvas.width-170,10);
+
+ if (showMenu) {
+  cellMenu.draw();
+  cellMenu.update();
+}
   //drawTileAtlas();
 
 }

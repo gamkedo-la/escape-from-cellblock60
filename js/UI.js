@@ -104,7 +104,7 @@ const cellMenu = new function() {
   
   this.draw = function() {
     let closeTextHeight = 20
-    canvasContext.globalAlpha = 0.05;
+    canvasContext.globalAlpha = 0.95;
     canvasContext.fillStyle = "#111111";
     canvasContext.fillRect(0,0,canvas.width,canvas.height);
     canvasContext.globalAlpha = 1.0;
