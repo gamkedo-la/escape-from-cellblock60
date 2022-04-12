@@ -39,7 +39,7 @@ class skeleton extends enemy {
           this.sx = this.spriteIndex * this.swidth;
         }
 
-        console.log("SX: " + this.sx)
+        // console.log("SX: " + this.sx)
         canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x, this.y, 50, 50);
 
         if(this.poleArmAttacking){
