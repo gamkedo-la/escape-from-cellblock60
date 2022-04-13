@@ -197,27 +197,27 @@ function warriorClass() {
             this.moving = true;
             this.movingCollisionsY = nextY - (this.height/2)
             this.facing = NORTH;
-        } else if (this.keyHeld_East) {
+        } /*else*/ if (this.keyHeld_East) {
             nextX += PLAYER_MOVE_SPEED; 
             this.sy = this.sheight*2;
             this.moving = true;
             this.movingCollisionsX = nextX + (this.width/4)
             this.facing = EAST;
-        } else if (this.keyHeld_South) {
+        } /*else*/ if (this.keyHeld_South) {
             nextY += PLAYER_MOVE_SPEED;
             this.sy = 0;
             this.moving = true;
             this.movingCollisionsY = nextY + (this.height/2)
             this.facing = SOUTH;
-        } else if (this.keyHeld_West) {
+        } /*else*/ if (this.keyHeld_West) {
             nextX -= PLAYER_MOVE_SPEED;
             this.sy = this.sheight*3;
             this.moving = true;
             this.movingCollisionsX = nextX - (this.width/4)
             this.facing = WEST;
-        } else {
+        } /*else {
          //   this.moving = false;
-        }
+        }*/
 
         this.maybePlayFootstepSFX();
 
