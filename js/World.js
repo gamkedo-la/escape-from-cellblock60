@@ -163,9 +163,7 @@ function tileTypeWalkable(checkTileType){
 }
 
 function tileTypeHasDungeonWallBottom(checkTileType){
-  return (checkTileType == TILE_CABINET_1_TL ||
-          checkTileType == TILE_CABINET_1_TR ||
-          checkTileType == TILE_WHISKEY_BARREL_TOP);
+  return (checkTileType == TILE_WHISKEY_BARREL_TOP);
 }
 
 function tileTypeHasTileFloor(checkTileType){
@@ -215,7 +213,7 @@ function drawLayer(layer, isCeiling = false) {
           canvasContext.drawImage(tilePics[TILE_WALL_16].img,250,50, 50, 50, tileLeftEdgeX, tileTopEdgeY, 50, 50);
         }
         if( tileTypeHasDungeonWallTop(tileTypeHere) ) {
-          canvasContext.drawImage(tilePics[TILE_WALL_16].img,tileLeftEdgeX, tileTopEdgeY);
+          canvasContext.drawImage(tilePics[TILE_WALL_16].img,350,0, 50, 50, tileLeftEdgeX, tileTopEdgeY, 50, 50);
         }
 
         if( tileTypeHasTileFloor(tileTypeHere) ) {
