@@ -100,7 +100,9 @@ function loadImages() {
     {tileType:TILE_WALL_14, imgX: 150, imgY: 50, theFile:"dungeonWalls.png", isWall: true},
     {tileType:TILE_WALL_15, imgX: 200, imgY: 50, theFile:"dungeonWalls.png", isWall: true},
     {tileType:TILE_WALL_16, imgX: 250, imgY: 50, theFile:"dungeonWalls.png", isWall: true},
+    {tileType:TILE_WALL_COLUMN_LEFT, imgX: 300, imgY: 50, theFile:"dungeonWalls.png", isWall: true},
     {tileType:TILE_WALL_10, imgX: 350, imgY: 50, theFile:"dungeonWalls.png", isWall: true},
+    {tileType:TILE_WALL_COLUMN_RIGHT, imgX: 400, imgY: 50, theFile:"dungeonWalls.png", isWall: true},
     {tileType:TILE_DUNGEON_STAIRS_MIDDLE_1, imgX: 450, imgY: 50, theFile:"dungeonWalls.png"},
     //ROW 3
     {tileType:TILE_CABINET_1_TL, imgX: 0, imgY: 100, theFile:"dungeonWalls.png"},
