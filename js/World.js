@@ -217,7 +217,7 @@ function drawLayer(layer, isCeiling = false) {
         }
 
         if( tileTypeHasTileFloor(tileTypeHere) ) {
-          canvasContext.drawImage(tilePics[TILE_FLOOR_TILE].img,0,0, 50, 50, tileLeftEdgeX, tileTopEdgeY, 50, 50);
+          canvasContext.drawImage(tilePics[TILE_FLOOR_TILE].img,50,0, 50, 50, tileLeftEdgeX, tileTopEdgeY, 50, 50);
         }
 
         if (animatedTiles.includes(tileTypeHere)) {
