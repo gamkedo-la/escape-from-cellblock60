@@ -125,6 +125,10 @@ function loadImages() {
     {tileType:TILE_POTTERY_2, imgX: 350, imgY: 150, theFile:"dungeonWalls.png"},
     {tileType:TILE_POTTERY_3, imgX: 400, imgY: 150, theFile:"dungeonWalls.png"},
     {tileType:TILE_DUNGEON_STAIRS_DOWN_1, imgX: 450, imgY: 150, theFile:"dungeonWalls.png", isStairsDown: true},
+    //ROW 5
+    {tileType:TILE_STATUE_TOP, imgX: 100, imgY: 200, theFile:"dungeonWalls.png"},
+    //ROW 6
+    {tileType:TILE_STATUE_BOTTOM, imgX: 100, imgY: 250, theFile:"dungeonWalls.png"},
 
     //END SPRITE SHEET
 
