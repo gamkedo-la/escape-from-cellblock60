@@ -324,14 +324,15 @@ function worldWrap(DIRECTION) {
 function addEnemies() {
   for(var i = 0; i < roomGrid.floor.length; i++){
     if(roomGrid.floor[i] == TILE_ENEMY){
-            addGhost(currentRoomId);
+        addGhost(currentRoomId);
+        
     } 
     if(roomGrid.floor[i] == TILE_OCTOGOLEM){
-            addOctoGolem(currentRoomId);
+        addOctoGolem(currentRoomId);
     } 
     if(roomGrid.floor[i] == TILE_SKELETON){
-      addSkeleton(currentRoomId);
-}
+        addSkeleton(currentRoomId);
+    }
   }
 }
 

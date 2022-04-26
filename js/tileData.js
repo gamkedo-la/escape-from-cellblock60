@@ -147,7 +147,15 @@ TILES = {
     TILE_WALL_COLUMN_LEFT: 200,
     TILE_WALL_COLUMN_RIGHT: 201,
     TILE_STATUE_TOP: 202,
-    TILE_STATUE_BOTTOM: 203
+    TILE_STATUE_BOTTOM: 203,
+
+    // FIXME why are these overlapping?
+    // in tiled the next row of sprites begins 112,113..
+    // TILE_CARPET_1: 204,
+    // TILE_CARPET_2: 205
+    TILE_CARPET_1: 112, // works?
+    TILE_CARPET_2: 113 // taken?
+
   };
 
   for(const [key, value] of Object.entries(TILES)) {
@@ -202,7 +210,9 @@ TILES = {
     TILE_FLOOR_SLAB_1,
     TILE_FLOOR_SLAB_2,
     TILE_FLOOR_SLAB_3,
-    TILE_FLOOR_SLAB_4
+    TILE_FLOOR_SLAB_4,
+    TILE_CARPET_1,
+    TILE_CARPET_2
   ]
 
   tileAnims = {

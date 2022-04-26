@@ -183,6 +183,9 @@ function loadImages() {
     {tileType:TILE_SPIKE_2, imgX: 50, imgY: 100, theFile:"floors.png"},
     {tileType:TILE_SPIKE_3, imgX: 100, imgY: 100, theFile:"floors.png"},
     {tileType:TILE_SPIKE_4, imgX: 150, imgY: 100, theFile:"floors.png"},
+    {tileType:TILE_CARPET_1, imgX: 0, imgY: 150, theFile:"floors.png"},
+    {tileType:TILE_CARPET_2, imgX: 50, imgY: 150, theFile:"floors.png"},
+
 
     // cave
     {tileType:TILE_FLOOR_CAVE_1, imgX: 0, imgY: 0, theFile:"cave.png"},
