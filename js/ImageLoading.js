@@ -133,12 +133,18 @@ function loadImages() {
     {tileType:TILE_DESK_TOP_OBJECT_2, imgX: 200, imgY: 200, theFile:"dungeonWalls.png"},
     {tileType:TILE_DESK_TOP_OBJECT_3, imgX: 250, imgY: 200, theFile:"dungeonWalls.png"},
     {tileType:TILE_DESK_TOP_OBJECT_4, imgX: 300, imgY: 200, theFile:"dungeonWalls.png"},
+    {tileType:TILE_SPIDERWEB, imgX: 350, imgY: 200, theFile:"dungeonWalls.png"},
+    {tileType:TILE_STATUE_2_TOP, imgX: 400, imgY: 200, theFile:"dungeonWalls.png"},
+    {tileType:TILE_DESK_SIDE_TOP, imgX: 450, imgY: 200, theFile:"dungeonWalls.png"},
+
     //ROW 6
     {tileType:TILE_BOOKSHELF_LEFT_WALL, imgX: 0, imgY: 250, theFile:"dungeonWalls.png"},
     {tileType:TILE_STATUE_BOTTOM, imgX: 100, imgY: 250, theFile:"dungeonWalls.png"},
     {tileType:TILE_DESK_CHAIR_LEFT, imgX: 150, imgY: 250, theFile:"dungeonWalls.png"},
     {tileType:TILE_DESK_CHAIR_RIGHT, imgX: 200, imgY: 250, theFile:"dungeonWalls.png"},
     {tileType:TILE_TABLE, imgX: 250, imgY: 250, theFile:"dungeonWalls.png"},
+    {tileType:TILE_STATUE_2_BOTTOM, imgX: 400, imgY: 250, theFile:"dungeonWalls.png"},
+    {tileType:TILE_DESK_SIDE_BOTTOM, imgX: 450, imgY: 250, theFile:"dungeonWalls.png"},
 
     //END SPRITE SHEET
 
