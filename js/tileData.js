@@ -169,7 +169,9 @@ TILES = {
     TILE_WALL_WINDOW_TR: 222,
     TILE_WALL_WINDOW_BL: 223,
     TILE_WALL_WINDOW_BR: 224,
-    EMPTY: 225 //USE THIS ONE NEXT!
+    TILE_DESK_TOP_OBJECT_5: 225,
+    TILE_BAG: 226,
+    EMPTY: 227 //USE THIS ONE NEXT!
   };
 
   for(const [key, value] of Object.entries(TILES)) {

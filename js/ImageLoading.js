@@ -143,6 +143,8 @@ function loadImages() {
     {tileType:TILE_DESK_CHAIR_LEFT, imgX: 150, imgY: 250, theFile:"dungeonWalls.png"},
     {tileType:TILE_DESK_CHAIR_RIGHT, imgX: 200, imgY: 250, theFile:"dungeonWalls.png"},
     {tileType:TILE_TABLE, imgX: 250, imgY: 250, theFile:"dungeonWalls.png"},
+    {tileType:TILE_DESK_TOP_OBJECT_5, imgX: 300, imgY: 250, theFile:"dungeonWalls.png"},
+    {tileType:TILE_BAG, imgX: 350, imgY: 250, theFile:"dungeonWalls.png"},
     {tileType:TILE_STATUE_2_BOTTOM, imgX: 400, imgY: 250, theFile:"dungeonWalls.png"},
     {tileType:TILE_DESK_SIDE_BOTTOM, imgX: 450, imgY: 250, theFile:"dungeonWalls.png"},
 
