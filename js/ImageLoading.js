@@ -146,6 +146,35 @@ function loadImages() {
     {tileType:TILE_STATUE_2_BOTTOM, imgX: 400, imgY: 250, theFile:"dungeonWalls.png"},
     {tileType:TILE_DESK_SIDE_BOTTOM, imgX: 450, imgY: 250, theFile:"dungeonWalls.png"},
 
+    //ROW 7
+    //Replace EMPTY with tile name.  Tile name gets created in "tileData.js and assign a tile number"
+
+    {tileType: TILE_WALL_WINDOW_TL, imgX: 0, imgY: 300, theFile:"dungeonWalls.png"},
+    {tileType:TILE_WALL_WINDOW_TR, imgX: 50, imgY: 300, theFile:"dungeonWalls.png"},
+    {tileType: EMPTY, imgX: 100, imgY: 300, theFile:"dungeonWalls.png"},
+    {tileType: EMPTY, imgX: 150, imgY: 300, theFile:"dungeonWalls.png"},
+    {tileType:EMPTY, imgX: 200, imgY: 300, theFile:"dungeonWalls.png"},
+    {tileType: EMPTY, imgX: 250, imgY: 300, theFile:"dungeonWalls.png"},
+    {tileType:EMPTY, imgX: 300, imgY: 300, theFile:"dungeonWalls.png"},
+    {tileType: EMPTY, imgX: 350, imgY: 300, theFile:"dungeonWalls.png"},
+    {tileType:EMPTY, imgX: 400, imgY: 300, theFile:"dungeonWalls.png"},
+    {tileType: EMPTY, imgX: 450, imgY: 300, theFile:"dungeonWalls.png"},
+    
+    //ROW 8
+    //Replace EMPTY with tile name.  Tile name gets created in "tileData.js and assign a tile number"
+    {tileType: TILE_WALL_WINDOW_BL, imgX: 0, imgY: 350, theFile:"dungeonWalls.png"},
+    {tileType:TILE_WALL_WINDOW_BR, imgX: 50, imgY: 350, theFile:"dungeonWalls.png"},
+    {tileType: EMPTY, imgX: 100, imgY: 350, theFile:"dungeonWalls.png"},
+    {tileType: EMPTY, imgX: 150, imgY: 350, theFile:"dungeonWalls.png"},
+    {tileType:EMPTY, imgX: 200, imgY: 350, theFile:"dungeonWalls.png"},
+    {tileType: EMPTY, imgX: 250, imgY: 350, theFile:"dungeonWalls.png"},
+    {tileType:EMPTY, imgX: 300, imgY: 350, theFile:"dungeonWalls.png"},
+    {tileType: EMPTY, imgX: 350, imgY: 350, theFile:"dungeonWalls.png"},
+    {tileType:EMPTY, imgX: 400, imgY: 350, theFile:"dungeonWalls.png"},
+    {tileType: EMPTY, imgX: 450, imgY: 350, theFile:"dungeonWalls.png"},
+    {tileType:EMPTY, imgX: 500, imgY: 350, theFile:"dungeonWalls.png"},
+
+
     //END SPRITE SHEET
 
     {tileType:TILE_KEY, imgX: 0, imgY: 0, theFile:"items.png"},
