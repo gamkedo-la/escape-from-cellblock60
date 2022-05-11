@@ -18,10 +18,10 @@ function drawHealth() {
 }
 
 function drawAttackPowerCharge() {
-  shadowText('AP', 10, 45, 12, 2, 'yellow', 'purple')
-  outlineRect(10, 50, 100, 12, 'grey');
-  colorRect(10, 50, 100, 12, 'yellow');
-  colorRect(10, 50, attackPowerDelay, 12, 'green');
+  //shadowText('AP', 10, 45, 12, 2, 'yellow', 'purple')
+  //outlineRect(10, 50, 100, 12, 'grey');
+  //colorRect(10, 50, 100, 12, 'yellow');
+  //colorRect(10, 50, attackPowerDelay, 12, 'green');
   //console.log(attackPowerDelay)
 }
 

@@ -105,7 +105,7 @@ function drawEverything() {
  drawAttackPowerCharge();
  drawCountEnemiesKilled();
  
- drawMiniMap(canvas.width-170,10);
+ drawMiniMap(canvas.width-200,10);
 
  if (showMenu) {
   cellMenu.draw();
