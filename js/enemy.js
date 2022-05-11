@@ -109,6 +109,8 @@ class enemy {
            if(overlaps(p1.swordRect, this.rect)){
                this.hit(100);
                console.log("enemy hit");
+               let randy = Math.floor(Math.random()*4);
+               sfx("sounds/sword_clang_"+randy+".wav",0.1); // FIXME: make them MP3s for smaller size?
            }
         }
         if (this.framesBeforeReThink-- < 0) {

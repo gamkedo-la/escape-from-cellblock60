@@ -398,6 +398,8 @@ function warriorClass() {
 
         this.swingSword = function(){
             console.log("Player Swings Sword");
+            let randy = Math.floor(Math.random()*4);
+            sfx("sounds/sword_swing_"+randy+".wav",0.05); // FIXME: make them MP3s for smaller size?
             //we just set the flag here, logic is in the update function
             //and draw function
             this.swingSwordCooldown = this.SWING_SWORD_COOLDOWN;
