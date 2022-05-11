@@ -43,7 +43,7 @@ class skeleton extends enemy {
         canvasContext.drawImage(this.myBitmap,this.sx,this.sy, this.swidth, this.sheight, this.x, this.y, 50, 50);
 
         if(this.poleArmAttacking){
-          centerOutlineRect(this.poleArmX, this.poleArmY, 50, 50, "red", 3)
+         // centerOutlineRect(this.poleArmX, this.poleArmY, 50, 50, "red", 3)
       }
     }
 

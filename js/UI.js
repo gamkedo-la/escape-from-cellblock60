@@ -27,7 +27,7 @@ function drawAttackPowerCharge() {
 
 function drawCountEnemiesKilled() {
   victoryStr = 'Enemies defeated: '.concat(countEnemiesKilled)
-  shadowText(victoryStr, 120, 15, 12, 2, 'yellow', 'purple')
+  //shadowText(victoryStr, 120, 15, 12, 2, 'yellow', 'purple')
 }
 
 function drawGameOver() {

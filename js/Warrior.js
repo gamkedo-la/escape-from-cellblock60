@@ -533,7 +533,7 @@ function warriorClass() {
         // reduce health
         if(this.hitCooldown < 0){
             blood_particles(this.x, this.y);
-            this.health -= damage;
+            this.health -= damage * 4;
             this.hitCooldown = this.HIT_COOLDOWN;
         }
 
