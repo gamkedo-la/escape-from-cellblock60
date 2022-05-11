@@ -146,18 +146,18 @@ class enemy {
 
             if(this.enemyCanMelee){
                 if(p1.inMeleeRange(this.x, this.y)){
-                    console.log("Melee Combat Started");
+                    //console.log("Melee Combat Started");
                     if(this.usesPoleArm){
-                        console.log("Attacking with PoleArm");
+                      //  console.log("Attacking with PoleArm");
                         this.poleArmAttacking = true;
                         this.enemyMoveSpeed = 0;
                         if(p1.x > this.x && 
-                           p1.y > this.y - 10 && 
-                           p1.y < this.y + 10)
+                           p1.y > this.y - 25 && 
+                           p1.y < this.y + 25)
                             {
-                            this.poleArmX = this.x + 50;
+                            this.poleArmX = this.x //+ 150;
                             this.poleArmY = this.y;
-                            console.log("Pole arm to the right");
+                          //  console.log("Pole arm to the right");
                             if(p1.checkForCollision(this.poleArmX, this.poleArmY)){
                                 console.log("Hit")
                                 sfx("sounds/hurt.mp3",0.025);
@@ -167,10 +167,10 @@ class enemy {
                             return;
                         }
                         if(p1.x < this.x &&
-                            p1.y > this.y - 10 && 
-                            p1.y < this.y + 10)
+                            p1.y > this.y - 25 && 
+                            p1.y < this.y + 25)
                             {
-                            this.poleArmX = this.x - 50;
+                            this.poleArmX = this.x //- 150;
                             this.poleArmY = this.y;
                             console.log("Pole arm to the left")
                             if(p1.checkForCollision(this.poleArmX, this.poleArmY)){
@@ -183,7 +183,7 @@ class enemy {
                         }
                         if(p1.y < this.y){
                             this.poleArmX = this.x;
-                            this.poleArmY = this.y - 50;
+                            this.poleArmY = this.y //- 150;
                             console.log("Pole arm above");
                             if(p1.checkForCollision(this.poleArmX, this.poleArmY)){
                                 console.log("Hit")
@@ -195,7 +195,7 @@ class enemy {
                         }
                         if(p1.y > this.y){
                             this.poleArmX = this.x;
-                            this.poleArmY = this.y + 50;
+                            this.poleArmY = this.y //+ 150;
                             console.log("Pole arm below")
                             if(p1.checkForCollision(this.poleArmX, this.poleArmY)){
                                 console.log("Hit")
