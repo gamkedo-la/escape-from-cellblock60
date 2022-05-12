@@ -63,6 +63,7 @@ const cellMenu = new function() {
   this.clickOption = function() {
     if (currentMenu != MENU_PAGE_MAIN){
         currentMenu = MENU_PAGE_MAIN;
+        showMenu = false; // start game
     } else switch (menuText[this.cursor]) {
         case "PLAY":
             showMenu = false;
@@ -118,12 +119,12 @@ const cellMenu = new function() {
 
   this.menuMouse = function() {
       const selectedItemOnPage = menuText[this.cursor];
-      var offsetY = 30;
+      var offsetY = 0;
       for (let i = 0; i < menuText.length; i++) {
           if (
               //mouseX > itemsX - 350 && mousePosX + itemsWidth &&
-              mouseY > topItemY + i * rowHeight - offsetY &&
-              mouseY < topItemY + i * rowHeight + itemsHeight - offsetY
+              canvMouseY > topItemY + i * rowHeight - offsetY &&
+              canvMouseY < topItemY + i * rowHeight + itemsHeight - offsetY
           ) {
               this.setCursorAndCurrentPage(i);
           }

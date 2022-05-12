@@ -102,6 +102,7 @@ function mousereleased(evt) {
     mouseDragging = false;
 }
 
+var canvMouseX=0,canvMouseY=0; // pixels on canvas, ignores css scaling
 function mousemoved(evt) {
     var rect = canvas.getBoundingClientRect();
     var root = document.documentElement;
@@ -109,6 +110,8 @@ function mousemoved(evt) {
     // account for the margins, canvas position on page, scroll amount, etc.
     mouseX = evt.clientX - rect.left - root.scrollLeft;
     mouseY = evt.clientY - rect.top - root.scrollTop;
+    canvMouseX = Math.floor(mouseX * canvas.width / canvas.clientWidth);
+    canvMouseY = Math.floor(mouseY * canvas.height / canvas.clientHeight);
 
     var tileOverCol = Math.floor(mouseX / TILE_W);
     var tileOverRow = Math.floor(mouseY / TILE_H);
