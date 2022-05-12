@@ -87,8 +87,10 @@ function startMusic() {
 function mouseclicked(evt) {
 
     if (!musicStarted) startMusic();
-    
-    if(tileOverIdx != -1 && grid[tileOverIdx].elementType != WALL) {
+
+    if(showMenu) {
+      cellMenu.clickOption();
+    } else if(tileOverIdx != -1 && grid[tileOverIdx].elementType != WALL) {
 		  startPath(tileOverIdx, p1); 
     }
 

@@ -45,17 +45,10 @@ const cellMenu = new function() {
   let helpTextBoxWidth = 930;
 
   let mainMenuList = ["PLAY",
-      "HELP",
-      "VOLUME",
-      "OPTIONS",
       "CREDITS"
   ];
-  let helpText = [];
-  let creditsText = [];
   let menuText = [
-    mainMenuList,
-    helpText,
-    creditsText
+    mainMenuList
   ];
 
 
@@ -133,6 +126,7 @@ const cellMenu = new function() {
         case MENU_PAGE_HELP:
             break;
         case MENU_PAGE_CREDITS:
+            drawCredits();
             break;
     }
   }
@@ -180,3 +174,81 @@ const cellMenu = new function() {
   }
 
 }
+
+var creditsList = [
+"Vince McKeown: Project lead, core gameplay, warrior animations, ghost and skeleton sprite facings, level design (shared), assorted environment art (yellow), statue, spider webs, collision handling, projectiles art/code, lock and key, pathfinding, art integration, tuning",
+"Ryan Malm: Tile atlas, level design (shared), dungeon music, whisp particle fix, room optimization (enemies/particles), hit flash, sword swish animation and damage, spike trap functionality, game over handling, ghost enemy refactor, pixel scaling css, room bug fix",
+"Tylor Allison: Art (wall sword, wall shield, skeleton portrait, zombie with pearl earring, torch sprite, plaques, cave floors/walls), floor tile variations, spikes, tile randomization functionality, wall shadows, stair down tweak, level system",
+"Christer \"McFunkypants\" Kaitila: Octo golem enemy (with behavior), carpet tiles, move diagonal input support, particles (torch, red, sparkle, sword, dust), splash screen with logo, double door functionality, painting eyes follow layer, assorted sound effects (including sword swings), audio integration, scrollbars fix",
+"Patrick McKeown: Table art, room decoration placement (furniture, pottery, desk) pottery room, pause feature, readability improvements, font size fix, debug counter",
+"Vaan Hope Khani: Wood box, rug art, minimap, health UI, main menu functionality",
+"Gonzalo Delgado: Ghost animation, ghost death, ghost bobbing, table sprite, barred dungeon window, player idle animation",
+"H Trayford: Floor and ceiling tile layer support, two additional rooms, tile system refactor, shadow fix",
+"Abhishek @akhmin_ak: Desk, chain wall, enemy ram",
+"Evan Sklarski: Mute toggle, health and related properties",
+"Philip Greene: Broken prison wall variations",
+"Justin Chin: Broken brick tile integration, enemy dialog test",
+"Johan Östling: Sword animation fix",
+" ",
+"                    Game developed by members in HomeTeamGameDev.com - come make games with us!",
+"                                                               - Click anywhere to begin game -"
+];
+
+function drawCredits() {
+  var lineX = 13;
+  var lineY = 1;
+  var creditsSize = 15;
+  var lineSkip = creditsSize+1;
+  colorRect(0, 0, canvas.width, canvas.height, "#003300FF");
+  for(var i=0;i<creditsList.length;i++) {
+      drawText(creditsList[i], lineX, lineY+=lineSkip, creditsSize, "white");
+  }
+}
+
+function lineWrapCredits() { // note: gets calling immediately after definition!
+  const newCut = [];
+  var maxLineChar = 114;
+  var findEnd;
+
+  for(let i = 0; i < creditsList.length; i++) {
+    const currentLine = creditsList[i];
+    for(let j = 0; j < currentLine.length; j++) {
+      /*const aChar = currentLine[j];
+      if(aChar === ":") {
+        if(i !== 0) {
+          newCut.push("\n");
+        }
+
+        newCut.push(currentLine.substring(0, j + 1));
+        newCut.push(currentLine.substring(j + 2, currentLine.length));
+        break;
+      } else*/ if(j === currentLine.length - 1) {
+        if((i === 0) || (i >= creditsList.length - 2)) {
+          newCut.push(currentLine);
+        } else {
+          newCut.push(currentLine.substring(0, currentLine.length));
+        }
+      }
+    }
+  }
+
+  const newerCut = [];
+  for(var i=0;i<newCut.length;i++) {
+    while(newCut[i].length > 0) {
+      findEnd = maxLineChar;
+      if(newCut[i].length > maxLineChar) {
+        for(var ii=findEnd;ii>0;ii--) {
+          if(newCut[i].charAt(ii) == " ") {
+            findEnd=ii;
+            break;
+          }
+        }
+      }
+      newerCut.push(newCut[i].substring(0, findEnd));
+      newCut[i] = newCut[i].substring(findEnd, newCut[i].length);
+    }
+  }
+
+  creditsList = newerCut;
+}
+lineWrapCredits(); // note: calling immediately as part of init, outside the function
