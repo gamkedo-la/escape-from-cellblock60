@@ -19,6 +19,7 @@ var shadowPic = document.createElement("img");
 var redSparkPic = document.createElement("img");
 var sparklePic = document.createElement("img");
 var characterShadow = document.createElement("img");
+var titleLogo = document.createElement("img");
 
 var tilePics = [];
 
@@ -77,6 +78,7 @@ function loadImages() {
     {varName:redSparkPic, theFile:"redSpark.png"},
     {varName:sparklePic, theFile:"sparkle.png"},
     {varName:characterShadow, theFile:"character_shadow.png"},
+    {varName:titleLogo, theFile:"escape-from-cellblock-60-logo.png"},
     {varName:octoGolemPic, theFile:"octoGolem.png"},
     {varName:chain1Pic, theFile:"chain1.png"},
     {varName:chain2Pic, theFile:"chain2.png"},

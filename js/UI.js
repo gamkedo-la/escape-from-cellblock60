@@ -1,9 +1,6 @@
 const MENU_PAGE_MAIN = 0;
-const MENU_PAGE_HELP = 1;
-const MENU_PAGE_VOLUME = 2;
-const MENU_PAGE_OPTIONS = 3;
-const MENU_PAGE_CREDITS = 4;
-let currentMenu = MENU_PAGE_MAIN; 
+const MENU_PAGE_CREDITS = 1;
+var currentMenu = MENU_PAGE_MAIN;
 
 function drawPause() {
   // offset colour so text shows on any background
@@ -38,27 +35,23 @@ function drawGameOver() {
 
 const cellMenu = new function() {
   let itemsX = 240;
-  let topItemY = 200;
+  let topItemY = 270;
   let itemsWidth = 350;
-  let itemsHeight = 80;
-  let rowHeight = 85;
-  let helpTextBoxWidth = 930;
+  let itemsHeight = 70;
+  let rowHeight = 75;
 
-  let mainMenuList = ["PLAY",
+  let menuText = ["PLAY",
       "CREDITS"
-  ];
-  let menuText = [
-    mainMenuList
   ];
 
 
   this.checkState = function() {
-    const selectedItemOnPage = menuText[currentMenu][this.cursor];
-    for (let i = 0; i < menuText[currentMenu].length; i++) {
-      if (selectedItemOnPage === menuText[currentMenu][i].toString()) {
+    const selectedItemOnPage = menuText[this.cursor];
+    for (let i = 0; i < menuText.length; i++) {
+      if (selectedItemOnPage === menuText[i].toString()) {
           colorRect(itemsX, topItemY + rowHeight * i, itemsWidth, itemsHeight, 'grey');
           drawText(
-              menuText[currentMenu][i].toString(),
+              menuText[i].toString(),
               itemsX + 14,
               topItemY + rowHeight * i + 4 + itemsHeight / 1.5,
               45,
@@ -70,7 +63,7 @@ const cellMenu = new function() {
   this.clickOption = function() {
     if (currentMenu != MENU_PAGE_MAIN){
         currentMenu = MENU_PAGE_MAIN;
-    } else switch (menuText[currentMenu][this.cursor]) {
+    } else switch (menuText[this.cursor]) {
         case "PLAY":
             showMenu = false;
             break;
@@ -86,33 +79,20 @@ const cellMenu = new function() {
   
   this.draw = function() {
     let closeTextHeight = 20
-    canvasContext.globalAlpha = 0.95;
-    canvasContext.fillStyle = "#111111";
-    canvasContext.fillRect(0,0,canvas.width,canvas.height);
-    canvasContext.globalAlpha = 1.0;
-
-    drawText(
-      'X key will close this menu',
-      30,
-      closeTextHeight,
-      closeTextHeight,
-      "#dddddd"
-    );
+    canvasContext.drawImage(titleLogo,(canvas.width-titleLogo.width)/2,(canvas.height-titleLogo.height)/2);
 
     switch(currentMenu) {
         case MENU_PAGE_MAIN:
-            for (let i = 0; i < menuText[currentMenu].length; i++) {
+            for (let i = 0; i < menuText.length; i++) {
                 colorRect(itemsX, topItemY + rowHeight * i, itemsWidth, itemsHeight, '#6e0fad');
                 drawText(
-                    menuText[currentMenu][i],
+                    menuText[i],
                     itemsX + 10,
                     topItemY + rowHeight * i + itemsHeight / 1.5,
                     40,
                     "green"
                 );
             }
-            break;
-        case MENU_PAGE_HELP:
             break;
         case MENU_PAGE_CREDITS:
             drawCredits();
@@ -137,9 +117,9 @@ const cellMenu = new function() {
   };
 
   this.menuMouse = function() {
-      const selectedItemOnPage = menuText[currentMenu][this.cursor];
+      const selectedItemOnPage = menuText[this.cursor];
       var offsetY = 30;
-      for (let i = 0; i < menuText[currentMenu].length; i++) {
+      for (let i = 0; i < menuText.length; i++) {
           if (
               //mouseX > itemsX - 350 && mousePosX + itemsWidth &&
               mouseY > topItemY + i * rowHeight - offsetY &&
@@ -156,11 +136,11 @@ const cellMenu = new function() {
       this.menuMouse();
       // Position arrow at last option on screen
       if (this.cursor < 0) {
-          this.cursor = menuText[currentMenu].length - 1;
+          this.cursor = menuText.length - 1;
       }
 
       // Position arrow at first option on screen
-      if (this.cursor >= menuText[currentMenu].length) {
+      if (this.cursor >= menuText.length) {
           this.cursor = 0;
       }
   }
