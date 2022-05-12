@@ -68,22 +68,11 @@ const cellMenu = new function() {
     }
 }
   this.clickOption = function() {
-    const selectedItemOnPage = menuText[currentMenu][this.cursor];
-    // console.log("clicked on menu: " + selectedItemOnPage);
-
     if (currentMenu != MENU_PAGE_MAIN){
         currentMenu = MENU_PAGE_MAIN;
-    } else switch (selectedItemOnPage) {
+    } else switch (menuText[currentMenu][this.cursor]) {
         case "PLAY":
             showMenu = false;
-            break;
-        case "LOAD":
-          currentMenu = MENU_PAGE_LOAD;
-            break;
-        case 'OPTIONS/HELP':
-            currentMenu = MENU_PAGE_OPTIONS;
-            break;
-        case 'VOLUME':
             break;
         case 'CREDITS':
             currentMenu = MENU_PAGE_CREDITS;
@@ -108,7 +97,7 @@ const cellMenu = new function() {
       closeTextHeight,
       closeTextHeight,
       "#dddddd"
-  )
+    );
 
     switch(currentMenu) {
         case MENU_PAGE_MAIN:
@@ -161,6 +150,9 @@ const cellMenu = new function() {
       }
   };
   this.update = function() {
+      if(currentMenu != MENU_PAGE_MAIN) {
+        return;
+      }
       this.menuMouse();
       // Position arrow at last option on screen
       if (this.cursor < 0) {
