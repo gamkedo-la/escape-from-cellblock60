@@ -16,7 +16,7 @@ const STATE_GAME_OVER = 3;
 var gameState = STATE_PLAY;
 var showMenu = true;
 var paused = false;
-var currentRoomId = "01";
+var currentRoomId = "A1"; //01
 
 window.onload = function() {
     canvas = document.getElementById('gameCanvas');
