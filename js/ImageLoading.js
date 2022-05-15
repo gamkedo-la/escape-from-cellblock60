@@ -1,5 +1,6 @@
 var playerPic = document.createElement("img");
 var playerIdlePic = document.createElement("img");
+var playerDeathPic = document.createElement("img");
 var ghostPic = document.createElement("img");
 var skeletonPic = document.createElement("img");
 var ghostWispPic = document.createElement("img");
@@ -63,6 +64,7 @@ function loadImages() {
   var imageList = [
     {varName:playerPic, theFile:"warrior.png"},
 	{varName:playerIdlePic, theFile:"warrior-idle.png"},
+	{varName:playerDeathPic, theFile:"warrior-death.png"},
     {varName:ghostPic, theFile:"ghost.png"},
     {varName:ghostWispPic, theFile:"ghostwisp.png"},
     {varName:skeletonPic, theFile:"skeleton.png"},

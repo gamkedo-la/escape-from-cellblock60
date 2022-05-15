@@ -34,10 +34,14 @@ function warriorClass() {
     this.height = 51; //height of image
 	this.frameCount = 0; //counting the Game FPS for this character
 	this.idleFrameCount = 0;
+	this.deathFrameCount = 0;
     this.advanceFrameAmount = 5; //advance frame (this example: 12 times a second)
     this.spriteNumberOfFrames = 5; // this represents 4 frames of walking
     this.spriteNumberOfIdleFrames = 7;
-    this.frameIndex = 0; //Animation frame for this character 
+	this.spriteNumberOfDeathFrames = 5;
+	this.deathSpriteIndex = 0;
+	this.finishedDeathAnimation = false;
+    this.frameIndex = 0; //Animation frame for this character
     // collisions
     this.movingCollisionsX = this.x;
     this.movingCollisionsY = this.y;
@@ -120,8 +124,12 @@ function warriorClass() {
     this.move = function() {
         this.hitCooldown--;
         //this.swordRect = {x:0, y:0, width:0, height:0};
-        if (this.health <= 0) {
-            gameState = STATE_GAME_OVER;
+		if (this.health <= 0) {
+			this.hitCooldown = 0;
+			if (this.finishedDeathAnimation) {
+				gameState = STATE_GAME_OVER;
+			}
+			return;
         }
         
         var nextX = this.x;
@@ -468,10 +476,28 @@ function warriorClass() {
 	  }
   };
 
+  this.cycleDeathAnimation = function() {
+	this.deathFrameCount++;
+	  if (this.deathFrameCount > this.advanceFrameAmount) {
+		this.deathFrameCount = 0;
+		if(this.deathSpriteIndex < this.spriteNumberOfDeathFrames-1) {
+			this.deathSpriteIndex += 1;
+			this.spriteIndex = this.deathSpriteIndex;
+		} else {
+			this.finishedDeathAnimation = true;
+		}
+	  }
+  };
+
     this.draw = function() {
         let currentBitMap = this.myBitmap;
         const isIdle = Date.now() - this.lastMovedTime > 2000;
-        if(this.moving){
+		if (this.health <= 0) {
+			currentBitMap = playerDeathPic;
+			this.width = 73;
+			this.swidth = 73;
+			this.cycleDeathAnimation();
+		} else if(this.moving){
         this.cycleMovingAnimation();
         } else if (isIdle) {
         currentBitMap = playerIdlePic;
@@ -483,7 +509,7 @@ function warriorClass() {
         // canvasContext.strokeStyle = "red";
         // canvasContext.strokeRect(this.swordRect.x, this.swordRect.y, this.swordRect.width, this.swordRect.height);
 
-        if(this.sword && !isIdle){
+        if(this.sword && !isIdle && this.health > 0){
         this.sx = this.spriteIndex * this.width + 200; //move over to frames for sword
         } else {
         this.sx = this.spriteIndex * this.width; //this advances the frame for animation

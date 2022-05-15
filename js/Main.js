@@ -56,9 +56,6 @@ function moveEverything() {
       pruneEnemies();
       updatedCameraPosition();
       break;
-    case STATE_GAME_OVER:
-      drawGameOver();
-      break;
   }
 }
 
@@ -97,7 +94,8 @@ function drawEverything() {
     paused = false;
   }
   if(gameState == STATE_GAME_OVER) {
-    drawGameOver();
+      drawGameOver();
+	  p1.draw();
   }
   
   frameIndex++
