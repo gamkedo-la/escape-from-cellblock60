@@ -68,6 +68,7 @@ function pruneEnemies(){
 }
 
 function drawEverything() {
+  colorRect(0, 0, canvas.width, 1, "black"); // erase top line
 	shiftForCameraPan();
   drawLayer(roomGrid.bg || []);
   drawLayer(roomGrid.floor);

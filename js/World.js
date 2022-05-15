@@ -134,7 +134,7 @@ function getTileIndexAtPixelCoord(pixelX,pixelY) {
   // first check whether the tile coords fall within valid bounds
   if(tileCol < 0 || tileCol >= ROOM_COLS ||
      tileRow < 0 || tileRow >= ROOM_ROWS) {
-     document.getElementById("debugText").innerHTML = "out of bounds:"+pixelX+","+pixelY;
+     // document.getElementById("debugText").innerHTML = "out of bounds:"+pixelX+","+pixelY;
      return undefined;
   }
   
@@ -270,7 +270,7 @@ function moveToRoom(DIRECTION) {
   addEnemies();
   particles.clear();
  // if()
- document.getElementById("debugText").innerHTML += `\n current room: ${currentRoomId}`;``
+ //document.getElementById("debugText").innerHTML += `\n current room: ${currentRoomId}`;``
   liveRoomGrid = [...roomGrid.floor];
   
 }

@@ -368,7 +368,7 @@ function warriorClass() {
                 sfx("sounds/pickup.mp3",0.25);
                 pickup_key_sparkly_particles(particleX,particleY);
                 this.sword = true; // gain sword
-                document.getElementById("debugText").innerHTML = "Sword: " + this.sword;
+                document.getElementById("debugText").innerHTML = "Sword! Spacebar to swing";
                 roomGrid.floor[walkIntoTileIndex] = TILE_EMPTY; // remove sword
                 SetupPathfindingGridData(p1);
                 break;
