@@ -179,7 +179,6 @@ TILES = {
   }
   
   transparentTiles = [
-  TILE_GOAL ,
   TILE_KEY ,
   TILE_SWORD ,
   TILE_PRISON_WALL_1 ,
