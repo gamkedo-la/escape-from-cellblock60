@@ -49,13 +49,13 @@ const cellMenu = new function() {
     const selectedItemOnPage = menuText[this.cursor];
     for (let i = 0; i < menuText.length; i++) {
       if (selectedItemOnPage === menuText[i].toString()) {
-          colorRect(itemsX, topItemY + rowHeight * i, itemsWidth, itemsHeight, 'grey');
+          colorRect(itemsX, topItemY + rowHeight * i, itemsWidth, itemsHeight, '#897ca0');
           drawText(
               menuText[i].toString(),
               itemsX + 14,
               topItemY + rowHeight * i + 4 + itemsHeight / 1.5,
               45,
-              "#FFE993"
+              "#c4b188"
           );
         }
     }
@@ -72,7 +72,7 @@ const cellMenu = new function() {
             currentMenu = MENU_PAGE_CREDITS;
             break;
         default:
-            console.log("unhandeled menu item");
+            console.log("unhandled menu item");
             break;
     }
     this.cursor = 0;
@@ -85,13 +85,13 @@ const cellMenu = new function() {
     switch(currentMenu) {
         case MENU_PAGE_MAIN:
             for (let i = 0; i < menuText.length; i++) {
-                colorRect(itemsX, topItemY + rowHeight * i, itemsWidth, itemsHeight, '#6e0fad');
+                colorRect(itemsX, topItemY + rowHeight * i, itemsWidth, itemsHeight, '#504324');
                 drawText(
                     menuText[i],
                     itemsX + 10,
                     topItemY + rowHeight * i + itemsHeight / 1.5,
                     40,
-                    "green"
+                    "#8b7d9f"
                 );
             }
             break;
@@ -172,9 +172,9 @@ function drawCredits() {
   var lineY = 1;
   var creditsSize = 15;
   var lineSkip = creditsSize+1;
-  colorRect(0, 0, canvas.width, canvas.height, "#003300FF");
+  colorRect(0, 0, canvas.width, canvas.height, "#504324");
   for(var i=0;i<creditsList.length;i++) {
-      drawText(creditsList[i], lineX, lineY+=lineSkip, creditsSize, "white");
+      drawText(creditsList[i], lineX, lineY+=lineSkip, creditsSize, "#d0bc92");
   }
 }
 
